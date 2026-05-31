@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Functions. One Team.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --leopardo-blue: #1A3868;
+            --leopardo-blue-dark: #112548;
+            --leopardo-yellow: #FFE600;
+            --kahn-copper: #B8854A;
+            --gator-green: #2E6B58;
+            --white: #FFFFFF;
+            --paper: #FAFAF8;
+            --ink: #1A1A1A;
+            --slate: #4A4A4A;
+            --silver: #9A9A9A;
+            --line: #E5E5E0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Libre Franklin', -apple-system, sans-serif;
+            line-height: 1.65;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            padding: 2rem;
+        }
+
+        .slide {
+            background: var(--white);
+            max-width: 1300px;
+            margin: 0 auto;
+            min-height: 720px;
+            padding: 4rem 5rem 5rem;
+            position: relative;
+            box-shadow: 0 4px 24px rgba(26, 56, 104, 0.08);
+        }
+
+        /* ========== HEADER ========== */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .awc-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+        }
+
+        .awc-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 2px;
+            background: var(--leopardo-blue);
+        }
+
+        .slide-number {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--kahn-copper);
+            font-weight: 600;
+            letter-spacing: 0.2em;
+        }
+
+        /* ========== HEADLINE ========== */
+        .slide-headline-block {
+            margin-bottom: 4rem;
+        }
+
+        .slide-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: var(--kahn-copper);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+        }
+
+        h1 {
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+            max-width: 18ch;
+        }
+
+        h1 em {
+            font-style: normal;
+            color: var(--kahn-copper);
+        }
+
+        .slide-sub {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 1.1rem;
+            color: var(--slate);
+            line-height: 1.65;
+            max-width: 62ch;
+        }
+
+        /* ========== TWO COLUMNS ========== */
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .col-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid;
+        }
+
+        .col-offense .col-header {
+            border-bottom-color: var(--kahn-copper);
+        }
+
+        .col-defense .col-header {
+            border-bottom-color: var(--leopardo-blue);
+        }
+
+        .col-eyebrow {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-weight: 600;
+            margin-bottom: 0.55rem;
+        }
+
+        .col-offense .col-eyebrow {
+            color: var(--kahn-copper);
+        }
+
+        .col-defense .col-eyebrow {
+            color: var(--leopardo-blue);
+        }
+
+        .col-title {
+            font-family: 'Jost', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.025em;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+        }
+
+        .col-desc {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .col-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .col-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--line);
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.98rem;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        .col-list li:last-child {
+            border-bottom: none;
+        }
+
+        .col-list li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            margin-top: 0.55rem;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .col-offense .col-list li::before {
+            background: var(--kahn-copper);
+        }
+
+        .col-defense .col-list li::before {
+            background: var(--leopardo-blue);
+        }
+
+        /* ========== CLOSING THESIS ========== */
+        .thesis {
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 2.5rem 3rem;
+            position: relative;
+        }
+
+        .thesis::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--leopardo-yellow);
+        }
+
+        .thesis-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--leopardo-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .thesis-text {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: -0.015em;
+            line-height: 1.35;
+            max-width: 68ch;
+        }
+
+        .thesis-text strong {
+            font-weight: 700;
+            color: var(--leopardo-yellow);
+        }
+
+        /* ========== FOOTER ========== */
+        .slide-footer {
+            margin-top: 3.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-footer-mark {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.01em;
+        }
+
+        .slide-footer-page {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.65rem;
+            color: var(--silver);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            body { padding: 1rem; }
+            .slide {
+                padding: 2.5rem 1.75rem 3rem;
+                min-height: auto;
+            }
+            .slide-header {
+                margin-bottom: 2rem;
+            }
+            .slide-headline-block {
+                margin-bottom: 2.5rem;
+            }
+            .columns {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 2.5rem;
+            }
+            .thesis {
+                padding: 1.75rem 1.5rem;
+            }
+            .thesis-text {
+                font-size: 1.15rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .col-title {
+                font-size: 1.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide">
+
+        <!-- HEADER -->
+        <div class="slide-header">
+            <div class="awc-eyebrow">Alexander West Capital · Portfolio Brand Audit</div>
+            <div class="slide-number">02 of presentation</div>
+        </div>
+
+        <!-- HEADLINE -->
+        <div class="slide-headline-block">
+            <div class="slide-label">The Function</div>
+            <h1>Two functions. <em>One team.</em></h1>
+            <p class="slide-sub">A centralized brand and content function for the AWC portfolio is not one thing. It is two — offense and defense — produced by the same operators, on the same standards, with the same operational discipline.</p>
+        </div>
+
+        <!-- TWO COLUMNS -->
+        <div class="columns">
+
+            <!-- OFFENSE -->
+            <div class="col col-offense">
+                <div class="col-header">
+                    <div class="col-eyebrow">The Growth Function</div>
+                    <div class="col-title">Offense</div>
+                    <div class="col-desc">New story. New positioning. New material the portfolio can take to buyers, investors, and the public.</div>
+                </div>
+                <ul class="col-list">
+                    <li>Brand identity systems that align the portfolio without erasing distinct company voices</li>
+                    <li>Case study production from real footage at real customer sites</li>
+                    <li>Executive thought leadership and founder visibility</li>
+                    <li>Campaign architecture across LinkedIn, podcast, conference, and direct outreach</li>
+                    <li>The portfolio narrative that AJ takes to LPs and the family takes to the public</li>
+                </ul>
+            </div>
+
+            <!-- DEFENSE -->
+            <div class="col col-defense">
+                <div class="col-header">
+                    <div class="col-eyebrow">The Compounding Function</div>
+                    <div class="col-title">Defense</div>
+                    <div class="col-desc">Operational brand discipline. Consistency, retention infrastructure, reputational protection. The work that compounds.</div>
+                </div>
+                <ul class="col-list">
+                    <li>Brand consistency across every portfolio touchpoint, channel, and team member</li>
+                    <li>RFP response infrastructure that reclaims sales hours and protects pipeline</li>
+                    <li>Customer onboarding playbooks that preserve referrals and reduce churn</li>
+                    <li>Operational standards that scale without adding headcount</li>
+                    <li>Risk reduction on legacy brand assets being passively eroded by silence</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- CLOSING THESIS -->
+        <div class="thesis">
+            <div class="thesis-label">Why Centralized</div>
+            <div class="thesis-text">The case for a centralized function is that both happen in the same team, from the same operators, with the same standards. <strong>Splitting offense and defense across an external agency and an internal function loses the leverage in both.</strong></div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="slide-footer">
+            <div class="slide-footer-mark">Alexander West Capital · Portfolio Brand Audit</div>
+            <div class="slide-footer-page">Page 02</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
