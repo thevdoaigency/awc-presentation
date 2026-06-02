@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWC Portfolio Brand Engagement — VDO Aigency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --leopardo-blue: #1A3868;
+            --leopardo-blue-dark: #112548;
+            --leopardo-yellow: #FFE600;
+            --leopardo-graphite: #3A3A40;
+            --efficiency-teal: #2C7A7B;
+            --gator-green: #2E6B58;
+            --kahn-copper: #B8854A;
+            --white: #FFFFFF;
+            --paper: #FAFAF8;
+            --ink: #1A1A1A;
+            --slate: #4A4A4A;
+            --silver: #9A9A9A;
+            --line: #E5E5E0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--white);
+            color: var(--ink);
+            font-family: 'Libre Franklin', -apple-system, sans-serif;
+            line-height: 1.65;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* SITE HEADER */
+        .site-header {
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 1.25rem 2.5rem;
+            border-bottom: 3px solid var(--leopardo-yellow);
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .header-mark {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--white);
+            letter-spacing: -0.01em;
+        }
+        .header-mark em {
+            font-style: italic;
+            color: var(--leopardo-yellow);
+            font-weight: 600;
+        }
+        .header-meta {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 6rem 2.5rem 5rem;
+            background: var(--white);
+            border-bottom: 1px solid var(--line);
+        }
+        .hero-inner { max-width: 900px; margin: 0 auto; }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 2px;
+            background: var(--leopardo-blue);
+        }
+        h1 {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.25rem, 5vw, 3.4rem);
+            color: var(--leopardo-blue);
+            letter-spacing: -0.025em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            max-width: 22ch;
+        }
+        h1 em {
+            font-style: normal;
+            color: var(--kahn-copper);
+        }
+        .hero-prepared {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.85rem;
+            color: var(--slate);
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+        .hero-prepared strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .hero-intro {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 1.1rem;
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 65ch;
+        }
+
+        /* SECTION CONTAINER */
+        section.container { padding: 5rem 2.5rem; }
+        .container-inner { max-width: 900px; margin: 0 auto; }
+        .section-number {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--silver);
+            letter-spacing: 0.02em;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        h2 {
+            font-family: 'Jost', sans-serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 1.75rem;
+            max-width: 28ch;
+        }
+        h3 {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+            margin-top: 2rem;
+        }
+        section p {
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 65ch;
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+        section p.lead {
+            font-size: 1.1rem;
+            color: var(--ink);
+            line-height: 1.65;
+            max-width: 62ch;
+        }
+        section p strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        section ul {
+            margin: 1rem 0 1.5rem 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        section ul li {
+            position: relative;
+            padding: 0.35rem 0 0.35rem 1.5rem;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.97rem;
+            color: var(--ink);
+            line-height: 1.6;
+            max-width: 62ch;
+        }
+        section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 6px;
+            height: 6px;
+            background: var(--kahn-copper);
+            border-radius: 50%;
+        }
+
+        /* ARCHITECTURE TWO-COLUMN */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .arch-card {
+            background: var(--paper);
+            border-top: 3px solid var(--kahn-copper);
+            padding: 2rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .arch-card.parallel { border-top-color: var(--gator-green); }
+        .arch-card-eyebrow {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--kahn-copper);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+        .arch-card.parallel .arch-card-eyebrow { color: var(--gator-green); }
+        .arch-card-title {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 0.85rem;
+        }
+        .arch-card-desc {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .arch-card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+        .arch-card-list li {
+            padding: 0.5rem 0;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.9rem;
+            color: var(--ink);
+            line-height: 1.5;
+            border-bottom: 1px solid var(--line);
+        }
+        .arch-card-list li:last-child { border-bottom: none; }
+        .arch-card-list li strong {
+            display: block;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--kahn-copper);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .arch-card.parallel .arch-card-list li strong { color: var(--gator-green); }
+
+        /* PHASED ACTIVATION */
+        .phases {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .phase-card {
+            padding: 1.75rem 1.5rem;
+            border-top: 3px solid var(--efficiency-teal);
+            background: var(--paper);
+        }
+        .phase-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--efficiency-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .phase-window {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+        .phase-companies {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.88rem;
+            color: var(--ink);
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        .phase-count {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem;
+            color: var(--efficiency-teal);
+            font-weight: 600;
+            padding-top: 0.6rem;
+            border-top: 1px solid var(--line);
+        }
+
+        /* COMPENSATION TABLE */
+        .comp-table {
+            margin-top: 2rem;
+            border-collapse: collapse;
+            width: 100%;
+            font-family: 'Libre Franklin', sans-serif;
+        }
+        .comp-table tr {
+            border-bottom: 1px solid var(--line);
+        }
+        .comp-table tr:last-child { border-bottom: none; }
+        .comp-table td {
+            padding: 1.5rem 1.25rem;
+            vertical-align: top;
+        }
+        .comp-table td:first-child {
+            width: 30%;
+            background: var(--paper);
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.005em;
+            border-right: 3px solid var(--kahn-copper);
+        }
+        .comp-table td:last-child {
+            font-size: 0.95rem;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        .comp-table td:last-child strong {
+            display: inline;
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--leopardo-blue);
+        }
+
+        /* PAYMENT BOX */
+        .payment-box {
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 2.5rem 2.5rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+        .payment-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--leopardo-yellow);
+        }
+        .payment-box-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--leopardo-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .payment-box-headline {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.015em;
+            line-height: 1.35;
+            margin-bottom: 1.25rem;
+            max-width: 60ch;
+        }
+        .payment-box-body {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.65;
+            max-width: 62ch;
+            margin: 0;
+        }
+
+        /* ANNUAL ENVELOPE */
+        .envelope {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            padding: 2rem 2rem;
+            margin-top: 2rem;
+        }
+        .envelope-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+        .envelope-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .envelope-table tr {
+            border-bottom: 1px solid var(--line);
+        }
+        .envelope-table tr:last-child {
+            border-bottom: none;
+            border-top: 2px solid var(--leopardo-blue);
+            font-weight: 700;
+        }
+        .envelope-table td {
+            padding: 0.85rem 0;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+        }
+        .envelope-table td:first-child {
+            color: var(--slate);
+        }
+        .envelope-table td:last-child {
+            text-align: right;
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+        }
+        .envelope-table tr:last-child td:last-child {
+            font-size: 1.1rem;
+            color: var(--leopardo-blue);
+        }
+        .envelope-table tr:last-child td:first-child {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        /* CLOSING / SIGNATURE */
+        .closing {
+            background: var(--leopardo-blue-dark);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 5rem 2.5rem;
+        }
+        .closing-inner { max-width: 900px; margin: 0 auto; }
+        .closing-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: var(--leopardo-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .closing h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        .closing p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 60ch;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--leopardo-blue-dark);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2.5rem 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.78rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        footer .footer-wordmark {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--white);
+            letter-spacing: -0.01em;
+        }
+        footer .footer-wordmark em {
+            font-style: italic;
+            font-weight: 600;
+            color: var(--leopardo-yellow);
+        }
+
+        @media (max-width: 800px) {
+            .header-inner { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+            .hero { padding: 4rem 1.5rem 3rem; }
+            section.container { padding: 3.5rem 1.5rem; }
+            .architecture-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .phases { grid-template-columns: 1fr; gap: 1rem; }
+            .comp-table td:first-child {
+                width: auto;
+                display: block;
+                border-right: none;
+                border-bottom: 3px solid var(--kahn-copper);
+            }
+            .comp-table td:last-child { display: block; padding-top: 1rem; }
+            .payment-box { padding: 1.75rem 1.5rem; }
+            .envelope { padding: 1.5rem 1.5rem; }
+            .closing { padding: 3.5rem 1.5rem; }
+            footer { padding: 2.5rem 1.5rem; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+            .site-header { padding: 1rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-mark">VDO <em>Aigency</em></div>
+            <div class="header-meta">Engagement Scope &middot; Confidential</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-eyebrow">Alexander West Capital &middot; Portfolio Brand Engagement</div>
+            <h1>Portfolio Brand Operations <em>as a function.</em></h1>
+            <p class="hero-prepared">Prepared for <strong>AJ Leopardo</strong>, President &middot; Alexander West Capital<br/>By Brandon Cole, Executive Producer &middot; VDO Aigency &middot; June 2026</p>
+            <p class="hero-intro">This document outlines the structure of an ongoing brand and content function for the seven Alexander West Capital operating companies, delivered through VDO Aigency as agency of record. It is a companion to the working portfolio brand audit prepared for the June 2026 Chicago review.</p>
+        </div>
+    </section>
+
+    <!-- 00 - WHY THIS STRUCTURE -->
+    <section class="container">
+        <div class="container-inner">
+            <h2><span class="section-number">00</span>Why This Structure</h2>
+            <p class="lead">The portfolio brand audit identifies what each operating company needs. This document defines who delivers it, on what cadence, and under what terms.</p>
+            <p>Two structural decisions shaped the engagement architecture proposed here.</p>
+            <p><strong>First, this function lives outside the AWC org chart.</strong> The work spans seven operating companies, each with its own leadership, internal teams, and cultural particulars. A vendor relationship to AWC at the family office level is structurally simpler than an internal C-suite role at any one of the operating companies, particularly Leopardo Construction. The brand function reports to AWC leadership through VDO Aigency, not through any operating company's internal hierarchy.</p>
+            <p><strong>Second, the GATOR equity engagement remains a separate track.</strong> GATOR is the only portfolio entity with a venture-style cap table and a defined Series A trajectory. The brand and operational work for GATOR is structured under its own letter of intent &mdash; salary, equity, and acceleration terms previously agreed verbally with Curtis Leopardo. That engagement runs in parallel to this one. Neither contaminates the other.</p>
+        </div>
+    </section>
+
+    <!-- 01 - THE TWO TRACKS -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <h2><span class="section-number">01</span>Two Parallel Engagements</h2>
+            <p class="lead">Both deals are in motion. Both close at the same Chicago meeting. They are documented separately so neither one creates leverage over the other.</p>
+
+            <div class="architecture-grid">
+                <div class="arch-card">
+                    <div class="arch-card-eyebrow">This Document</div>
+                    <div class="arch-card-title">AWC Portfolio Retainer</div>
+                    <div class="arch-card-desc">Brand and content operations across all seven operating companies, delivered through VDO Aigency as external agency of record.</div>
+                    <ul class="arch-card-list">
+                        <li><strong>Structure</strong>Vendor retainer to VDO Aigency</li>
+                        <li><strong>Relationship</strong>External principal &middot; agency of record</li>
+                        <li><strong>Scope</strong>Seven operating companies, phased activation</li>
+                        <li><strong>Compensation</strong>Cash retainer + per-project production</li>
+                        <li><strong>Equity</strong>None &mdash; this engagement is cash-only</li>
+                    </ul>
+                </div>
+
+                <div class="arch-card parallel">
+                    <div class="arch-card-eyebrow">Separate Document</div>
+                    <div class="arch-card-title">GATOR Brand &amp; Operations</div>
+                    <div class="arch-card-desc">Dedicated brand and operational infrastructure for GATOR, documented in the May 2026 GATOR Scope of Work and verbally agreed.</div>
+                    <ul class="arch-card-list">
+                        <li><strong>Structure</strong>Fractional CBO at GATOR</li>
+                        <li><strong>Relationship</strong>Internal to GATOR, reports to CEO</li>
+                        <li><strong>Scope</strong>GATOR brand, sales enablement, ops</li>
+                        <li><strong>Compensation</strong>$110K salary + $3K/mo retainer to VDO</li>
+                        <li><strong>Equity</strong>1.5% common stock, 2-year vest, 6-month cliff</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 - SCOPE -->
+    <section class="container">
+        <div class="container-inner">
+            <h2><span class="section-number">02</span>Scope of the Portfolio Retainer</h2>
+            <p class="lead">The portfolio brand function is two things at once. The same operators deliver both, on the same standards, from the same operational discipline.</p>
+
+            <h3>Offense &mdash; The Growth Function</h3>
+            <ul>
+                <li>Brand identity systems that align the portfolio without erasing distinct operating company voices</li>
+                <li>Case study production from real footage at real customer sites, across active companies</li>
+                <li>Executive thought leadership and founder visibility for portfolio principals</li>
+                <li>Campaign architecture across LinkedIn, podcast, conference, and direct outreach surfaces</li>
+                <li>The portfolio narrative AWC takes to LPs and the family takes to the public</li>
+            </ul>
+
+            <h3>Defense &mdash; The Compounding Function</h3>
+            <ul>
+                <li>Brand consistency across every portfolio touchpoint, channel, and team member</li>
+                <li>RFP response infrastructure that reclaims sales hours and protects pipeline integrity</li>
+                <li>Customer onboarding playbooks that preserve referrals and reduce churn across operating companies</li>
+                <li>Operational standards that scale without adding portfolio-wide headcount</li>
+                <li>Brand asset management and reputational protection across legacy properties</li>
+            </ul>
+
+            <p style="margin-top: 2rem;">The case for centralization is that both functions happen in the same team, from the same operators, with the same standards. Splitting offense and defense across an external agency and an internal function loses the leverage in both. The Leopardo Efficiency pilot has already proven the model works in practice. The portfolio retainer is the deployment of that proven model across the remaining six companies.</p>
+        </div>
+    </section>
+
+    <!-- 03 - PHASED ACTIVATION -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <h2><span class="section-number">03</span>Phased Activation</h2>
+            <p class="lead">Taking on all seven companies in the first 90 days would compromise quality on every audit and damage the engagement's credibility. The work is sequenced for visible wins early, complex builds in the middle, and the most politically sensitive properties last.</p>
+
+            <div class="phases">
+                <div class="phase-card">
+                    <div class="phase-label">Phase 01</div>
+                    <div class="phase-window">Months 1&ndash;3</div>
+                    <div class="phase-companies">Leopardo Efficiency (continues) &middot; Enlyt &middot; Grand Kahn Electric</div>
+                    <div class="phase-count">3 companies active</div>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-label">Phase 02</div>
+                    <div class="phase-window">Months 4&ndash;6</div>
+                    <div class="phase-companies">Adds GATOR (post-Series A prep) &middot; Laystrom Hardware intake begins</div>
+                    <div class="phase-count">5 companies active</div>
+                </div>
+                <div class="phase-card">
+                    <div class="phase-label">Phase 03</div>
+                    <div class="phase-window">Months 7&ndash;9</div>
+                    <div class="phase-companies">Adds DFH Connect &middot; Leopardo Construction intake begins</div>
+                    <div class="phase-count">7 companies active</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 2.5rem;">Phase 1 anchors on the companies with the most dramatic gap between earned credibility and current presentation &mdash; Enlyt (Sonder, Mel&iacute;a, Belgravia wins hidden behind an incomplete website) and Grand Kahn Electric (117 years of work competing on price). Leopardo Efficiency continues operating as the proving ground. Phase 2 brings GATOR onto the portfolio cadence ahead of Series A diligence. Phase 3 closes the loop with Laystrom, DFH Connect, and the anchor brand itself.</p>
+            <p>The retainer holds steady through Phases 1 and 2. A review trigger activates at five active companies, with a defined adjustment to the retainer ceiling. A second trigger activates at seven. Capacity and compensation move together; the cost of expansion is never absorbed silently.</p>
+        </div>
+    </section>
+
+    <!-- 04 - WHAT'S NOT IN SCOPE -->
+    <section class="container">
+        <div class="container-inner">
+            <h2><span class="section-number">04</span>What&rsquo;s Not in Scope</h2>
+            <p class="lead">Clear boundaries protect the budget, the working relationships, and the function&rsquo;s credibility inside the portfolio.</p>
+            <ul>
+                <li><strong>Operating company management.</strong> The retainer informs brand and content; it does not replace any operating company&rsquo;s executive team or product leadership.</li>
+                <li><strong>Sales execution.</strong> Sales hires, sales operations, and revenue accountability stay inside each operating company.</li>
+                <li><strong>Engineering and product development.</strong> DFH Connect software, GATOR platform engineering, and any operating company&rsquo;s technical product roadmap are outside scope.</li>
+                <li><strong>Financial reporting and family office operations.</strong> AWC&rsquo;s family office finance, accounting, and LP reporting functions are not touched by this engagement.</li>
+                <li><strong>Outside agency relationships.</strong> Existing agency vendors (BBG and others) may continue in their specific lanes. The portfolio retainer does not require their termination, only their integration into the unified brand standard.</li>
+                <li><strong>Project production work beyond the retainer scope.</strong> Case study films, animated explainers, website builds, photography campaigns, and event production are quoted per project at VDO Aigency standard rates, approved by the AWC finance function on a per-SOW basis.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 05 - COMPENSATION -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <h2><span class="section-number">05</span>Compensation Structure</h2>
+            <p class="lead">The retainer is structured for cash-flow predictability on both sides. AWC commits annually with monthly cadence visibility. VDO Aigency is paid in advance, by wire, with no deliverable-by-deliverable invoicing of strategic time.</p>
+
+            <table class="comp-table">
+                <tr>
+                    <td>Strategic Retainer</td>
+                    <td><strong>$12,000 / month</strong>&nbsp;&nbsp;Brandon&rsquo;s time on portfolio brand strategy, voice, positioning, executive content direction, and team coordination across active operating companies. Paid in advance, by wire, on the first business day of each month.</td>
+                </tr>
+                <tr>
+                    <td>Mobilization Payment</td>
+                    <td><strong>$24,000 at signing</strong>&nbsp;&nbsp;Two months of retainer prepaid at engagement signing. Non-refundable. Funds the front-loaded intake and audit work of Months 1 and 2, during which no further invoicing occurs.</td>
+                </tr>
+                <tr>
+                    <td>Production Work</td>
+                    <td><strong>Per-project SOW</strong>&nbsp;&nbsp;Case study films, animated explainers, website builds, photography, executive interview series, and any project work beyond the retainer. Approved by the AWC finance function on a per-project basis. Fifty percent due at SOW signing, fifty percent due upon delivery. Seven-day wire terms.</td>
+                </tr>
+                <tr>
+                    <td>Internal Headcount</td>
+                    <td><strong>Separate AWC line</strong>&nbsp;&nbsp;Raj Brahmbhatt, currently a VDO contractor, transitions to direct AWC employment as portfolio media operations manager at approximately $67K base plus benefits. Reports operationally to the retainer engagement; payroll line lives inside AWC, not VDO Aigency.</td>
+                </tr>
+                <tr>
+                    <td>Term</td>
+                    <td><strong>12 months minimum</strong>&nbsp;&nbsp;With annual renewal at five percent retainer escalation, defined at signing. Either party may terminate with sixty days written notice after Month 6. Retainer continues through the notice period. Mobilization payment retained as severance regardless of termination cause.</td>
+                </tr>
+                <tr>
+                    <td>Cadence</td>
+                    <td><strong>Monthly &amp; Quarterly</strong>&nbsp;&nbsp;Monthly retainer wire on the first business day. Quarterly business review with AJ, Rob, and Curtis &mdash; one hour, slide deliverable. Annual renewal review in Month 11.</td>
+                </tr>
+            </table>
+
+            <div class="payment-box">
+                <div class="payment-box-label">Payment Architecture &middot; Note for Rob</div>
+                <div class="payment-box-headline">Wire transfer, prepaid monthly. No Net 30. No deliverable-gated invoicing on the retainer.</div>
+                <p class="payment-box-body">Family offices retain senior outside counsel, accountants, and operating advisors with prepaid wire transfers as standard practice. The payment architecture above mirrors that convention. The mobilization payment borrows construction-subcontractor vocabulary &mdash; mobilization fee, due at signing, equal to two months of retainer &mdash; and operates on the same logic. Cash flow stays clean on both sides; neither party is ever owed work, and neither is ever in float.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 - ANNUAL ENVELOPE -->
+    <section class="container">
+        <div class="container-inner">
+            <h2><span class="section-number">06</span>Annual Envelope</h2>
+            <p class="lead">The total AWC commitment, modeled for Year 1, breaks down as follows. Production volume scales with the number of active operating companies; retainer holds steady through Phase 2.</p>
+
+            <div class="envelope">
+                <div class="envelope-label">Year One &middot; Total Commitment Modeled</div>
+                <table class="envelope-table">
+                    <tr>
+                        <td>Strategic Retainer (12 months &times; $12,000)</td>
+                        <td>$144,000</td>
+                    </tr>
+                    <tr>
+                        <td>Mobilization Payment (signing fee)</td>
+                        <td>Inside retainer total</td>
+                    </tr>
+                    <tr>
+                        <td>Production Work (3 active companies in Phase 1)</td>
+                        <td>$150,000 &ndash; $240,000</td>
+                    </tr>
+                    <tr>
+                        <td>Raj &mdash; Internal AWC Headcount</td>
+                        <td>~$80,000</td>
+                    </tr>
+                    <tr>
+                        <td>Total AWC Commitment, Year One</td>
+                        <td>$374K &ndash; $464K</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p style="margin-top: 2rem;">The total annual envelope sits inside the cost range of a single internal Chief Marketing Officer hire at a family office of AWC&rsquo;s scale, while delivering brand and content operations across seven operating companies rather than one. The retainer itself reads as a senior consulting engagement; production is approved per project with full Rob visibility; internal headcount is a known AWC line. No surprise expenses. No scope creep. No interest float.</p>
+        </div>
+    </section>
+
+    <!-- 07 - WHY THIS WORKS -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <h2><span class="section-number">07</span>Why This Structure Serves AWC</h2>
+            <p>The decisions encoded in this engagement architecture were each made with a specific outcome in mind.</p>
+
+            <h3>External vendor, not internal C-suite hire.</h3>
+            <p>The brand function reports to AWC at the family office level, not into any operating company&rsquo;s internal org chart. This avoids friction with existing Leopardo Construction marketing personnel and operating company executives who would resist a new C-suite peer. The same work gets done with materially less political cost.</p>
+
+            <h3>Cash-only retainer, equity isolated to GATOR.</h3>
+            <p>The portfolio retainer is cash. GATOR equity is documented separately, on its own terms, with its own structure. Combining them would entangle the family office&rsquo;s ongoing operating budget with a venture-style cap table conversation. Keeping them parallel preserves clarity for both Rob and AJ &mdash; and keeps Series A diligence on GATOR clean.</p>
+
+            <h3>Wire-prepaid retainer, per-project production approvals.</h3>
+            <p>Net 30 invoicing on a strategic retainer creates floating receivables and ongoing approval conversations. Wire-prepaid retainer with separate per-project production approvals gives the family office finance function clean monthly visibility, eliminates float, and removes the temptation to slow-pay an outside operator who already has portfolio access.</p>
+
+            <h3>Phased activation with adjustment triggers.</h3>
+            <p>The retainer is calibrated to a Phase 1 scope of three active companies. Activation triggers at five and seven companies adjust the retainer ceiling proportionally. Capacity, quality, and compensation move together; expansion is never absorbed silently by either side.</p>
+
+            <h3>The proving ground exists.</h3>
+            <p>Leopardo Efficiency has been operating as a pilot of this exact function for months &mdash; outreach board, executive voice work, content pipeline, AI-augmented production discipline. The portfolio retainer is the deployment of a proven operating model, not the construction of a theoretical one. Risk to AWC is correspondingly lower than for any greenfield brand engagement.</p>
+        </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="closing">
+        <div class="closing-inner">
+            <div class="closing-label">Next Steps</div>
+            <h2>The engagement begins on the day the mobilization payment is wired.</h2>
+            <p>Engagement letter to be drafted by AWC counsel against the structure above, with parallel GATOR LOI executed at the same Chicago meeting. Both documents are independent. Both move on the same timeline.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-wordmark">VDO <em>Aigency</em></div>
+            <div>Prepared by Brandon Cole &middot; Executive Producer &middot; brandon@thevdoaigency.com &middot; June 2026</div>
+        </div>
+    </footer>
+
+</body>
+</html>
