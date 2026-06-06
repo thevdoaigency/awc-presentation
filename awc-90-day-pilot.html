@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWC 90-Day Pilot — VDO Aigency Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --leopardo-blue: #1A3868;
+            --leopardo-blue-dark: #112548;
+            --leopardo-yellow: #FFE600;
+            --kahn-copper: #B8854A;
+            --efficiency-teal: #2C7A7B;
+            --gator-green: #2E6B58;
+            --enlyt-steel: #4A6680;
+            --white: #FFFFFF;
+            --paper: #FAFAF8;
+            --ink: #1A1A1A;
+            --slate: #4A4A4A;
+            --silver: #9A9A9A;
+            --line: #E5E5E0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--white);
+            color: var(--ink);
+            font-family: 'Libre Franklin', -apple-system, sans-serif;
+            line-height: 1.65;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* SITE HEADER */
+        .site-header {
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 1.25rem 2.5rem;
+            border-bottom: 3px solid var(--leopardo-yellow);
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .header-mark {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--white);
+            letter-spacing: -0.01em;
+            text-decoration: none;
+        }
+        .header-mark span { color: var(--leopardo-yellow); }
+        .header-meta {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 5rem 2.5rem 4rem;
+            background: var(--white);
+            border-bottom: 1px solid var(--line);
+        }
+        .hero-inner { max-width: 1100px; margin: 0 auto; }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 2px;
+            background: var(--leopardo-blue);
+        }
+        .hero-headline {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.25rem, 5vw, 3.4rem);
+            color: var(--leopardo-blue);
+            letter-spacing: -0.025em;
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+            max-width: 18ch;
+        }
+        .hero-headline em {
+            font-style: normal;
+            color: var(--kahn-copper);
+        }
+        .hero-prepared {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.88rem;
+            color: var(--slate);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+        .hero-prepared strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .hero-sub {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 64ch;
+            margin-bottom: 2rem;
+        }
+        .hero-summary {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--line);
+            flex-wrap: wrap;
+        }
+        .hero-summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .hero-summary-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.65rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+        }
+        .hero-summary-value {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.15rem;
+            color: var(--leopardo-blue);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        section.container { padding: 4.5rem 2.5rem; }
+        .container-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: var(--kahn-copper);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+        }
+        h2 {
+            font-family: 'Jost', sans-serif;
+            font-size: clamp(1.65rem, 3.5vw, 2.3rem);
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            max-width: 28ch;
+        }
+        section p {
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 65ch;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        section p.lead {
+            font-size: 1.08rem;
+            color: var(--ink);
+            line-height: 1.65;
+            max-width: 64ch;
+        }
+
+        /* SCOPE GRID */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .scope-card {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-top: 3px solid;
+            padding: 1.75rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .scope-card.gk { border-top-color: var(--kahn-copper); }
+        .scope-card.en { border-top-color: var(--enlyt-steel); }
+        .scope-card.le { border-top-color: var(--efficiency-teal); }
+        .scope-card-tag {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .scope-card.gk .scope-card-tag { color: var(--kahn-copper); }
+        .scope-card.en .scope-card-tag { color: var(--enlyt-steel); }
+        .scope-card.le .scope-card-tag { color: var(--efficiency-teal); }
+        .scope-card-name {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.015em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+        .scope-card-role {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.82rem;
+            color: var(--slate);
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--line);
+        }
+        .scope-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .scope-card ul li {
+            padding: 0.45rem 0;
+            padding-left: 1rem;
+            position: relative;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.9rem;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+        .scope-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.95rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+        .scope-card.gk ul li::before { background: var(--kahn-copper); }
+        .scope-card.en ul li::before { background: var(--enlyt-steel); }
+        .scope-card.le ul li::before { background: var(--efficiency-teal); }
+
+        /* COMPENSATION TABLE */
+        .comp-table {
+            margin-top: 2rem;
+            border-collapse: collapse;
+            width: 100%;
+            font-family: 'Libre Franklin', sans-serif;
+            background: var(--white);
+            border: 1px solid var(--line);
+        }
+        .comp-table tr {
+            border-bottom: 1px solid var(--line);
+        }
+        .comp-table tr:last-child { border-bottom: none; }
+        .comp-table td {
+            padding: 1.25rem 1.5rem;
+            vertical-align: top;
+            font-size: 0.96rem;
+        }
+        .comp-table td:first-child {
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .comp-table td:last-child {
+            text-align: right;
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            white-space: nowrap;
+        }
+        .comp-table tr.total {
+            border-top: 2px solid var(--leopardo-blue);
+            background: var(--paper);
+        }
+        .comp-table tr.total td {
+            padding: 1.5rem;
+        }
+        .comp-table tr.total td:first-child {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            color: var(--ink);
+            font-size: 1rem;
+        }
+        .comp-table tr.total td:last-child {
+            font-size: 1.4rem;
+            color: var(--leopardo-blue);
+        }
+
+        /* PAYMENT SCHEDULE */
+        .payment-schedule {
+            margin-top: 2rem;
+            border: 1px solid var(--line);
+        }
+        .payment-row {
+            display: grid;
+            grid-template-columns: 30% 1fr 25%;
+            gap: 1rem;
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid var(--line);
+            align-items: center;
+        }
+        .payment-row:last-child { border-bottom: none; }
+        .payment-row:nth-child(odd) { background: var(--paper); }
+        .payment-when {
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            font-size: 0.92rem;
+        }
+        .payment-what {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.9rem;
+            color: var(--slate);
+        }
+        .payment-amount {
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            font-size: 1rem;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        /* CALLOUT BOX */
+        .callout {
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 2.5rem 2.5rem;
+            margin-top: 2.5rem;
+            position: relative;
+        }
+        .callout::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--leopardo-yellow);
+        }
+        .callout-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--leopardo-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .callout-headline {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.015em;
+            line-height: 1.3;
+            margin-bottom: 1.25rem;
+            max-width: 60ch;
+        }
+        .callout-body {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.65;
+            max-width: 64ch;
+            margin: 0;
+        }
+
+        /* TRIGGER METRICS */
+        .trigger-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .trigger-item {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--leopardo-blue);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .trigger-num {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--kahn-copper);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            flex-shrink: 0;
+            min-width: 2rem;
+        }
+        .trigger-text {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.92rem;
+            color: var(--ink);
+            line-height: 1.55;
+        }
+        .trigger-text strong {
+            font-weight: 600;
+            color: var(--leopardo-blue);
+        }
+
+        /* TRIGGER RULE BOX */
+        .trigger-rule {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .trigger-rule-text {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.015em;
+        }
+        .trigger-rule-text strong {
+            color: var(--kahn-copper);
+        }
+
+        /* WHY THIS WORKS */
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem 3rem;
+            margin-top: 2rem;
+        }
+        .why-item h3 {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+        .why-item p {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.92rem;
+            color: var(--slate);
+            line-height: 1.6;
+            margin: 0;
+            max-width: none;
+        }
+
+        /* TRIGGER FUTURE */
+        .future-envelope {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            padding: 2rem 2rem;
+            margin-top: 2rem;
+        }
+        .future-envelope-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+        .future-envelope table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .future-envelope tr {
+            border-bottom: 1px solid var(--line);
+        }
+        .future-envelope tr:last-child {
+            border-bottom: none;
+            border-top: 2px solid var(--leopardo-blue);
+        }
+        .future-envelope td {
+            padding: 0.85rem 0;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+        }
+        .future-envelope td:first-child {
+            color: var(--slate);
+        }
+        .future-envelope td:last-child {
+            text-align: right;
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            color: var(--leopardo-blue);
+        }
+        .future-envelope tr:last-child td {
+            padding-top: 1rem;
+        }
+        .future-envelope tr:last-child td:first-child {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .future-envelope tr:last-child td:last-child {
+            font-size: 1.1rem;
+            color: var(--leopardo-blue);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--leopardo-blue-dark);
+            color: rgba(255, 255, 255, 0.55);
+            padding: 3rem 2.5rem 2.5rem;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-mark {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--white);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.4rem;
+        }
+        .footer-tagline {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.55;
+            max-width: 42ch;
+        }
+        .footer-meta {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            text-align: right;
+        }
+
+        @media (max-width: 800px) {
+            .header-inner { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+            .hero { padding: 3.5rem 1.5rem 2.5rem; }
+            section.container { padding: 3rem 1.5rem; }
+            .scope-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .trigger-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero-summary { flex-direction: column; gap: 1.25rem; }
+            .payment-row {
+                grid-template-columns: 1fr;
+                gap: 0.35rem;
+            }
+            .payment-amount { text-align: left; }
+            .callout { padding: 1.75rem 1.5rem; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+            .footer-meta { text-align: left; }
+            .site-header { padding: 1rem 1.5rem; }
+            footer { padding: 2.5rem 1.5rem; }
+        }
+
+        @media print {
+            .site-header { background: var(--leopardo-blue) !important; -webkit-print-color-adjust: exact; }
+            .callout { background: var(--leopardo-blue) !important; -webkit-print-color-adjust: exact; }
+            footer { background: var(--leopardo-blue-dark) !important; -webkit-print-color-adjust: exact; }
+            section.container { padding: 2rem 0; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-mark">Alexander West Capital &middot; <span>90-Day Pilot Proposal</span></div>
+            <div class="header-meta">Prepared for Chicago &middot; June 2026</div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-eyebrow">VDO Aigency &middot; Engagement Proposal</div>
+            <h1 class="hero-headline">Ninety days. <em>Two companies. One operating model.</em></h1>
+            <p class="hero-prepared">Prepared for <strong>Alan Aldworth</strong>, CFO &middot; Alexander West Capital<br/>By Brandon Cole, Executive Producer &middot; VDO Aigency &middot; June 2026</p>
+            <p class="hero-sub">A focused, bounded pilot to validate the centralized brand and content function before committing to the full twelve-month engagement. Grand Kahn and Enlyt activated. Leopardo Efficiency continues at current cadence. Defined deliverables. Defined trigger metrics. Off-ramp at Day 90 if the pilot misses.</p>
+
+            <div class="hero-summary">
+                <div class="hero-summary-item">
+                    <div class="hero-summary-label">Term</div>
+                    <div class="hero-summary-value">90 Days</div>
+                </div>
+                <div class="hero-summary-item">
+                    <div class="hero-summary-label">Active Companies</div>
+                    <div class="hero-summary-value">3</div>
+                </div>
+                <div class="hero-summary-item">
+                    <div class="hero-summary-label">Total Commitment</div>
+                    <div class="hero-summary-value">$54,400</div>
+                </div>
+                <div class="hero-summary-item">
+                    <div class="hero-summary-label">Trigger</div>
+                    <div class="hero-summary-value">6 of 7 metrics</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 01 - PILOT SCOPE -->
+    <section class="container">
+        <div class="container-inner">
+            <div class="section-label">01 &middot; Pilot Scope</div>
+            <h2>What gets delivered in the first 90 days.</h2>
+            <p class="lead">Two operating companies activated. One continues on cruise control. The pilot is calibrated to a delivery scope VDO Aigency can absolutely execute, with margin to spare. Brand book work stays with BBG. VDO Aigency handles the moving content.</p>
+
+            <div class="scope-grid">
+                <div class="scope-card gk">
+                    <div class="scope-card-tag">Newly Activated</div>
+                    <div class="scope-card-name">Grand Kahn Electric</div>
+                    <div class="scope-card-role">Mike Casto, President. Shoot day June 29.</div>
+                    <ul>
+                        <li>One hero brand film</li>
+                        <li>Five short-form cutdowns</li>
+                        <li>Written LinkedIn content for Mike</li>
+                        <li>Brand voice documentation</li>
+                    </ul>
+                </div>
+
+                <div class="scope-card en">
+                    <div class="scope-card-tag">Newly Activated</div>
+                    <div class="scope-card-name">Enlyt Building Technologies</div>
+                    <div class="scope-card-role">Principal intake mid-July.</div>
+                    <ul>
+                        <li>One hero brand film</li>
+                        <li>Five short-form cutdowns</li>
+                        <li>Written LinkedIn content for principal</li>
+                        <li>Brand voice documentation</li>
+                    </ul>
+                </div>
+
+                <div class="scope-card le">
+                    <div class="scope-card-tag">Continuing</div>
+                    <div class="scope-card-name">Leopardo Efficiency</div>
+                    <div class="scope-card-role">Cruise control &mdash; operations in motion.</div>
+                    <ul>
+                        <li>Curtis LinkedIn content cadence</li>
+                        <li>Monday outreach board operations</li>
+                        <li>Existing media pipeline maintained</li>
+                        <li>Monthly cadence reporting included</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 - COMPENSATION -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <div class="section-label">02 &middot; Compensation</div>
+            <h2>The full 90-day envelope, itemized.</h2>
+            <p class="lead">Four line items. No surprises. The retainer for Brando's strategic time. A part-time contractor rate for Raj during the pilot ramp. Two bounded production packages. The total below is the entire pilot exposure to AWC.</p>
+
+            <table class="comp-table">
+                <tr>
+                    <td>Brandon Cole strategic retainer (90 days)</td>
+                    <td>$36,000</td>
+                </tr>
+                <tr>
+                    <td>Raj Brahmbhatt part-time contractor ($2,800 &times; 3 months)</td>
+                    <td>$8,400</td>
+                </tr>
+                <tr>
+                    <td>Grand Kahn production package (hero film + 5 cutdowns)</td>
+                    <td>$5,000</td>
+                </tr>
+                <tr>
+                    <td>Enlyt production package (hero film + 5 cutdowns)</td>
+                    <td>$5,000</td>
+                </tr>
+                <tr class="total">
+                    <td>90-Day Total Commitment</td>
+                    <td>$54,400</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- 03 - PAYMENT SCHEDULE -->
+    <section class="container">
+        <div class="container-inner">
+            <div class="section-label">03 &middot; Payment Schedule</div>
+            <h2>Wire-prepaid. No Net 30. No surprise invoicing.</h2>
+            <p class="lead">The cadence borrows from how family offices pay outside counsel and senior professional services. Brando's retainer is wire-prepaid at signing and on the first of Month 3. Production work is fifty-fifty per project SOW. Raj's contractor pay lands on the first of each month during the pilot. Eight clean wires across the ninety days.</p>
+
+            <div class="payment-schedule">
+                <div class="payment-row">
+                    <div class="payment-when">At Signing</div>
+                    <div class="payment-what">Brando retainer &mdash; Months 1 + 2 prepaid (mobilization)</div>
+                    <div class="payment-amount">$24,000</div>
+                </div>
+                <div class="payment-row">
+                    <div class="payment-when">Month 1, Day 1</div>
+                    <div class="payment-what">Raj part-time contractor</div>
+                    <div class="payment-amount">$2,800</div>
+                </div>
+                <div class="payment-row">
+                    <div class="payment-when">Month 1, at SOW</div>
+                    <div class="payment-what">Grand Kahn production &mdash; 50% on SOW signing</div>
+                    <div class="payment-amount">$2,500</div>
+                </div>
+                <div class="payment-row">
+                    <div class="payment-when">Month 2, Day 1</div>
+                    <div class="payment-what">Raj part-time contractor</div>
+                    <div class="payment-amount">$2,800</div>
+                </div>
+                <div class="payment-row">
+                    <div class="payment-when">Month 2, at SOW</div>
+                    <div class="payment-what">Enlyt production &mdash; 50% on SOW signing</div>
+                    <div class="payment-amount">$2,500</div>
+                </div>
+                <div class="payment-row">
+                    <div class="payment-when">On delivery</div>
+                    <div class="payment-what">Grand Kahn production &mdash; 50% on hero delivery</div>
+                    <div class="payment-amount">$2,500</div>
+                </div>
+                <div class="payment-row">
+                    <div class="payment-when">On delivery</div>
+                    <div class="payment-what">Enlyt production &mdash; 50% on hero delivery</div>
+                    <div class="payment-amount">$2,500</div>
+                </div>
+                <div class="payment-row">
+                    <div class="payment-when">Month 3, Day 1</div>
+                    <div class="payment-what">Brando retainer (Month 3) + Raj part-time</div>
+                    <div class="payment-amount">$14,800</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-label">Note for the CFO Function</div>
+                <div class="callout-headline">Wire transfer, prepaid monthly. No deliverable-gated invoicing. No floating receivables.</div>
+                <p class="callout-body">Family offices retain outside counsel, accountants, and senior operating advisors on prepaid wire transfers as standard practice. The mobilization payment borrows construction-subcontractor language and operates on the same logic. Cash flow stays clean on both sides; neither party is ever owed work, and neither is ever in float. Production work is fifty-fifty on each SOW with seven-day wire terms &mdash; same architecture Rob already uses with construction subs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04 - TRIGGER METRICS -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <div class="section-label">04 &middot; Trigger Metrics</div>
+            <h2>Seven measurable checks at Day 90. Six of seven trigger the rest of the year.</h2>
+            <p class="lead">The trigger metrics are designed to be binary, auditable, and bounded. No interpretive scoring. No subjective evaluations. Either the work shipped or it didn't. Six of seven landing triggers automatic continuation of months 4 through 12 at the same terms.</p>
+
+            <div class="trigger-grid">
+                <div class="trigger-item">
+                    <div class="trigger-num">01</div>
+                    <div class="trigger-text"><strong>Grand Kahn hero film delivered.</strong> Final cut delivered to AWC by end of Month 3.</div>
+                </div>
+                <div class="trigger-item">
+                    <div class="trigger-num">02</div>
+                    <div class="trigger-text"><strong>Enlyt hero film delivered.</strong> Final cut delivered to AWC by end of Month 3.</div>
+                </div>
+                <div class="trigger-item">
+                    <div class="trigger-num">03</div>
+                    <div class="trigger-text"><strong>Cutdowns published on schedule.</strong> Five cutdowns per company published to LinkedIn at agreed cadence.</div>
+                </div>
+                <div class="trigger-item">
+                    <div class="trigger-num">04</div>
+                    <div class="trigger-text"><strong>Mike Casto LinkedIn cadence running.</strong> Documented executive voice, posts published consistently through Month 3.</div>
+                </div>
+                <div class="trigger-item">
+                    <div class="trigger-num">05</div>
+                    <div class="trigger-text"><strong>Enlyt principal LinkedIn cadence running.</strong> Same standard, Enlyt-side.</div>
+                </div>
+                <div class="trigger-item">
+                    <div class="trigger-num">06</div>
+                    <div class="trigger-text"><strong>Monthly cadence reports delivered on time.</strong> Three monthly reports submitted to Alan and Rob by Day 5 of each month.</div>
+                </div>
+                <div class="trigger-item">
+                    <div class="trigger-num">07</div>
+                    <div class="trigger-text"><strong>Production budget discipline.</strong> Approved SOW spend stays within &plusmn;15%. No surprise invoices.</div>
+                </div>
+            </div>
+
+            <div class="trigger-rule">
+                <div class="trigger-rule-text">If <strong>6 of 7</strong> land at Day 90, months 4&ndash;12 trigger automatically at the same terms.</div>
+            </div>
+
+            <p style="margin-top: 2rem;">If five or fewer metrics land, the engagement ends at Day 90. AWC retains the work product. VDO Aigency retains the mobilization payment. No renegotiation, no escalation, no breach &mdash; clean exit either way.</p>
+        </div>
+    </section>
+
+    <!-- 05 - WHAT TRIGGERS -->
+    <section class="container">
+        <div class="container-inner">
+            <div class="section-label">05 &middot; If the Pilot Triggers</div>
+            <h2>Months 4 through 12: the full portfolio engagement.</h2>
+            <p class="lead">The triggered phase scales VDO Aigency's centralized brand function across the remaining AWC operating companies on a calibrated phasing plan. The retainer stays at $12,000 per month. Production scales per active company per per-project SOW. Raj converts to AWC internal headcount.</p>
+
+            <div class="future-envelope">
+                <div class="future-envelope-label">Months 4&ndash;12 &middot; Annual Continuation</div>
+                <table>
+                    <tr>
+                        <td>Brando retainer (9 months &times; $12,000)</td>
+                        <td>$108,000</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 2 onboarding (Month 4) &mdash; GATOR + Laystrom intake</td>
+                        <td>Inside retainer</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 3 onboarding (Month 7) &mdash; DFH Connect + Leopardo Construction</td>
+                        <td>Inside retainer</td>
+                    </tr>
+                    <tr>
+                        <td>Raj converts to AWC internal headcount (Month 4)</td>
+                        <td>~$67K + benefits (AWC payroll)</td>
+                    </tr>
+                    <tr>
+                        <td>Production work across portfolio (per-SOW)</td>
+                        <td>$150K &ndash; $240K</td>
+                    </tr>
+                    <tr>
+                        <td>Total Months 4&ndash;12 AWC commitment</td>
+                        <td>~$325K &ndash; $415K</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p style="margin-top: 2rem;">Combined with the 90-day pilot, the full twelve-month engagement lands at approximately <strong>$380K to $470K of total AWC commitment</strong> &mdash; including internal headcount, retainer, and all production. Inside the cost range of a single Chief Marketing Officer hire at AWC&rsquo;s scale, while delivering centralized brand operations across seven operating companies.</p>
+        </div>
+    </section>
+
+    <!-- 06 - WHY THIS WORKS -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <div class="section-label">06 &middot; Why This Structure Works</div>
+            <h2>Bounded, measured, triggerable. Designed for the CFO function.</h2>
+
+            <div class="why-grid">
+                <div class="why-item">
+                    <h3>Bounded commitment.</h3>
+                    <p>$54,400 total exposure for 90 days. No multi-year handshake. AWC commits to a pilot, not a contract.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Wire-prepaid, no Net 30.</h3>
+                    <p>Same payment architecture AWC uses for outside counsel and senior subs. No floating receivables, no chasing invoices, no float game.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Real trigger mechanism.</h3>
+                    <p>Six of seven binary metrics at Day 90. The metrics are measurable, the trigger is automatic, and the off-ramp is clean.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Lane discipline with BBG.</h3>
+                    <p>BBG handles brand books and static identity work. VDO Aigency handles moving content, executive voice, and operating cadence. No overlap.</p>
+                </div>
+                <div class="why-item">
+                    <h3>The proving ground exists.</h3>
+                    <p>Leopardo Efficiency has been operating this model for months. The pilot is replication of a proven system, not invention of a new one.</p>
+                </div>
+                <div class="why-item">
+                    <h3>Clean exit at Day 90.</h3>
+                    <p>If the pilot misses its metrics, AWC keeps the work product, VDO Aigency keeps the mobilization, and the engagement ends without lawyers or drama.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 07 - NEXT STEPS -->
+    <section class="container">
+        <div class="container-inner">
+            <div class="section-label">07 &middot; Next Steps</div>
+            <h2>Engagement begins the day the mobilization payment is wired.</h2>
+            <p class="lead">The structure above is the working version of the pilot. Materials are ready in advance of the June 30 Chicago meeting so the family office finance function has time to pre-read. Happy to take a short call with the CFO function ahead of the meeting to walk through the financial structure separately from the strategic narrative &mdash; the conversations usually land cleaner when the math has been reviewed in advance.</p>
+            <p>The GATOR engagement remains documented separately on its own letter of intent and runs in parallel to this pilot. Neither one contaminates the other.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-mark">VDO Aigency &middot; AWC 90-Day Pilot Proposal</div>
+                <div class="footer-tagline">A working proposal prepared in advance of the June 2026 Chicago portfolio review. Companion document to the AWC Portfolio Brand Audit.</div>
+            </div>
+            <div class="footer-meta">
+                Prepared by Brandon Cole<br/>
+                Executive Producer &middot; VDO Aigency
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
