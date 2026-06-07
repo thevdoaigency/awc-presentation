@@ -1160,8 +1160,35 @@ wireUpload('t3-headshot-upload', 't3-headshot', 't3-headshot-thumb');
 // ── Export ──
 document.getElementById('export-btn').addEventListener('click', () => {
   const el = document.getElementById(currentTab);
+  const wrap = document.getElementById('canvas-wrap');
   const brand = BRANDS[currentBrand].name.replace(/\s+/g, '-').toLowerCase();
-  html2canvas(el, { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
+
+  // Pull the graphic out of the scaled wrapper so html2canvas gets true 960x960
+  const placeholder = document.createElement('div');
+  el.parentNode.insertBefore(placeholder, el);
+  document.body.appendChild(el);
+  el.style.position = 'fixed';
+  el.style.top = '-9999px';
+  el.style.left = '-9999px';
+  el.style.display = 'block';
+  el.style.transform = 'none';
+
+  html2canvas(el, {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: '#ffffff',
+    width: 960,
+    height: 960,
+  }).then(canvas => {
+    // Restore element to its original place
+    el.style.position = '';
+    el.style.top = '';
+    el.style.left = '';
+    el.style.transform = '';
+    el.style.display = currentTab === el.id ? 'block' : 'none';
+    placeholder.parentNode.insertBefore(el, placeholder);
+    placeholder.remove();
+
     const link = document.createElement('a');
     link.download = `awc-${brand}-${currentTab}-${Date.now()}.png`;
     link.href = canvas.toDataURL('image/png');
