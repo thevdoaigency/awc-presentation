@@ -88,8 +88,47 @@
   /* Brand Selector */
   #brand-selector-wrap {
     padding: 14px 20px;
+    border-bottom: none;
+  }
+
+  #format-selector-wrap {
+    padding: 10px 20px 14px;
     border-bottom: 1px solid var(--border);
   }
+
+  #format-selector-wrap label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-family: 'Georgia', serif;
+  }
+
+  #format-tabs {
+    display: flex;
+    gap: 6px;
+  }
+
+  .format-tab {
+    flex: 1;
+    padding: 7px 4px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--panel-light);
+    transition: all 0.2s;
+    font-family: 'Georgia', serif;
+    line-height: 1.3;
+  }
+  .format-tab:hover { color: #aaa; border-color: #444; }
+  .format-tab.active { color: var(--brand-accent); border-color: var(--brand-accent); background: var(--panel); }
 
   #brand-selector-wrap label {
     display: block;
@@ -309,12 +348,12 @@
     position: absolute;
     top: -16px; left: -8px;
     background: var(--brand-accent);
-    color: #000;
+    color: var(--brand-badge-text, #000);
     font-weight: 800;
-    font-size: 13px;
+    font-size: 22px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    padding: 9px 20px;
+    padding: 12px 26px;
     font-family: Arial, sans-serif;
   }
   #t1 .t1-card-header {
@@ -382,14 +421,14 @@
   #t2 .t2-logo-badge {
     position: absolute;
     top: 36px; left: 36px;
-    background: rgba(255,255,255,0.95);
+    background: var(--brand-hero-badge-bg, rgba(255,255,255,0.95));
     padding: 10px 18px;
   }
   #t2 .t2-company-name {
-    font-size: 11px;
+    font-size: 18px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #333;
+    color: var(--brand-hero-text, #333);
     font-family: Arial, sans-serif;
     font-weight: 700;
   }
@@ -449,8 +488,8 @@
   }
   #t3 .t3-headshot {
     position: absolute;
-    top: -56px; right: 44px;
-    width: 112px; height: 112px;
+    top: -94px; right: 44px;
+    width: 187px; height: 187px;
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid #fff;
@@ -459,8 +498,8 @@
   }
   #t3 .t3-headshot-placeholder {
     position: absolute;
-    top: -56px; right: 44px;
-    width: 112px; height: 112px;
+    top: -94px; right: 44px;
+    width: 187px; height: 187px;
     border-radius: 50%;
     background: #e0e0e0;
     border: 5px solid #fff;
@@ -495,29 +534,21 @@
     padding: 14px 22px;
   }
   #t3 .t3-name {
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #000;
+    color: var(--brand-name-text, #000);
     font-family: Arial, sans-serif;
   }
   #t3 .t3-title {
-    font-size: 12px;
-    color: #333;
+    font-size: 20px;
+    color: var(--brand-title-text, #333);
     margin-top: 3px;
     font-family: Arial, sans-serif;
   }
   #t3 .t3-company-tag {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    font-family: Arial, sans-serif;
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
+    display: none;
   }
 
   /* ── T4: FEATURE SLIDE ── */
@@ -547,7 +578,7 @@
   #t4 .t4-number {
     font-size: 88px;
     font-weight: 900;
-    color: var(--brand-accent);
+    color: var(--brand-number-color, var(--brand-accent));
     line-height: 1;
     margin-bottom: 12px;
     font-family: Arial, sans-serif;
@@ -556,7 +587,7 @@
   #t4 .t4-headline {
     font-size: 48px;
     font-weight: 400;
-    color: #111;
+    color: var(--brand-feature-text, #111);
     line-height: 1.18;
     margin-bottom: 40px;
     font-family: 'HelveticaNowDisplay', Georgia, serif;
@@ -568,7 +599,7 @@
   }
   #t4 .t4-bullets li {
     font-size: 26px;
-    color: #222;
+    color: var(--brand-feature-text, #222);
     margin-bottom: 16px;
     line-height: 1.3;
     font-family: 'HelveticaNowDisplay', Georgia, serif;
@@ -579,7 +610,7 @@
     content: '—';
     position: absolute;
     left: 0;
-    color: var(--brand-accent);
+    color: var(--brand-feature-dash, var(--brand-accent));
     font-weight: 700;
   }
   #t4 .t4-footer {
@@ -592,17 +623,14 @@
     justify-content: space-between;
     padding: 0 40px;
   }
-  #t4 .t4-footer-company {
-    font-size: 11px;
+  /* t4-footer-company removed */
+  #t4 .t4-footer-url {
+    font-size: 13px;
     letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    text-transform: lowercase;
+    color: rgba(255,255,255,0.6);
     font-family: Arial, sans-serif;
-  }
-  #t4 .t4-footer-mark {
-    width: 32px; height: 32px;
-    background: var(--brand-accent);
-    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+    font-weight: 400;
   }
 </style>
 </head>
@@ -629,6 +657,16 @@
     </select>
   </div>
   <div id="brand-swatch"></div>
+
+  <!-- Format Selector -->
+  <div id="format-selector-wrap">
+    <label>Format</label>
+    <div id="format-tabs">
+      <div class="format-tab active" data-format="4x5">4:5<br><span style="font-size:8px;opacity:0.6">1080×1350</span></div>
+      <div class="format-tab" data-format="9x16">9:16<br><span style="font-size:8px;opacity:0.6">1080×1920</span></div>
+      <div class="format-tab" data-format="16x9">16:9<br><span style="font-size:8px;opacity:0.6">1920×1080</span></div>
+    </div>
+  </div>
 
   <!-- Template Tabs -->
   <div id="template-tabs">
@@ -827,8 +865,7 @@
         </ul>
       </div>
       <div class="t4-footer">
-        <div class="t4-footer-company" id="t4-footer-company-el">Leopardo Efficiency · AWC Portfolio</div>
-        <div class="t4-footer-mark"></div>
+        <div class="t4-footer-url" id="t4-footer-url-el">leopardoefficiency.com</div>
       </div>
     </div>
 
@@ -836,6 +873,124 @@
 </div><!-- /preview-panel -->
 
 <script>
+// ═══════════════════════════════════════════════
+// FORMAT DEFINITIONS
+// ═══════════════════════════════════════════════
+const FORMATS = {
+  '4x5':  { w: 960, h: 1200, scale: 0.52, marginBottom: -575, exportW: 1080, exportH: 1350, label: '1080×1350' },
+  '9x16': { w: 960, h: 1707, scale: 0.37, marginBottom: -1080, exportW: 1080, exportH: 1920, label: '1080×1920' },
+  '16x9': { w: 960, h: 540,  scale: 0.62, marginBottom: -210, exportW: 1920, exportH: 1080, label: '1920×1080' },
+};
+
+let currentFormat = '4x5';
+
+function applyFormat(fmtKey) {
+  currentFormat = fmtKey;
+  const fmt = FORMATS[fmtKey];
+
+  // Update tab UI
+  document.querySelectorAll('.format-tab').forEach(t => {
+    t.classList.remove('active');
+    t.style.color = '';
+    t.style.borderColor = '';
+  });
+  const activeTab = document.querySelector(`.format-tab[data-format="${fmtKey}"]`);
+  if (activeTab) {
+    activeTab.classList.add('active');
+    const b = BRANDS[currentBrand];
+    activeTab.style.color = b.accent;
+    activeTab.style.borderColor = b.accent;
+  }
+
+  // Resize all graphic canvases
+  document.querySelectorAll('.graphic').forEach(el => {
+    el.style.width = fmt.w + 'px';
+    el.style.height = fmt.h + 'px';
+  });
+
+  // Resize bg canvases
+  ['t1-bg-el','t2-bg-el'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.tagName === 'CANVAS') {
+      el.width = fmt.w;
+      el.height = fmt.h;
+    }
+  });
+
+  // Update wrap scale
+  const wrap = document.getElementById('canvas-wrap');
+  wrap.style.transform = `scale(${fmt.scale})`;
+  wrap.style.marginBottom = fmt.marginBottom + 'px';
+
+  // Apply layout overrides per format
+  applyLayoutOverrides(fmtKey, fmt);
+
+  // Re-render
+  renderAll();
+}
+
+function applyLayoutOverrides(fmtKey, fmt) {
+  const h = fmt.h;
+  const w = fmt.w;
+
+  // T1: card positioning
+  const t1card = document.querySelector('#t1 .t1-card');
+  if (t1card) {
+    if (fmtKey === '16x9') {
+      t1card.style.width = '860px';
+      t1card.style.top = '50%';
+    } else if (fmtKey === '9x16') {
+      t1card.style.width = '820px';
+      t1card.style.top = '40%';
+    } else {
+      t1card.style.width = '800px';
+      t1card.style.top = '50%';
+    }
+  }
+
+  // T2: card bottom padding adjustment for tall formats
+  const t2card = document.querySelector('#t2 .t2-card');
+  if (t2card) {
+    if (fmtKey === '9x16') {
+      t2card.style.padding = '52px 60px 80px';
+    } else {
+      t2card.style.padding = '52px 60px 56px';
+    }
+  }
+
+  // T3: card vertical centering
+  const t3card = document.querySelector('#t3 .t3-card');
+  if (t3card) {
+    if (fmtKey === '9x16') {
+      t3card.style.top = '40%';
+    } else if (fmtKey === '16x9') {
+      t3card.style.top = '52%';
+      t3card.style.width = '860px';
+    } else {
+      t3card.style.top = '50%';
+      t3card.style.width = '800px';
+    }
+  }
+
+  // T4: footer position
+  const t4footer = document.querySelector('#t4 .t4-footer');
+  if (t4footer) {
+    t4footer.style.height = '76px';
+  }
+
+  // T4: content top offset
+  const t4content = document.querySelector('#t4 .t4-content');
+  if (t4content) {
+    if (fmtKey === '9x16') {
+      t4content.style.top = '140px';
+    } else {
+      t4content.style.top = '90px';
+    }
+  }
+
+  // T4: accent stripe stays at top — no change needed
+}
+
 // ═══════════════════════════════════════════════
 // BRAND DEFINITIONS
 // ═══════════════════════════════════════════════
@@ -846,6 +1001,7 @@ const BRANDS = {
     accent: '#f5c800',
     red: '#d91b1b',
     bg: '#f0f0ee',
+    url: 'leopardoefficiency.com',
     defaultHeadline: 'Leopardo Efficiency Closes $4M Energy Contract with City of Columbus',
     defaultQuote: 'We don\'t just cut energy costs — we guarantee the savings in writing, for the life of the contract.',
     defaultSpeaker: 'Curtis Leopardo',
@@ -858,10 +1014,11 @@ const BRANDS = {
   },
   'leopardo-construction': {
     name: 'Leopardo Construction',
-    primary: '#1a1a1a',
-    accent: '#d4a017',
-    red: '#8b2020',
-    bg: '#f2f0ec',
+    primary: '#1c2d4f',
+    accent: '#f5c800',
+    red: '#d91b1b',
+    bg: '#f0f0ee',
+    url: 'leopardoconstruction.com',
     defaultHeadline: 'Leopardo Construction Breaks Ground on $80M Chicago Transit Hub',
     defaultQuote: 'We\'ve been building Chicago\'s infrastructure for nearly fifty years. The city\'s fingerprints are on our work.',
     defaultSpeaker: 'AJ Leopardo',
@@ -874,10 +1031,20 @@ const BRANDS = {
   },
   'grand-kahn': {
     name: 'Grand Kahn Electric',
-    primary: '#0a1628',
-    accent: '#e8b84b',
-    red: '#c0392b',
-    bg: '#f5f3ef',
+    primary: '#1a1a1a',
+    accent: '#9A0000',
+    red: '#9A0000',
+    bg: '#B0A98D',
+    badgeText: '#ffffff',
+    heroText: '#ffffff',
+    heroBadgeBg: '#9A0000',
+    nameText: '#ffffff',
+    titleText: 'rgba(255,255,255,0.8)',
+    url: 'grandkahnelectric.com',
+    featureText: '#ffffff',
+    featureDash: 'rgba(255,255,255,0.5)',
+    numberColor: '#ffffff',
+
     defaultHeadline: 'Grand Kahn Electric: 117 Years of Chicago Commercial Work',
     defaultQuote: 'Chicago\'s first registered electrical contractor. The story wasn\'t being told. Now it will be.',
     defaultSpeaker: 'Mike Casto',
@@ -890,10 +1057,16 @@ const BRANDS = {
   },
   'enlyt': {
     name: 'Enlyt Building Technologies',
-    primary: '#1b3a4b',
-    accent: '#00c4cc',
-    red: '#e74c3c',
-    bg: '#eef4f6',
+    primary: '#1C2A33',
+    accent: '#8FA63A',
+    red: '#8FA63A',
+    bg: '#E8EDD8',
+    badgeText: '#000000',
+    heroText: '#8FA63A',
+    heroBadgeBg: 'rgba(255,255,255,0.95)',
+    nameText: '#000000',
+    titleText: '#333333',
+    url: 'enlytbuilding.com',
     defaultHeadline: 'Enlyt Closes Smart Building Deal with Sonder Hospitality Portfolio',
     defaultQuote: 'Hospitality-grade smart systems. The wins were always there. The brand wasn\'t surfacing them.',
     defaultSpeaker: 'Enlyt Leadership',
@@ -902,14 +1075,23 @@ const BRANDS = {
     defaultCta: 'enlytbuilding.com',
     defaultNum: '4',
     defaultFeatureHeadline: '*Major hospitality brands* running on Enlyt systems.',
-    defaultBullets: ['Sonder, Melia, Belgravia, Life Fitness','MDU and hospitality-grade smart integration','AWC Portfolio · Smart Buildings'],
+    defaultBullets: ['Sonder, Melia, Belgravia, Life Fitness','MDU and hospitality-grade smart integration','Smart Buildings · Hospitality · MDU'],
   },
   'laystrom': {
     name: 'Laystrom Hardware',
-    primary: '#2c1810',
-    accent: '#c0873f',
-    red: '#8b2020',
-    bg: '#f5ede4',
+    primary: '#0E3386',
+    accent: '#0E3386',
+    red: '#0E3386',
+    bg: '#EEF1F8',
+    badgeText: '#ffffff',
+    heroText: '#ffffff',
+    heroBadgeBg: 'rgba(255,255,255,0.95)',
+    nameText: '#ffffff',
+    titleText: 'rgba(255,255,255,0.85)',
+    url: 'laystromhardware.com',
+    featureText: '#ffffff',
+    featureDash: 'rgba(255,255,255,0.5)',
+    numberColor: '#ffffff',
     defaultHeadline: 'Laystrom Hardware: 74 Years Supplying Chicago\'s Commercial Doors',
     defaultQuote: 'The longest customer relationships in the portfolio. Nobody was telling that story.',
     defaultSpeaker: 'Laystrom Leadership',
@@ -922,10 +1104,19 @@ const BRANDS = {
   },
   'dfh-connect': {
     name: 'DFH Connect',
-    primary: '#1a2d1a',
-    accent: '#4caf50',
-    red: '#d32f2f',
-    bg: '#eef5ee',
+    primary: '#1A1F2E',
+    accent: '#0E2DE0',
+    red: '#0E2DE0',
+    bg: '#E8EAF6',
+    badgeText: '#ffffff',
+    heroText: '#ffffff',
+    heroBadgeBg: 'rgba(255,255,255,0.95)',
+    nameText: '#ffffff',
+    titleText: 'rgba(255,255,255,0.85)',
+    url: 'dfhconnect.com',
+    featureText: '#ffffff',
+    featureDash: 'rgba(255,255,255,0.5)',
+    numberColor: '#ffffff',
     defaultHeadline: 'DFH Connect Compresses 4 Hours of Manual Entry Into 5 Minutes',
     defaultQuote: 'Workflow software that solves a real problem — Emullion to QuickBooks in under five minutes per project.',
     defaultSpeaker: 'AWC Technology',
@@ -942,6 +1133,11 @@ const BRANDS = {
     accent: '#7dba00',
     red: '#cc3300',
     bg: '#eef5e0',
+    url: 'gator.io',
+    featureText: '#111',
+    featureDash: '#555',
+    numberColor: '#7dba00',
+
     defaultHeadline: 'GATOR Closes 5 Cities Before Entity Formation',
     defaultQuote: 'Five cities closed before the entity was even formed. The momentum existed before the brand did.',
     defaultSpeaker: 'GATOR Leadership',
@@ -967,6 +1163,14 @@ function applyBrand(brandKey) {
   document.documentElement.style.setProperty('--brand-accent', b.accent);
   document.documentElement.style.setProperty('--brand-red', b.red);
   document.documentElement.style.setProperty('--brand-bg', b.bg);
+  document.documentElement.style.setProperty('--brand-badge-text', b.badgeText || '#000');
+  document.documentElement.style.setProperty('--brand-hero-text', b.heroText || '#333');
+  document.documentElement.style.setProperty('--brand-hero-badge-bg', b.heroBadgeBg || 'rgba(255,255,255,0.95)');
+  document.documentElement.style.setProperty('--brand-name-text', b.nameText || '#000');
+  document.documentElement.style.setProperty('--brand-title-text', b.titleText || '#333');
+  document.documentElement.style.setProperty('--brand-feature-text', b.featureText || '#111');
+  document.documentElement.style.setProperty('--brand-feature-dash', b.featureDash || b.accent);
+  document.documentElement.style.setProperty('--brand-number-color', b.numberColor || b.accent);
 
   document.getElementById('brand-swatch').style.background = b.accent;
 
@@ -974,7 +1178,7 @@ function applyBrand(brandKey) {
   ['t1-company-name-el','t2-company-name-el','t3-company-tag-el','t4-footer-company-el'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = id.includes('tag') || id.includes('footer')
-      ? b.name + ' · AWC Portfolio'
+      ? b.name
       : b.name;
   });
 
@@ -988,6 +1192,8 @@ function applyBrand(brandKey) {
   setVal('t3-title', b.defaultTitle);
   setVal('t4-number', b.defaultNum);
   setVal('t4-headline', b.defaultFeatureHeadline);
+  const urlEl = document.getElementById('t4-footer-url-el');
+  if (urlEl) urlEl.textContent = b.url || '';
 
   // Bullets
   const bc = document.getElementById('bullets-container');
@@ -1026,8 +1232,9 @@ function renderT1() {
   document.getElementById('t1-outlet-el').textContent = v('t1-outlet');
 
   const bgEl = document.getElementById('t1-bg-el');
-  bgEl.width = 960;
-  bgEl.height = 960;
+  const fmtT1 = FORMATS[currentFormat];
+  bgEl.width = fmtT1.w;
+  bgEl.height = fmtT1.h;
   if (bgImages['t1-bg']) {
     const ctx = bgEl.getContext('2d');
     const img = new Image();
@@ -1058,8 +1265,9 @@ function renderT2() {
   document.getElementById('t2-cta-el').textContent = v('t2-cta');
 
   const bgEl = document.getElementById('t2-bg-el');
-  bgEl.width = 960;
-  bgEl.height = 960;
+  const fmtNow = FORMATS[currentFormat];
+  bgEl.width = fmtNow.w;
+  bgEl.height = fmtNow.h;
   if (bgImages['t2-bg']) {
     const ctx = bgEl.getContext('2d');
     const img = new Image();
@@ -1077,8 +1285,34 @@ function renderT2() {
     img.src = bgImages['t2-bg'];
   } else {
     const ctx = bgEl.getContext('2d');
-    ctx.fillStyle = '#1c2d4f';
-    ctx.fillRect(0, 0, 960, 960);
+    const primary = BRANDS[currentBrand].primary;
+    ctx.fillStyle = primary;
+    ctx.fillRect(0, 0, fmtNow.w, fmtNow.h);
+    // Draw triangular geo pattern like the quote card background
+    const lighter = 'rgba(255,255,255,0.04)';
+    const size = 160;
+    const rowCount = Math.ceil(fmtNow.h / size) + 2;
+    const colCount = Math.ceil(fmtNow.w / size) + 2;
+    for (let row = -1; row < rowCount; row++) {
+      for (let col = -1; col < colCount; col++) {
+        const x = col * size;
+        const y = row * size;
+        ctx.beginPath();
+        ctx.moveTo(x + size * 0.2, y);
+        ctx.lineTo(x + size, y);
+        ctx.lineTo(x + size * 0.8, y + size);
+        ctx.lineTo(x, y + size);
+        ctx.closePath();
+        ctx.fillStyle = lighter;
+        ctx.fill();
+      }
+    }
+    // Dark gradient overlay bottom
+    const grad = ctx.createLinearGradient(0, fmtNow.h * 0.4, 0, fmtNow.h);
+    grad.addColorStop(0, 'rgba(0,0,0,0)');
+    grad.addColorStop(1, 'rgba(0,0,0,0.5)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, fmtNow.w, fmtNow.h);
   }
 }
 
@@ -1106,6 +1340,9 @@ function renderT4() {
   const bullets = Array.from(document.querySelectorAll('.bullet-input')).map(i => i.value).filter(Boolean);
   const ul = document.getElementById('t4-bullets-el');
   ul.innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
+
+  const urlEl = document.getElementById('t4-footer-url-el');
+  if (urlEl) urlEl.textContent = BRANDS[currentBrand].url || '';
 }
 
 function v(id) {
@@ -1133,6 +1370,11 @@ document.querySelectorAll('.tab').forEach(tab => {
       if (f) f.style.display = t === currentTab ? 'block' : 'none';
     });
   });
+});
+
+// ── Format selector ──
+document.querySelectorAll('.format-tab').forEach(tab => {
+  tab.addEventListener('click', () => applyFormat(tab.dataset.format));
 });
 
 // ── Brand selector ──
@@ -1203,12 +1445,13 @@ document.getElementById('export-btn').addEventListener('click', () => {
   el.style.display = 'block';
   el.style.transform = 'none';
 
+  const fmt = FORMATS[currentFormat];
   html2canvas(el, {
     scale: 2,
     useCORS: true,
     backgroundColor: '#ffffff',
-    width: 960,
-    height: 960,
+    width: fmt.w,
+    height: fmt.h,
   }).then(canvas => {
     // Restore element to its original place
     el.style.position = '';
@@ -1220,7 +1463,8 @@ document.getElementById('export-btn').addEventListener('click', () => {
     placeholder.remove();
 
     const link = document.createElement('a');
-    link.download = `awc-${brand}-${currentTab}-${Date.now()}.png`;
+    const fmtLabel = FORMATS[currentFormat].label;
+    link.download = `awc-${brand}-${currentTab}-${fmtLabel}-${Date.now()}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
   });
@@ -1228,6 +1472,7 @@ document.getElementById('export-btn').addEventListener('click', () => {
 
 // ── Init ──
 applyBrand('leopardo-efficiency');
+applyFormat('4x5');
 </script>
 </body>
 </html>
