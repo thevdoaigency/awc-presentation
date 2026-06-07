@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWC Portfolio — Graphic Builder</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* AWC neutral shell */
+    --shell-bg: #0f0f0f;
+    --panel: #141414;
+    --panel-light: #1e1e1e;
+    --border: #2a2a2a;
+    --text-muted: #555;
+    --text-dim: #888;
+    --text-light: #ccc;
+    --white: #ffffff;
+    --black: #111111;
+
+    /* Active brand defaults — Leopardo Efficiency */
+    --brand-primary: #1c2d4f;
+    --brand-accent: #f5c800;
+    --brand-red: #d91b1b;
+    --brand-bg: #f0f0ee;
+
+    /* AWC presentation palette */
+    --awc-gold: #c9a84c;
+    --awc-dim: #1a1a1a;
+  }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--shell-bg);
+    color: #eee;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ── LEFT PANEL ── */
+  #controls {
+    width: 320px;
+    min-width: 320px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  #controls-header {
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  #controls-header .suite-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--awc-gold);
+    font-family: 'Georgia', serif;
+    margin-bottom: 4px;
+  }
+
+  #controls-header h1 {
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    font-family: 'Georgia', serif;
+    font-style: italic;
+  }
+
+  /* Brand Selector */
+  #brand-selector-wrap {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  #brand-selector-wrap label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-family: 'Georgia', serif;
+  }
+
+  #brand-select {
+    width: 100%;
+    background: var(--panel-light);
+    border: 1px solid var(--border);
+    color: #eee;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-family: 'Georgia', serif;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23555'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  #brand-select:focus { border-color: var(--brand-accent); }
+
+  /* Brand color swatch strip */
+  #brand-swatch {
+    height: 3px;
+    background: var(--brand-accent);
+    transition: background 0.3s;
+  }
+
+  /* Template Tabs */
+  #template-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab {
+    flex: 1;
+    padding: 9px 2px;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: 'Georgia', serif;
+  }
+  .tab:hover { color: #aaa; }
+  .tab.active { color: var(--brand-accent); border-bottom-color: var(--brand-accent); }
+
+  /* Form */
+  #form-area { padding: 18px 20px; flex: 1; }
+
+  .field-group { margin-bottom: 16px; }
+
+  label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-family: 'Georgia', serif;
+  }
+
+  input[type=text], textarea, input[type=number] {
+    width: 100%;
+    background: var(--panel-light);
+    border: 1px solid var(--border);
+    color: #eee;
+    padding: 8px 11px;
+    font-size: 12px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: 'Georgia', serif;
+  }
+  input[type=text]:focus, textarea:focus { border-color: var(--brand-accent); }
+  textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+  .hint { font-size: 10px; color: #444; margin-top: 3px; }
+
+  .upload-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--panel-light);
+    border: 1px dashed var(--border);
+    color: #666;
+    padding: 8px 11px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+    width: 100%;
+    transition: border-color 0.2s;
+    font-family: 'Georgia', serif;
+  }
+  .upload-btn:hover { border-color: var(--brand-accent); color: #aaa; }
+  .upload-btn input { display: none; }
+
+  .img-preview-thumb {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-top: 5px;
+    display: none;
+  }
+
+  #bullets-container .bullet-row {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+  }
+  #bullets-container .bullet-row input { flex: 1; }
+
+  .rm-bullet {
+    background: none;
+    border: none;
+    color: #444;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0 3px;
+  }
+  .rm-bullet:hover { color: #d91b1b; }
+
+  #add-bullet {
+    font-size: 10px;
+    color: var(--brand-accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 3px 0;
+    letter-spacing: 1px;
+    font-family: 'Georgia', serif;
+  }
+  #add-bullet:hover { color: #fff; }
+
+  /* Export button */
+  #export-btn {
+    margin: 0 20px 20px;
+    padding: 12px;
+    background: var(--brand-accent);
+    color: var(--black);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: 'Georgia', serif;
+  }
+  #export-btn:hover { opacity: 0.85; }
+
+  /* ── RIGHT PANEL ── */
+  #preview-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #080808;
+    overflow: auto;
+    padding: 40px;
+  }
+
+  #preview-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #2a2a2a;
+    margin-bottom: 14px;
+    font-family: 'Georgia', serif;
+  }
+
+  #canvas-wrap {
+    position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.9);
+    transform: scale(0.62);
+    transform-origin: top center;
+    margin-bottom: -360px;
+  }
+
+  /* ═══════════════════ TEMPLATES ═══════════════════ */
+  .graphic {
+    width: 960px;
+    height: 960px;
+    position: relative;
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #fff;
+  }
+
+  /* ── T1: MEDIA COVERAGE ── */
+  #t1 .t1-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    filter: blur(18px) brightness(0.45);
+    transform: scale(1.06);
+  }
+  #t1 .t1-card {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    background: #fff;
+    padding: 48px 52px 44px;
+    box-shadow: 0 28px 80px rgba(0,0,0,0.6);
+  }
+  #t1 .t1-badge {
+    position: absolute;
+    top: -16px; left: -8px;
+    background: var(--brand-accent);
+    color: #000;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    font-family: Arial, sans-serif;
+  }
+  #t1 .t1-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  #t1 .t1-company-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    font-family: Arial, sans-serif;
+  }
+  #t1 .t1-headline {
+    font-size: 40px;
+    font-weight: 800;
+    color: #111;
+    line-height: 1.12;
+    margin-bottom: 10px;
+    font-family: Georgia, serif;
+  }
+  #t1 .t1-date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 22px;
+    font-family: Arial, sans-serif;
+  }
+  #t1 .t1-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+  }
+  #t1 .t1-img-placeholder {
+    width: 100%; height: 280px;
+    background: #ebebeb;
+    display: flex; align-items: center; justify-content: center;
+    color: #bbb; font-size: 13px;
+    font-family: Arial, sans-serif;
+  }
+  #t1 .t1-outlet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+    gap: 10px;
+  }
+  #t1 .t1-outlet-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+    font-family: Arial, sans-serif;
+  }
+  #t1 .t1-footer-bar {
+    height: 5px;
+    background: var(--brand-accent);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+  }
+
+  /* ── T2: HERO ANNOUNCEMENT ── */
+  #t2 .t2-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    background-color: var(--brand-primary);
+  }
+  #t2 .t2-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%);
+  }
+  #t2 .t2-logo-badge {
+    position: absolute;
+    top: 36px; left: 36px;
+    background: rgba(255,255,255,0.95);
+    padding: 10px 18px;
+  }
+  #t2 .t2-company-name {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+  }
+  #t2 .t2-card {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.96);
+    padding: 52px 60px 56px;
+  }
+  #t2 .t2-headline {
+    font-size: 54px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.12;
+    margin-bottom: 32px;
+    text-align: center;
+    font-family: Georgia, serif;
+  }
+  #t2 .t2-headline strong { font-weight: 800; }
+  #t2 .t2-accent-bar {
+    width: 60px; height: 4px;
+    background: var(--brand-accent);
+    margin: 0 auto 28px;
+  }
+  #t2 .t2-cta {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #777;
+    font-family: Arial, sans-serif;
+  }
+
+  /* ── T3: QUOTE CARD ── */
+  #t3 {
+    background: var(--brand-primary);
+    position: relative;
+  }
+  #t3 .t3-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(30deg, rgba(255,255,255,0.025) 25%, transparent 25%),
+      linear-gradient(150deg, rgba(255,255,255,0.025) 25%, transparent 25%),
+      linear-gradient(30deg, transparent 75%, rgba(255,255,255,0.025) 75%),
+      linear-gradient(150deg, transparent 75%, rgba(255,255,255,0.025) 75%);
+    background-size: 160px 160px;
+  }
+  #t3 .t3-card {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    background: #fff;
+    padding: 60px 60px 52px;
+    box-shadow: 0 36px 100px rgba(0,0,0,0.5);
+  }
+  #t3 .t3-headshot {
+    position: absolute;
+    top: -56px; right: 44px;
+    width: 112px; height: 112px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+    background: #ddd;
+  }
+  #t3 .t3-headshot-placeholder {
+    position: absolute;
+    top: -56px; right: 44px;
+    width: 112px; height: 112px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    border: 5px solid #fff;
+    display: flex; align-items: center; justify-content: center;
+    color: #aaa; font-size: 10px; text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  #t3 .t3-open-quote {
+    font-size: 120px;
+    color: var(--brand-accent);
+    line-height: 0.6;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    opacity: 0.6;
+  }
+  #t3 .t3-quote {
+    font-size: 34px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.38;
+    margin-bottom: 44px;
+    font-family: Georgia, serif;
+    font-style: italic;
+  }
+  #t3 .t3-card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  #t3 .t3-name-badge {
+    background: var(--brand-accent);
+    padding: 14px 22px;
+  }
+  #t3 .t3-name {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #000;
+    font-family: Arial, sans-serif;
+  }
+  #t3 .t3-title {
+    font-size: 12px;
+    color: #333;
+    margin-top: 3px;
+    font-family: Arial, sans-serif;
+  }
+  #t3 .t3-company-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-family: Arial, sans-serif;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ── T4: FEATURE SLIDE ── */
+  #t4 {
+    background: var(--brand-bg);
+    position: relative;
+  }
+  #t4 .t4-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(30deg, rgba(28,45,79,0.03) 25%, transparent 25%),
+      linear-gradient(150deg, rgba(28,45,79,0.03) 25%, transparent 25%),
+      linear-gradient(30deg, transparent 75%, rgba(28,45,79,0.03) 75%),
+      linear-gradient(150deg, transparent 75%, rgba(28,45,79,0.03) 75%);
+    background-size: 140px 140px;
+  }
+  #t4 .t4-accent-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--brand-accent);
+  }
+  #t4 .t4-content {
+    position: absolute;
+    top: 90px; left: 90px; right: 90px;
+  }
+  #t4 .t4-number {
+    font-size: 88px;
+    font-weight: 900;
+    color: var(--brand-accent);
+    line-height: 1;
+    margin-bottom: 12px;
+    font-family: Arial, sans-serif;
+    opacity: 0.8;
+  }
+  #t4 .t4-headline {
+    font-size: 48px;
+    font-weight: 400;
+    color: #111;
+    line-height: 1.18;
+    margin-bottom: 40px;
+    font-family: Georgia, serif;
+  }
+  #t4 .t4-headline strong { font-weight: 800; }
+  #t4 .t4-bullets {
+    list-style: none;
+    padding: 0;
+  }
+  #t4 .t4-bullets li {
+    font-size: 26px;
+    color: #222;
+    margin-bottom: 16px;
+    line-height: 1.3;
+    font-family: Georgia, serif;
+    padding-left: 28px;
+    position: relative;
+  }
+  #t4 .t4-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--brand-accent);
+    font-weight: 700;
+  }
+  #t4 .t4-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 76px;
+    background: var(--brand-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+  }
+  #t4 .t4-footer-company {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    font-family: Arial, sans-serif;
+  }
+  #t4 .t4-footer-mark {
+    width: 32px; height: 32px;
+    background: var(--brand-accent);
+    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+  }
+</style>
+</head>
+<body>
+
+<!-- CONTROLS -->
+<div id="controls">
+  <div id="controls-header">
+    <div class="suite-label">Alexander West Capital</div>
+    <h1>Graphic Builder</h1>
+  </div>
+
+  <!-- Brand Selector -->
+  <div id="brand-selector-wrap">
+    <label>Portfolio Company</label>
+    <select id="brand-select">
+      <option value="leopardo-efficiency">Leopardo Efficiency</option>
+      <option value="leopardo-construction">Leopardo Construction</option>
+      <option value="grand-kahn">Grand Kahn Electric</option>
+      <option value="enlyt">Enlyt Building Technologies</option>
+      <option value="laystrom">Laystrom Hardware</option>
+      <option value="dfh-connect">DFH Connect</option>
+      <option value="gator">GATOR</option>
+    </select>
+  </div>
+  <div id="brand-swatch"></div>
+
+  <!-- Template Tabs -->
+  <div id="template-tabs">
+    <div class="tab active" data-tab="t1">Media</div>
+    <div class="tab" data-tab="t2">Hero</div>
+    <div class="tab" data-tab="t3">Quote</div>
+    <div class="tab" data-tab="t4">Feature</div>
+  </div>
+
+  <!-- Form Area -->
+  <div id="form-area">
+
+    <!-- T1: Media Coverage -->
+    <div id="fields-t1">
+      <div class="field-group">
+        <label>Headline</label>
+        <input type="text" id="t1-headline" value="Leopardo Efficiency Closes $4M Energy Contract with City of Columbus">
+      </div>
+      <div class="field-group">
+        <label>Badge Text</label>
+        <input type="text" id="t1-badge" value="As Seen In">
+      </div>
+      <div class="field-group">
+        <label>Date</label>
+        <input type="text" id="t1-date" value="June 2026">
+      </div>
+      <div class="field-group">
+        <label>Media Outlet</label>
+        <input type="text" id="t1-outlet" value="Crain's Chicago Business">
+      </div>
+      <div class="field-group">
+        <label>Background Image</label>
+        <label class="upload-btn">
+          ↑ Upload Image
+          <input type="file" id="t1-bg-upload" accept="image/*">
+        </label>
+        <img id="t1-bg-thumb" class="img-preview-thumb">
+      </div>
+      <div class="field-group">
+        <label>Article Image</label>
+        <label class="upload-btn">
+          ↑ Upload Image
+          <input type="file" id="t1-img-upload" accept="image/*">
+        </label>
+        <img id="t1-img-thumb" class="img-preview-thumb">
+      </div>
+    </div>
+
+    <!-- T2: Hero Announcement -->
+    <div id="fields-t2" style="display:none">
+      <div class="field-group">
+        <label>Headline (use *bold* for emphasis)</label>
+        <textarea id="t2-headline">The city *saves money.*\nWe guarantee it.</textarea>
+      </div>
+      <div class="field-group">
+        <label>Subtext / CTA</label>
+        <input type="text" id="t2-cta" value="leopardoefficiency.com">
+      </div>
+      <div class="field-group">
+        <label>Background Image</label>
+        <label class="upload-btn">
+          ↑ Upload Image
+          <input type="file" id="t2-bg-upload" accept="image/*">
+        </label>
+        <img id="t2-bg-thumb" class="img-preview-thumb">
+      </div>
+    </div>
+
+    <!-- T3: Quote Card -->
+    <div id="fields-t3" style="display:none">
+      <div class="field-group">
+        <label>Quote</label>
+        <textarea id="t3-quote">We don't just cut energy costs — we guarantee the savings in writing, for the life of the contract.</textarea>
+      </div>
+      <div class="field-group">
+        <label>Speaker Name</label>
+        <input type="text" id="t3-name" value="Curtis Leopardo">
+      </div>
+      <div class="field-group">
+        <label>Title</label>
+        <input type="text" id="t3-title" value="CEO, Leopardo Efficiency">
+      </div>
+      <div class="field-group">
+        <label>Headshot</label>
+        <label class="upload-btn">
+          ↑ Upload Headshot
+          <input type="file" id="t3-headshot-upload" accept="image/*">
+        </label>
+        <img id="t3-headshot-thumb" class="img-preview-thumb" style="border-radius:50%;height:60px;width:60px;object-fit:cover;">
+      </div>
+    </div>
+
+    <!-- T4: Feature Slide -->
+    <div id="fields-t4" style="display:none">
+      <div class="field-group">
+        <label>Number / Stat</label>
+        <input type="text" id="t4-number" value="17">
+      </div>
+      <div class="field-group">
+        <label>Headline (use *bold* for emphasis)</label>
+        <textarea id="t4-headline">Years of *guaranteed savings* for municipal clients.</textarea>
+      </div>
+      <div class="field-group">
+        <label>Bullet Points</label>
+        <div id="bullets-container">
+          <div class="bullet-row">
+            <input type="text" class="bullet-input" value="ESPC contracts built on guaranteed outcomes">
+            <button class="rm-bullet">×</button>
+          </div>
+          <div class="bullet-row">
+            <input type="text" class="bullet-input" value="Municipal clients in OH, IN, and FL">
+            <button class="rm-bullet">×</button>
+          </div>
+          <div class="bullet-row">
+            <input type="text" class="bullet-input" value="No payment until savings are verified">
+            <button class="rm-bullet">×</button>
+          </div>
+        </div>
+        <button id="add-bullet">+ Add Point</button>
+      </div>
+    </div>
+
+  </div><!-- /form-area -->
+
+  <button id="export-btn">↓ Export PNG</button>
+</div><!-- /controls -->
+
+<!-- PREVIEW -->
+<div id="preview-panel">
+  <div id="preview-label">Alexander West Capital · Portfolio Brand Audit · Operating Tools</div>
+  <div id="canvas-wrap">
+
+    <!-- T1: Media Coverage -->
+    <div class="graphic" id="t1">
+      <div class="t1-bg" id="t1-bg-el"></div>
+      <div class="t1-card">
+        <div class="t1-badge" id="t1-badge-el">As Seen In</div>
+        <div class="t1-card-header">
+          <div class="t1-company-name" id="t1-company-name-el">Leopardo Efficiency</div>
+        </div>
+        <div class="t1-headline" id="t1-headline-el">Leopardo Efficiency Closes $4M Energy Contract with City of Columbus</div>
+        <div class="t1-date" id="t1-date-el">June 2026</div>
+        <div id="t1-img-wrap">
+          <div class="t1-img-placeholder" id="t1-img-placeholder">Article image</div>
+          <img class="t1-img" id="t1-img-el" style="display:none">
+        </div>
+        <div class="t1-outlet">
+          <div class="t1-outlet-name" id="t1-outlet-el">Crain's Chicago Business</div>
+        </div>
+        <div class="t1-footer-bar"></div>
+      </div>
+    </div>
+
+    <!-- T2: Hero Announcement -->
+    <div class="graphic" id="t2" style="display:none">
+      <div class="t2-bg" id="t2-bg-el"></div>
+      <div class="t2-overlay"></div>
+      <div class="t2-logo-badge">
+        <div class="t2-company-name" id="t2-company-name-el">Leopardo Efficiency</div>
+      </div>
+      <div class="t2-card">
+        <div class="t2-headline" id="t2-headline-el">The city <strong>saves money.</strong><br>We guarantee it.</div>
+        <div class="t2-accent-bar"></div>
+        <div class="t2-cta" id="t2-cta-el">leopardoefficiency.com</div>
+      </div>
+    </div>
+
+    <!-- T3: Quote Card -->
+    <div class="graphic" id="t3" style="display:none">
+      <div class="t3-pattern"></div>
+      <div class="t3-card">
+        <div class="t3-headshot-placeholder" id="t3-headshot-placeholder">Photo</div>
+        <img class="t3-headshot" id="t3-headshot-el" style="display:none">
+        <div class="t3-open-quote">"</div>
+        <div class="t3-quote" id="t3-quote-el">We don't just cut energy costs — we guarantee the savings in writing, for the life of the contract.</div>
+        <div class="t3-card-footer">
+          <div class="t3-name-badge">
+            <div class="t3-name" id="t3-name-el">Curtis Leopardo</div>
+            <div class="t3-title" id="t3-title-el">CEO, Leopardo Efficiency</div>
+          </div>
+        </div>
+      </div>
+      <div class="t3-company-tag" id="t3-company-tag-el">Leopardo Efficiency · AWC Portfolio</div>
+    </div>
+
+    <!-- T4: Feature Slide -->
+    <div class="graphic" id="t4" style="display:none">
+      <div class="t4-pattern"></div>
+      <div class="t4-accent-stripe"></div>
+      <div class="t4-content">
+        <div class="t4-number" id="t4-number-el">17</div>
+        <div class="t4-headline" id="t4-headline-el">Years of <strong>guaranteed savings</strong> for municipal clients.</div>
+        <ul class="t4-bullets" id="t4-bullets-el">
+          <li>ESPC contracts built on guaranteed outcomes</li>
+          <li>Municipal clients in OH, IN, and FL</li>
+          <li>No payment until savings are verified</li>
+        </ul>
+      </div>
+      <div class="t4-footer">
+        <div class="t4-footer-company" id="t4-footer-company-el">Leopardo Efficiency · AWC Portfolio</div>
+        <div class="t4-footer-mark"></div>
+      </div>
+    </div>
+
+  </div><!-- /canvas-wrap -->
+</div><!-- /preview-panel -->
+
+<script>
+// ═══════════════════════════════════════════════
+// BRAND DEFINITIONS
+// ═══════════════════════════════════════════════
+const BRANDS = {
+  'leopardo-efficiency': {
+    name: 'Leopardo Efficiency',
+    primary: '#1c2d4f',
+    accent: '#f5c800',
+    red: '#d91b1b',
+    bg: '#f0f0ee',
+    defaultHeadline: 'Leopardo Efficiency Closes $4M Energy Contract with City of Columbus',
+    defaultQuote: 'We don\'t just cut energy costs — we guarantee the savings in writing, for the life of the contract.',
+    defaultSpeaker: 'Curtis Leopardo',
+    defaultTitle: 'CEO, Leopardo Efficiency',
+    defaultHero: 'The city *saves money.*\nWe guarantee it.',
+    defaultCta: 'leopardoefficiency.com',
+    defaultNum: '17',
+    defaultFeatureHeadline: 'Years of *guaranteed savings* for municipal clients.',
+    defaultBullets: ['ESPC contracts built on guaranteed outcomes','Municipal clients in OH, IN, and FL','No payment until savings are verified'],
+  },
+  'leopardo-construction': {
+    name: 'Leopardo Construction',
+    primary: '#1a1a1a',
+    accent: '#d4a017',
+    red: '#8b2020',
+    bg: '#f2f0ec',
+    defaultHeadline: 'Leopardo Construction Breaks Ground on $80M Chicago Transit Hub',
+    defaultQuote: 'We\'ve been building Chicago\'s infrastructure for nearly fifty years. The city\'s fingerprints are on our work.',
+    defaultSpeaker: 'AJ Leopardo',
+    defaultTitle: 'President, Alexander West Capital',
+    defaultHero: 'Built *Chicago.*\nFor fifty years.',
+    defaultCta: 'leopardoconstruction.com',
+    defaultNum: '47',
+    defaultFeatureHeadline: 'Years *building* Chicago.',
+    defaultBullets: ['Major commercial, institutional, and transit projects','Deep municipal and union relationships','Founded 1977 · Hoffman Estates, IL'],
+  },
+  'grand-kahn': {
+    name: 'Grand Kahn Electric',
+    primary: '#0a1628',
+    accent: '#e8b84b',
+    red: '#c0392b',
+    bg: '#f5f3ef',
+    defaultHeadline: 'Grand Kahn Electric: 117 Years of Chicago Commercial Work',
+    defaultQuote: 'Chicago\'s first registered electrical contractor. The story wasn\'t being told. Now it will be.',
+    defaultSpeaker: 'Mike Casto',
+    defaultTitle: 'President, Grand Kahn Electric',
+    defaultHero: 'Chicago\'s *first.*\nSince 1907.',
+    defaultCta: 'grandkahnelectric.com',
+    defaultNum: '117',
+    defaultFeatureHeadline: 'Years of *commercial electrical* work in Chicago.',
+    defaultBullets: ['Chicago\'s first registered electrical contractor','Major commercial projects across the metro area','Founded 1907 · Schaumburg, IL'],
+  },
+  'enlyt': {
+    name: 'Enlyt Building Technologies',
+    primary: '#1b3a4b',
+    accent: '#00c4cc',
+    red: '#e74c3c',
+    bg: '#eef4f6',
+    defaultHeadline: 'Enlyt Closes Smart Building Deal with Sonder Hospitality Portfolio',
+    defaultQuote: 'Hospitality-grade smart systems. The wins were always there. The brand wasn\'t surfacing them.',
+    defaultSpeaker: 'Enlyt Leadership',
+    defaultTitle: 'Enlyt Building Technologies',
+    defaultHero: 'Smart buildings.\n*Hospitality grade.*',
+    defaultCta: 'enlytbuilding.com',
+    defaultNum: '4',
+    defaultFeatureHeadline: '*Major hospitality brands* running on Enlyt systems.',
+    defaultBullets: ['Sonder, Melia, Belgravia, Life Fitness','MDU and hospitality-grade smart integration','AWC Portfolio · Smart Buildings'],
+  },
+  'laystrom': {
+    name: 'Laystrom Hardware',
+    primary: '#2c1810',
+    accent: '#c0873f',
+    red: '#8b2020',
+    bg: '#f5ede4',
+    defaultHeadline: 'Laystrom Hardware: 74 Years Supplying Chicago\'s Commercial Doors',
+    defaultQuote: 'The longest customer relationships in the portfolio. Nobody was telling that story.',
+    defaultSpeaker: 'Laystrom Leadership',
+    defaultTitle: 'Laystrom Hardware',
+    defaultHero: 'Supplying *Chicago*\nsince 1951.',
+    defaultCta: 'laystromhardware.com',
+    defaultNum: '74',
+    defaultFeatureHeadline: 'Years of *commercial door* supply in Chicago.',
+    defaultBullets: ['Commercial doors, frames, and hardware','Longest customer relationships in the portfolio','Founded 1951 · Chicago, IL'],
+  },
+  'dfh-connect': {
+    name: 'DFH Connect',
+    primary: '#1a2d1a',
+    accent: '#4caf50',
+    red: '#d32f2f',
+    bg: '#eef5ee',
+    defaultHeadline: 'DFH Connect Compresses 4 Hours of Manual Entry Into 5 Minutes',
+    defaultQuote: 'Workflow software that solves a real problem — Emullion to QuickBooks in under five minutes per project.',
+    defaultSpeaker: 'AWC Technology',
+    defaultTitle: 'DFH Connect',
+    defaultHero: '4 hours of work.\n*5 minutes.*',
+    defaultCta: 'dfhconnect.com',
+    defaultNum: '5',
+    defaultFeatureHeadline: 'Minutes to sync *a full project* from Emullion to QuickBooks.',
+    defaultBullets: ['AWC Technology\'s first software product','Bridges Emullion to QuickBooks','Recovers hours of manual entry per project'],
+  },
+  'gator': {
+    name: 'GATOR',
+    primary: '#1a3300',
+    accent: '#7dba00',
+    red: '#cc3300',
+    bg: '#eef5e0',
+    defaultHeadline: 'GATOR Closes 5 Cities Before Entity Formation',
+    defaultQuote: 'Five cities closed before the entity was even formed. The momentum existed before the brand did.',
+    defaultSpeaker: 'GATOR Leadership',
+    defaultTitle: 'GATOR · AWC Technology',
+    defaultHero: '5 cities closed.\n*Before launch.*',
+    defaultCta: 'gator.io',
+    defaultNum: '5',
+    defaultFeatureHeadline: 'Cities closed *before entity formation.*',
+    defaultBullets: ['Municipal procurement reverse-auction platform','Newest entity with highest concentrated momentum','AWC Technology Product'],
+  },
+};
+
+let currentBrand = 'leopardo-efficiency';
+let currentTab = 't1';
+let bgImages = {};
+let articleImages = {};
+
+// ── Apply brand colors ──
+function applyBrand(brandKey) {
+  const b = BRANDS[brandKey];
+  currentBrand = brandKey;
+  document.documentElement.style.setProperty('--brand-primary', b.primary);
+  document.documentElement.style.setProperty('--brand-accent', b.accent);
+  document.documentElement.style.setProperty('--brand-red', b.red);
+  document.documentElement.style.setProperty('--brand-bg', b.bg);
+
+  document.getElementById('brand-swatch').style.background = b.accent;
+
+  // Update all company name els
+  ['t1-company-name-el','t2-company-name-el','t3-company-tag-el','t4-footer-company-el'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = id.includes('tag') || id.includes('footer')
+      ? b.name + ' · AWC Portfolio'
+      : b.name;
+  });
+
+  // Load default content for this brand
+  setVal('t1-headline', b.defaultHeadline);
+  setVal('t1-outlet', 'Crain\'s Chicago Business');
+  setVal('t2-headline', b.defaultHero);
+  setVal('t2-cta', b.defaultCta);
+  setVal('t3-quote', b.defaultQuote);
+  setVal('t3-name', b.defaultSpeaker);
+  setVal('t3-title', b.defaultTitle);
+  setVal('t4-number', b.defaultNum);
+  setVal('t4-headline', b.defaultFeatureHeadline);
+
+  // Bullets
+  const bc = document.getElementById('bullets-container');
+  bc.innerHTML = '';
+  b.defaultBullets.forEach(txt => addBullet(txt));
+
+  // Update active tab styling
+  document.querySelectorAll('.tab').forEach(t => {
+    t.style.color = t.classList.contains('active') ? b.accent : '';
+    t.style.borderBottomColor = t.classList.contains('active') ? b.accent : '';
+  });
+
+  // Re-render
+  renderAll();
+}
+
+function setVal(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.value = val;
+}
+
+// ── Parse bold markdown ──
+function parseBold(text) {
+  return text.replace(/\*([^*]+)\*/g, '<strong>$1</strong>').replace(/\\n/g, '<br>');
+}
+
+// ── Render all templates ──
+function renderAll() {
+  renderT1(); renderT2(); renderT3(); renderT4();
+}
+
+function renderT1() {
+  document.getElementById('t1-headline-el').textContent = v('t1-headline');
+  document.getElementById('t1-badge-el').textContent = v('t1-badge');
+  document.getElementById('t1-date-el').textContent = v('t1-date');
+  document.getElementById('t1-outlet-el').textContent = v('t1-outlet');
+
+  const bgEl = document.getElementById('t1-bg-el');
+  if (bgImages['t1-bg']) bgEl.style.backgroundImage = `url(${bgImages['t1-bg']})`;
+
+  const imgEl = document.getElementById('t1-img-el');
+  const placeholder = document.getElementById('t1-img-placeholder');
+  if (bgImages['t1-img']) {
+    imgEl.src = bgImages['t1-img'];
+    imgEl.style.display = 'block';
+    placeholder.style.display = 'none';
+  } else {
+    imgEl.style.display = 'none';
+    placeholder.style.display = 'flex';
+  }
+}
+
+function renderT2() {
+  const raw = v('t2-headline');
+  document.getElementById('t2-headline-el').innerHTML = parseBold(raw);
+  document.getElementById('t2-cta-el').textContent = v('t2-cta');
+
+  const bgEl = document.getElementById('t2-bg-el');
+  if (bgImages['t2-bg']) bgEl.style.backgroundImage = `url(${bgImages['t2-bg']})`;
+}
+
+function renderT3() {
+  document.getElementById('t3-quote-el').textContent = v('t3-quote');
+  document.getElementById('t3-name-el').textContent = v('t3-name');
+  document.getElementById('t3-title-el').textContent = v('t3-title');
+
+  const hsEl = document.getElementById('t3-headshot-el');
+  const hsPlaceholder = document.getElementById('t3-headshot-placeholder');
+  if (bgImages['t3-headshot']) {
+    hsEl.src = bgImages['t3-headshot'];
+    hsEl.style.display = 'block';
+    hsPlaceholder.style.display = 'none';
+  } else {
+    hsEl.style.display = 'none';
+    hsPlaceholder.style.display = 'flex';
+  }
+}
+
+function renderT4() {
+  document.getElementById('t4-number-el').textContent = v('t4-number');
+  document.getElementById('t4-headline-el').innerHTML = parseBold(v('t4-headline'));
+
+  const bullets = Array.from(document.querySelectorAll('.bullet-input')).map(i => i.value).filter(Boolean);
+  const ul = document.getElementById('t4-bullets-el');
+  ul.innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
+}
+
+function v(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : '';
+}
+
+// ── Tab switching ──
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    currentTab = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => {
+      t.classList.remove('active');
+      t.style.color = '';
+      t.style.borderBottomColor = '';
+    });
+    tab.classList.add('active');
+    const b = BRANDS[currentBrand];
+    tab.style.color = b.accent;
+    tab.style.borderBottomColor = b.accent;
+
+    ['t1','t2','t3','t4'].forEach(t => {
+      document.getElementById(t).style.display = t === currentTab ? 'block' : 'none';
+      const f = document.getElementById('fields-' + t);
+      if (f) f.style.display = t === currentTab ? 'block' : 'none';
+    });
+  });
+});
+
+// ── Brand selector ──
+document.getElementById('brand-select').addEventListener('change', e => {
+  applyBrand(e.target.value);
+});
+
+// ── Live input listeners ──
+document.querySelectorAll('input[type=text], textarea').forEach(el => {
+  el.addEventListener('input', renderAll);
+});
+
+// ── Bullet management ──
+function addBullet(text = '') {
+  const bc = document.getElementById('bullets-container');
+  const row = document.createElement('div');
+  row.className = 'bullet-row';
+  row.innerHTML = `<input type="text" class="bullet-input" value="${text}"><button class="rm-bullet">×</button>`;
+  row.querySelector('.bullet-input').addEventListener('input', renderT4);
+  row.querySelector('.rm-bullet').addEventListener('click', () => { row.remove(); renderT4(); });
+  bc.appendChild(row);
+}
+
+document.getElementById('add-bullet').addEventListener('click', () => { addBullet(); });
+
+// Wire existing bullet remove buttons
+document.querySelectorAll('.rm-bullet').forEach(btn => {
+  btn.addEventListener('click', () => { btn.parentElement.remove(); renderT4(); });
+});
+document.querySelectorAll('.bullet-input').forEach(inp => {
+  inp.addEventListener('input', renderT4);
+});
+
+// ── Image uploads ──
+function wireUpload(inputId, storeKey, thumbId) {
+  document.getElementById(inputId).addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      bgImages[storeKey] = ev.target.result;
+      const thumb = document.getElementById(thumbId);
+      if (thumb) { thumb.src = ev.target.result; thumb.style.display = 'block'; }
+      renderAll();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+wireUpload('t1-bg-upload', 't1-bg', 't1-bg-thumb');
+wireUpload('t1-img-upload', 't1-img', 't1-img-thumb');
+wireUpload('t2-bg-upload', 't2-bg', 't2-bg-thumb');
+wireUpload('t3-headshot-upload', 't3-headshot', 't3-headshot-thumb');
+
+// ── Export ──
+document.getElementById('export-btn').addEventListener('click', () => {
+  const el = document.getElementById(currentTab);
+  const brand = BRANDS[currentBrand].name.replace(/\s+/g, '-').toLowerCase();
+  html2canvas(el, { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = `awc-${brand}-${currentTab}-${Date.now()}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+});
+
+// ── Init ──
+applyBrand('leopardo-efficiency');
+</script>
+</body>
+</html>
