@@ -284,12 +284,7 @@
   }
 
   /* ── T1: MEDIA COVERAGE ── */
-  #t1 .t1-bg {
-    position: absolute; inset: 0;
-    background-size: cover; background-position: center;
-    filter: blur(18px) brightness(0.45);
-    transform: scale(1.06);
-  }
+  /* t1-bg is now a canvas element */
   #t1 .t1-card {
     position: absolute;
     top: 50%; left: 50%;
@@ -372,15 +367,7 @@
   }
 
   /* ── T2: HERO ANNOUNCEMENT ── */
-  #t2 .t2-bg {
-    position: absolute; inset: 0;
-    background-size: cover; background-position: center;
-    background-color: var(--brand-primary);
-  }
-  #t2 .t2-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%);
-  }
+  /* t2-bg and overlay are now canvas-drawn */
   #t2 .t2-logo-badge {
     position: absolute;
     top: 36px; left: 36px;
@@ -765,7 +752,7 @@
 
     <!-- T1: Media Coverage -->
     <div class="graphic" id="t1">
-      <div class="t1-bg" id="t1-bg-el"></div>
+      <canvas id="t1-bg-el" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
       <div class="t1-card">
         <div class="t1-badge" id="t1-badge-el">As Seen In</div>
         <div class="t1-card-header">
@@ -786,8 +773,7 @@
 
     <!-- T2: Hero Announcement -->
     <div class="graphic" id="t2" style="display:none">
-      <div class="t2-bg" id="t2-bg-el"></div>
-      <div class="t2-overlay"></div>
+      <canvas id="t2-bg-el" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
       <div class="t2-logo-badge">
         <div class="t2-company-name" id="t2-company-name-el">Leopardo Efficiency</div>
       </div>
@@ -1029,7 +1015,19 @@ function renderT1() {
   document.getElementById('t1-outlet-el').textContent = v('t1-outlet');
 
   const bgEl = document.getElementById('t1-bg-el');
-  if (bgImages['t1-bg']) bgEl.style.backgroundImage = `url(${bgImages['t1-bg']})`;
+  bgEl.width = 960;
+  bgEl.height = 960;
+  if (bgImages['t1-bg']) {
+    const ctx = bgEl.getContext('2d');
+    const img = new Image();
+    img.onload = () => {
+      ctx.filter = 'blur(18px) brightness(0.45)';
+      // Draw scaled up slightly to cover blur edges
+      ctx.drawImage(img, -30, -30, 1020, 1020);
+      ctx.filter = 'none';
+    };
+    img.src = bgImages['t1-bg'];
+  }
 
   const imgEl = document.getElementById('t1-img-el');
   const placeholder = document.getElementById('t1-img-placeholder');
@@ -1049,7 +1047,28 @@ function renderT2() {
   document.getElementById('t2-cta-el').textContent = v('t2-cta');
 
   const bgEl = document.getElementById('t2-bg-el');
-  if (bgImages['t2-bg']) bgEl.style.backgroundImage = `url(${bgImages['t2-bg']})`;
+  bgEl.width = 960;
+  bgEl.height = 960;
+  if (bgImages['t2-bg']) {
+    const ctx = bgEl.getContext('2d');
+    const img = new Image();
+    img.onload = () => {
+      ctx.filter = 'brightness(0.55)';
+      ctx.drawImage(img, 0, 0, 960, 960);
+      ctx.filter = 'none';
+      // Dark gradient overlay
+      const grad = ctx.createLinearGradient(0, 0, 0, 960);
+      grad.addColorStop(0, 'rgba(0,0,0,0.3)');
+      grad.addColorStop(1, 'rgba(0,0,0,0.65)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 960, 960);
+    };
+    img.src = bgImages['t2-bg'];
+  } else {
+    const ctx = bgEl.getContext('2d');
+    ctx.fillStyle = '#1c2d4f';
+    ctx.fillRect(0, 0, 960, 960);
+  }
 }
 
 function renderT3() {
