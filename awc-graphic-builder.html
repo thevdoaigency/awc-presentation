@@ -1689,17 +1689,17 @@ function t5DrawCaseStudy(ctx) {
   ctx.fillRect(split - 3, 0, 6, contentH);
 
   // Label
-  ctx.font = t5Font(700, 18);
+  ctx.font = t5Font(700, 27);
   ctx.fillStyle = T5_YELLOW;
-  ctx.fillText(label, T5_SAFE, T5_SAFE + 18);
+  ctx.fillText(label, T5_SAFE, T5_SAFE + 27);
 
   // City — auto-fit
   const maxCityW = split - T5_SAFE - 36;
   const citySize = t5FitText(ctx, city, maxCityW, 88, 32);
   ctx.font = t5Font(700, citySize);
   ctx.fillStyle = T5_CREAM;
-  ctx.fillText(city, T5_SAFE, T5_SAFE + 18 + 14 + citySize);
-  const cityBottom = T5_SAFE + 18 + 14 + citySize;
+  ctx.fillText(city, T5_SAFE, T5_SAFE + 27 + 14 + citySize);
+  const cityBottom = T5_SAFE + 27 + 14 + citySize;
 
   // Rule
   const ruleY = cityBottom + 18;
@@ -1707,9 +1707,9 @@ function t5DrawCaseStudy(ctx) {
   ctx.fillRect(T5_SAFE, ruleY, split - T5_SAFE - 36, 4);
 
   // Sub-label
-  ctx.font = t5Font(700, 15);
+  ctx.font = t5Font(700, 22);
   ctx.fillStyle = T5_GRAY;
-  ctx.fillText(sub, T5_SAFE, ruleY + 24);
+  ctx.fillText(sub, T5_SAFE, ruleY + 30);
 
   // Right zone: stat
   const statCX = split + (T5_W - split) / 2;
@@ -1722,9 +1722,9 @@ function t5DrawCaseStudy(ctx) {
   const statH = statSize * 1.15;
   const statY = (contentH - statH - 30) / 2;
   ctx.fillText(stat, statCX, statY + statH);
-  ctx.font = t5Font(700, 20);
+  ctx.font = t5Font(700, 30);
   ctx.fillStyle = T5_CREAM;
-  ctx.fillText(statLbl, statCX, statY + statH + 28);
+  ctx.fillText(statLbl, statCX, statY + statH + 38);
   ctx.textAlign = 'left';
 }
 
@@ -1792,9 +1792,12 @@ function t5DrawMechanism(ctx) {
   ctx.fillStyle = T5_YELLOW;
   ctx.fillRect((T5_W - ruleW) / 2, ruleY, ruleW, 4);
 
-  // Sub-label
-  ctx.font = t5Font(700, 18);
+  // Sub-label — stroked for legibility at small scale
+  ctx.font = t5Font(700, 22);
   ctx.fillStyle = T5_GRAY;
+  ctx.strokeStyle = T5_GRAY;
+  ctx.lineWidth = 0.6;
+  ctx.strokeText(sub, T5_W / 2, ruleY + 28);
   ctx.fillText(sub, T5_W / 2, ruleY + 28);
 
   ctx.textAlign = 'left';
@@ -1861,15 +1864,15 @@ function t5DrawPeer(ctx) {
   ctx.fillRect(split - 3, 0, 6, contentH);
 
   // Label
-  ctx.font = t5Font(700, 18);
+  ctx.font = t5Font(700, 27);
   ctx.fillStyle = T5_YELLOW;
-  ctx.fillText(label, T5_SAFE, T5_SAFE + 18);
+  ctx.fillText(label, T5_SAFE, T5_SAFE + 27);
 
   // Headline
   const hlSize = 78;
   ctx.font = t5Font(700, hlSize);
   ctx.fillStyle = T5_CREAM;
-  const y1 = T5_SAFE + 18 + 18 + hlSize;
+  const y1 = T5_SAFE + 27 + 16 + hlSize;
   ctx.fillText(line1, T5_SAFE, y1);
   const y2 = y1 + hlSize + 8;
   ctx.fillText(line2, T5_SAFE, y2);
@@ -1880,14 +1883,14 @@ function t5DrawPeer(ctx) {
   ctx.fillRect(T5_SAFE, ruleY, split - T5_SAFE - 54, 4);
 
   // Name
-  ctx.font = t5Font(700, 22);
+  ctx.font = t5Font(700, 29);
   ctx.fillStyle = T5_CREAM;
-  ctx.fillText(name, T5_SAFE, ruleY + 34);
+  ctx.fillText(name, T5_SAFE, ruleY + 40);
 
   // Title
-  ctx.font = t5Font(700, 16);
+  ctx.font = t5Font(700, 21);
   ctx.fillStyle = T5_GRAY;
-  ctx.fillText(title, T5_SAFE, ruleY + 62);
+  ctx.fillText(title, T5_SAFE, ruleY + 76);
 }
 
 function renderT5() {
