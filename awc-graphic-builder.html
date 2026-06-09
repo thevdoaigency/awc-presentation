@@ -333,8 +333,12 @@
     background: #fff;
   }
 
-  /* ── T1: MEDIA COVERAGE ── */
-  /* t1-bg is now a canvas element */
+  /* ── T5: YOUTUBE THUMBNAIL ── */
+  #t5 {
+    width: 1280px;
+    height: 720px;
+    background: #0b0b0b;
+  }
   #t1 .t1-card {
     position: absolute;
     top: 50%; left: 50%;
@@ -674,6 +678,7 @@
     <div class="tab" data-tab="t2">Hero</div>
     <div class="tab" data-tab="t3">Quote</div>
     <div class="tab" data-tab="t4">Feature</div>
+    <div class="tab" data-tab="t5">YT Thumb</div>
   </div>
 
   <!-- Form Area -->
@@ -789,6 +794,104 @@
       </div>
     </div>
 
+    <!-- T5: YouTube Thumbnail -->
+    <div id="fields-t5" style="display:none">
+      <div class="field-group">
+        <label>Layout</label>
+        <select id="t5-layout">
+          <option value="case-study">Case Study</option>
+          <option value="mechanism">Mechanism / How It Works</option>
+          <option value="peer">Peer / Testimonial</option>
+        </select>
+      </div>
+      <!-- Case Study fields -->
+      <div id="t5-case-fields">
+        <div class="field-group">
+          <label>Label (e.g. CASE STUDY)</label>
+          <input type="text" id="t5-cs-label" value="CASE STUDY">
+        </div>
+        <div class="field-group">
+          <label>City / Project Name</label>
+          <input type="text" id="t5-cs-city" value="SOUTH EUCLID">
+        </div>
+        <div class="field-group">
+          <label>Stat (e.g. $6.2M)</label>
+          <input type="text" id="t5-cs-stat" value="$6.2M">
+        </div>
+        <div class="field-group">
+          <label>Stat Sub-label</label>
+          <input type="text" id="t5-cs-stat-label" value="ZERO TAXPAYER COST">
+        </div>
+        <div class="field-group">
+          <label>Sub-label</label>
+          <input type="text" id="t5-cs-sub" value="ENERGY SAVINGS COVER THE COST">
+        </div>
+        <div class="field-group">
+          <label>Right Zone Photo (optional)</label>
+          <label class="upload-btn">↑ Upload Image
+            <input type="file" id="t5-cs-photo-upload" accept="image/*">
+          </label>
+          <img id="t5-cs-photo-thumb" class="img-preview-thumb">
+        </div>
+      </div>
+      <!-- Mechanism fields -->
+      <div id="t5-mech-fields" style="display:none">
+        <div class="field-group">
+          <label>Label (e.g. HOW IT WORKS)</label>
+          <input type="text" id="t5-mech-label" value="HOW IT WORKS">
+        </div>
+        <div class="field-group">
+          <label>Line 1 (Regular weight)</label>
+          <input type="text" id="t5-mech-line1" value="WHAT IS AN">
+        </div>
+        <div class="field-group">
+          <label>Line 2 (Bold)</label>
+          <input type="text" id="t5-mech-line2" value="ESPC?">
+        </div>
+        <div class="field-group">
+          <label>Sub-label</label>
+          <input type="text" id="t5-mech-sub" value="ENERGY SAVINGS PERFORMANCE CONTRACT">
+        </div>
+        <div class="field-group">
+          <label>Background Photo (optional)</label>
+          <label class="upload-btn">↑ Upload Image
+            <input type="file" id="t5-mech-photo-upload" accept="image/*">
+          </label>
+          <img id="t5-mech-photo-thumb" class="img-preview-thumb">
+        </div>
+      </div>
+      <!-- Peer fields -->
+      <div id="t5-peer-fields" style="display:none">
+        <div class="field-group">
+          <label>Label (e.g. CLIENT STORY)</label>
+          <input type="text" id="t5-peer-label" value="CLIENT STORY">
+        </div>
+        <div class="field-group">
+          <label>Headline Line 1</label>
+          <input type="text" id="t5-peer-line1" value="The Promise">
+        </div>
+        <div class="field-group">
+          <label>Headline Line 2</label>
+          <input type="text" id="t5-peer-line2" value="Delivered.">
+        </div>
+        <div class="field-group">
+          <label>Name</label>
+          <input type="text" id="t5-peer-name" value="CURTIS LEOPARDO">
+        </div>
+        <div class="field-group">
+          <label>Title</label>
+          <input type="text" id="t5-peer-title" value="PRESIDENT · LEOPARDO EFFICIENCY">
+        </div>
+        <div class="field-group">
+          <label>Photo (optional)</label>
+          <label class="upload-btn">↑ Upload Photo
+            <input type="file" id="t5-peer-photo-upload" accept="image/*">
+          </label>
+          <img id="t5-peer-photo-thumb" class="img-preview-thumb">
+        </div>
+      </div>
+    </div>
+
   </div><!-- /form-area -->
 
   <button id="export-btn">↓ Export PNG</button>
@@ -869,6 +972,11 @@
       </div>
     </div>
 
+    <!-- T5: YouTube Thumbnail -->
+    <div class="graphic" id="t5" style="display:none">
+      <canvas id="t5-canvas" style="width:100%;height:100%;display:block;"></canvas>
+    </div>
+
   </div><!-- /canvas-wrap -->
 </div><!-- /preview-panel -->
 
@@ -902,8 +1010,9 @@ function applyFormat(fmtKey) {
     activeTab.style.borderColor = b.accent;
   }
 
-  // Resize all graphic canvases
+  // Resize all graphic canvases (skip T5 — fixed 1280x720)
   document.querySelectorAll('.graphic').forEach(el => {
+    if (el.id === 't5') return;
     el.style.width = fmt.w + 'px';
     el.style.height = fmt.h + 'px';
   });
@@ -1222,7 +1331,7 @@ function parseBold(text) {
 
 // ── Render all templates ──
 function renderAll() {
-  renderT1(); renderT2(); renderT3(); renderT4();
+  renderT1(); renderT2(); renderT3(); renderT4(); renderT5();
 }
 
 function renderT1() {
@@ -1364,11 +1473,22 @@ document.querySelectorAll('.tab').forEach(tab => {
     tab.style.color = b.accent;
     tab.style.borderBottomColor = b.accent;
 
-    ['t1','t2','t3','t4'].forEach(t => {
+    ['t1','t2','t3','t4','t5'].forEach(t => {
       document.getElementById(t).style.display = t === currentTab ? 'block' : 'none';
       const f = document.getElementById('fields-' + t);
       if (f) f.style.display = t === currentTab ? 'block' : 'none';
     });
+
+    // Adjust wrap margin for T5's 16:9 aspect (shorter than square)
+    const wrap = document.getElementById('canvas-wrap');
+    if (currentTab === 't5') {
+      wrap.style.marginBottom = '-500px';
+    } else {
+      const fmt = FORMATS[currentFormat];
+      wrap.style.marginBottom = fmt.marginBottom + 'px';
+    }
+
+    renderT5();
   });
 });
 
@@ -1431,9 +1551,21 @@ wireUpload('t3-headshot-upload', 't3-headshot', 't3-headshot-thumb');
 
 // ── Export ──
 document.getElementById('export-btn').addEventListener('click', () => {
+  const brand = BRANDS[currentBrand].name.replace(/\s+/g, '-').toLowerCase();
+
+  // T5 is a raw canvas — export directly
+  if (currentTab === 't5') {
+    const canvas = document.getElementById('t5-canvas');
+    const layout = document.getElementById('t5-layout')?.value || 'thumb';
+    const link = document.createElement('a');
+    link.download = `leopardo-yt-${layout}-${Date.now()}.jpg`;
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+    return;
+  }
+
   const el = document.getElementById(currentTab);
   const wrap = document.getElementById('canvas-wrap');
-  const brand = BRANDS[currentBrand].name.replace(/\s+/g, '-').toLowerCase();
 
   // Pull the graphic out of the scaled wrapper so html2canvas gets true 960x960
   const placeholder = document.createElement('div');
@@ -1468,6 +1600,368 @@ document.getElementById('export-btn').addEventListener('click', () => {
     link.href = canvas.toDataURL('image/png');
     link.click();
   });
+});
+
+// ── T5: YouTube Thumbnail Renderer ──
+const T5_W = 1280, T5_H = 720;
+const T5_SAFE = 54;
+const T5_BG     = '#0b0b0b';
+const T5_NAVY   = '#1a3967';
+const T5_YELLOW = '#fee600';
+const T5_CREAM  = '#ede9e3';
+const T5_GRAY   = '#908b86';
+let t5PeerPhoto = null;
+let t5CsPhoto = null;
+let t5MechPhoto = null;
+
+function t5Font(weight, size) {
+  // Uses HelveticaNowDisplay already embedded, falls back to Arial
+  return `${weight} ${size}px HelveticaNowDisplay, Arial, sans-serif`;
+}
+
+function t5Measure(ctx, text) {
+  return ctx.measureText(text);
+}
+
+function t5FitText(ctx, text, maxW, startSize, minSize = 20) {
+  let size = startSize;
+  ctx.font = t5Font(700, size);
+  while (ctx.measureText(text).width > maxW && size > minSize) {
+    size -= 2;
+    ctx.font = t5Font(700, size);
+  }
+  return size;
+}
+
+function t5DrawWordmark(ctx) {
+  const barH = 36;
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillRect(0, T5_H - barH, T5_W, barH);
+  ctx.font = t5Font(700, 18);
+  ctx.fillStyle = T5_BG;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('LEOPARDO EFFICIENCY', T5_W / 2, T5_H - barH / 2);
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+}
+
+function t5DrawCaseStudy(ctx) {
+  const label    = (document.getElementById('t5-cs-label')?.value || 'CASE STUDY').toUpperCase();
+  const city     = (document.getElementById('t5-cs-city')?.value || 'SOUTH EUCLID').toUpperCase();
+  const stat     = document.getElementById('t5-cs-stat')?.value || '$6.2M';
+  const statLbl  = (document.getElementById('t5-cs-stat-label')?.value || 'ZERO TAXPAYER COST').toUpperCase();
+  const sub      = (document.getElementById('t5-cs-sub')?.value || 'ENERGY SAVINGS COVER THE COST').toUpperCase();
+  const barH = 36;
+  const split = Math.floor(T5_W * 0.46);
+  const contentH = T5_H - barH;
+
+  // BG
+  ctx.fillStyle = T5_BG;
+  ctx.fillRect(0, 0, T5_W, T5_H);
+
+  // Navy right block (base color always drawn first)
+  ctx.fillStyle = T5_NAVY;
+  ctx.fillRect(split, 0, T5_W - split, contentH);
+
+  // Right zone photo — heavily tinted behind navy
+  if (t5CsPhoto) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(split, 0, T5_W - split, contentH);
+    ctx.clip();
+    const ph = t5CsPhoto;
+    const scale = Math.max((T5_W - split) / ph.width, contentH / ph.height);
+    const dw = ph.width * scale, dh = ph.height * scale;
+    const dx = split + ((T5_W - split) - dw) / 2;
+    const dy = (contentH - dh) / 2;
+    ctx.globalAlpha = 0.65;
+    ctx.drawImage(ph, dx, dy, dw, dh);
+    ctx.globalAlpha = 1;
+    // Navy tint overlay to unify with brand color
+    ctx.fillStyle = 'rgba(26, 57, 103, 0.50)';
+    ctx.fillRect(split, 0, T5_W - split, contentH);
+    ctx.restore();
+  }
+
+  // Yellow split accent
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillRect(split - 3, 0, 6, contentH);
+
+  // Label
+  ctx.font = t5Font(700, 18);
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillText(label, T5_SAFE, T5_SAFE + 18);
+
+  // City — auto-fit
+  const maxCityW = split - T5_SAFE - 36;
+  const citySize = t5FitText(ctx, city, maxCityW, 88, 32);
+  ctx.font = t5Font(700, citySize);
+  ctx.fillStyle = T5_CREAM;
+  ctx.fillText(city, T5_SAFE, T5_SAFE + 18 + 14 + citySize);
+  const cityBottom = T5_SAFE + 18 + 14 + citySize;
+
+  // Rule
+  const ruleY = cityBottom + 18;
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillRect(T5_SAFE, ruleY, split - T5_SAFE - 36, 4);
+
+  // Sub-label
+  ctx.font = t5Font(700, 15);
+  ctx.fillStyle = T5_GRAY;
+  ctx.fillText(sub, T5_SAFE, ruleY + 24);
+
+  // Right zone: stat
+  const statCX = split + (T5_W - split) / 2;
+  const statMaxW = T5_W - split - 72;
+  const statSize = t5FitText(ctx, stat, statMaxW, 140, 40);
+  ctx.font = t5Font(700, statSize);
+  ctx.fillStyle = T5_YELLOW;
+  ctx.textAlign = 'center';
+  const statM = ctx.measureText(stat);
+  const statH = statSize * 1.15;
+  const statY = (contentH - statH - 30) / 2;
+  ctx.fillText(stat, statCX, statY + statH);
+  ctx.font = t5Font(700, 20);
+  ctx.fillStyle = T5_CREAM;
+  ctx.fillText(statLbl, statCX, statY + statH + 28);
+  ctx.textAlign = 'left';
+}
+
+function t5DrawMechanism(ctx) {
+  const label = (document.getElementById('t5-mech-label')?.value || 'HOW IT WORKS').toUpperCase();
+  const line1 = (document.getElementById('t5-mech-line1')?.value || 'WHAT IS AN').toUpperCase();
+  const line2 = (document.getElementById('t5-mech-line2')?.value || 'ESPC?').toUpperCase();
+  const sub   = (document.getElementById('t5-mech-sub')?.value || 'ENERGY SAVINGS PERFORMANCE CONTRACT').toUpperCase();
+  const barH = 36;
+  const bandH = 100;
+  const contentH = T5_H - barH;
+
+  ctx.fillStyle = T5_BG;
+  ctx.fillRect(0, 0, T5_W, T5_H);
+
+  // Full-bleed background photo — heavily tinted
+  if (t5MechPhoto) {
+    const ph = t5MechPhoto;
+    const scale = Math.max(T5_W / ph.width, T5_H / ph.height);
+    const dw = ph.width * scale, dh = ph.height * scale;
+    const dx = (T5_W - dw) / 2;
+    const dy = (T5_H - dh) / 2;
+    ctx.globalAlpha = 0.65;
+    ctx.drawImage(ph, dx, dy, dw, dh);
+    ctx.globalAlpha = 1;
+    // Dark overlay to keep black feel and legibility
+    ctx.fillStyle = 'rgba(11, 11, 11, 0.50)';
+    ctx.fillRect(0, 0, T5_W, T5_H);
+  }
+
+  // Navy top band
+  ctx.fillStyle = T5_NAVY;
+  ctx.fillRect(0, 0, T5_W, bandH);
+
+  // Label centered in band
+  ctx.font = t5Font(700, 22);
+  ctx.fillStyle = T5_YELLOW;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(label, T5_W / 2, bandH / 2);
+  ctx.textBaseline = 'alphabetic';
+
+  // Two-line headline centered in content zone
+  const hlSize = 110;
+  const lineGap = 22;
+  const h1 = hlSize, h2 = hlSize;
+  const blockH = h1 + lineGap + h2;
+  const espcToRule = 28;
+  const subH = 20;
+  const totalBlock = blockH + espcToRule + 8 + subH;
+  const startY = bandH + ((contentH - bandH - totalBlock) / 2) + hlSize;
+
+  // Line 1 — regular weight
+  ctx.font = `normal ${hlSize}px HelveticaNowDisplay, Arial, sans-serif`;
+  ctx.fillStyle = T5_CREAM;
+  ctx.fillText(line1, T5_W / 2, startY);
+
+  // Line 2 — bold
+  ctx.font = t5Font(700, hlSize);
+  ctx.fillText(line2, T5_W / 2, startY + h1 + lineGap);
+
+  // Rule
+  const ruleY = startY + h1 + lineGap + espcToRule;
+  const ruleW = 240;
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillRect((T5_W - ruleW) / 2, ruleY, ruleW, 4);
+
+  // Sub-label
+  ctx.font = t5Font(700, 18);
+  ctx.fillStyle = T5_GRAY;
+  ctx.fillText(sub, T5_W / 2, ruleY + 28);
+
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+}
+
+function t5DrawPeer(ctx) {
+  const label = (document.getElementById('t5-peer-label')?.value || 'CLIENT STORY').toUpperCase();
+  const line1 = document.getElementById('t5-peer-line1')?.value || 'The Promise';
+  const line2 = document.getElementById('t5-peer-line2')?.value || 'Delivered.';
+  const name  = (document.getElementById('t5-peer-name')?.value || 'CURTIS LEOPARDO').toUpperCase();
+  const title = (document.getElementById('t5-peer-title')?.value || 'PRESIDENT · LEOPARDO EFFICIENCY').toUpperCase();
+  const barH = 36;
+  const split = Math.floor(T5_W * 0.52);
+  const contentH = T5_H - barH;
+
+  ctx.fillStyle = T5_BG;
+  ctx.fillRect(0, 0, T5_W, T5_H);
+
+  // Navy right photo zone
+  ctx.fillStyle = '#121e37';
+  ctx.fillRect(split, 0, T5_W - split, contentH);
+
+  // Subtle crosshatch
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < (T5_W - split) + contentH; i += 44) {
+    ctx.beginPath();
+    ctx.moveTo(split + i, 0);
+    ctx.lineTo(split + i - contentH, contentH);
+    ctx.stroke();
+  }
+
+  // Photo if available
+  if (t5PeerPhoto) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(split, 0, T5_W - split, contentH);
+    ctx.clip();
+    const ph = t5PeerPhoto;
+    const scale = Math.max((T5_W - split) / ph.width, contentH / ph.height);
+    const dw = ph.width * scale, dh = ph.height * scale;
+    const dx = split + ((T5_W - split) - dw) / 2;
+    const dy = (contentH - dh) / 2;
+    ctx.drawImage(ph, dx, dy, dw, dh);
+    // Dark overlay
+    const grad = ctx.createLinearGradient(split, 0, T5_W, 0);
+    grad.addColorStop(0, 'rgba(0,0,0,0.55)');
+    grad.addColorStop(1, 'rgba(0,0,0,0.1)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(split, 0, T5_W - split, contentH);
+    ctx.restore();
+  } else {
+    // Placeholder text
+    ctx.font = t5Font(700, 16);
+    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+    ctx.textAlign = 'center';
+    ctx.fillText('← SWAP PHOTO', split + (T5_W - split) / 2, contentH / 2);
+    ctx.textAlign = 'left';
+  }
+
+  // Yellow split accent
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillRect(split - 3, 0, 6, contentH);
+
+  // Label
+  ctx.font = t5Font(700, 18);
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillText(label, T5_SAFE, T5_SAFE + 18);
+
+  // Headline
+  const hlSize = 78;
+  ctx.font = t5Font(700, hlSize);
+  ctx.fillStyle = T5_CREAM;
+  const y1 = T5_SAFE + 18 + 18 + hlSize;
+  ctx.fillText(line1, T5_SAFE, y1);
+  const y2 = y1 + hlSize + 8;
+  ctx.fillText(line2, T5_SAFE, y2);
+
+  // Rule
+  const ruleY = y2 + 20;
+  ctx.fillStyle = T5_YELLOW;
+  ctx.fillRect(T5_SAFE, ruleY, split - T5_SAFE - 54, 4);
+
+  // Name
+  ctx.font = t5Font(700, 22);
+  ctx.fillStyle = T5_CREAM;
+  ctx.fillText(name, T5_SAFE, ruleY + 34);
+
+  // Title
+  ctx.font = t5Font(700, 16);
+  ctx.fillStyle = T5_GRAY;
+  ctx.fillText(title, T5_SAFE, ruleY + 62);
+}
+
+function renderT5() {
+  const canvas = document.getElementById('t5-canvas');
+  if (!canvas) return;
+  canvas.width  = T5_W;
+  canvas.height = T5_H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, T5_W, T5_H);
+
+  const layout = document.getElementById('t5-layout')?.value || 'case-study';
+  if (layout === 'case-study')  t5DrawCaseStudy(ctx);
+  else if (layout === 'mechanism') t5DrawMechanism(ctx);
+  else if (layout === 'peer')   t5DrawPeer(ctx);
+
+  t5DrawWordmark(ctx);
+}
+
+// Layout selector — show/hide sub-fields
+document.getElementById('t5-layout')?.addEventListener('change', e => {
+  document.getElementById('t5-case-fields').style.display  = e.target.value === 'case-study'  ? 'block' : 'none';
+  document.getElementById('t5-mech-fields').style.display  = e.target.value === 'mechanism'   ? 'block' : 'none';
+  document.getElementById('t5-peer-fields').style.display  = e.target.value === 'peer'        ? 'block' : 'none';
+  renderT5();
+});
+
+// Wire T5 inputs
+document.querySelectorAll('#fields-t5 input[type=text], #fields-t5 textarea').forEach(el => {
+  el.addEventListener('input', renderT5);
+});
+
+// Peer photo upload
+document.getElementById('t5-peer-photo-upload')?.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => { t5PeerPhoto = img; renderT5(); };
+    img.src = ev.target.result;
+    const thumb = document.getElementById('t5-peer-photo-thumb');
+    if (thumb) { thumb.src = ev.target.result; thumb.style.display = 'block'; }
+  };
+  reader.readAsDataURL(file);
+});
+
+// Case study photo upload
+document.getElementById('t5-cs-photo-upload')?.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => { t5CsPhoto = img; renderT5(); };
+    img.src = ev.target.result;
+    const thumb = document.getElementById('t5-cs-photo-thumb');
+    if (thumb) { thumb.src = ev.target.result; thumb.style.display = 'block'; }
+  };
+  reader.readAsDataURL(file);
+});
+
+// Mechanism photo upload
+document.getElementById('t5-mech-photo-upload')?.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => { t5MechPhoto = img; renderT5(); };
+    img.src = ev.target.result;
+    const thumb = document.getElementById('t5-mech-photo-thumb');
+    if (thumb) { thumb.src = ev.target.result; thumb.style.display = 'block'; }
+  };
+  reader.readAsDataURL(file);
 });
 
 // ── Init ──
