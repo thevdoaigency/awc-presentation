@@ -60,6 +60,25 @@
             text-decoration: none;
         }
         .header-mark span { color: var(--leopardo-yellow); }
+        .cfo-btn {
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--leopardo-yellow);
+            border: 1px solid var(--leopardo-yellow);
+            border-radius: 3px;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            transition: all 150ms;
+            white-space: nowrap;
+        }
+        .cfo-btn:hover {
+            background: var(--leopardo-yellow);
+            color: var(--ink, #12100e);
+        }
+        @media print { .cfo-btn { display: none; } }
         .header-meta {
             font-family: 'Libre Franklin', sans-serif;
             font-size: 0.72rem;
@@ -601,7 +620,10 @@
     <header class="site-header">
         <div class="header-inner">
             <div class="header-mark">Alexander West Capital &middot; <span>90-Day Pilot Proposal</span></div>
-            <div class="header-meta">Prepared for Chicago &middot; June 2026</div>
+            <div style="display:flex; align-items:center; gap:1.25rem;">
+                <a href="#for-the-cfo" class="cfo-btn">For the CFO &rarr;</a>
+                <div class="header-meta">Chicago Meeting Follow-Up &middot; July 2026</div>
+            </div>
         </div>
     </header>
 
@@ -610,7 +632,7 @@
         <div class="hero-inner">
             <div class="hero-eyebrow">VDO Aigency &middot; Engagement Proposal</div>
             <h1 class="hero-headline">Ninety days. <em>Two companies. One operating model.</em></h1>
-            <p class="hero-prepared">Prepared for <strong>Alan Aldworth</strong>, CFO &middot; Alexander West Capital<br/>By Brandon Cole, Executive Producer &middot; VDO Aigency &middot; June 2026</p>
+            <p class="hero-prepared">Prepared for <strong>Alan Aldworth</strong>, CFO &middot; Alexander West Capital<br/>By Brandon Cole, Executive Producer &middot; VDO Aigency &middot; July 2026</p>
             <p class="hero-sub">A focused, bounded pilot to validate the centralized brand and content function before committing to the full twelve-month engagement. Grand Kahn and Enlyt activated. Leopardo Efficiency continues at current cadence. Defined deliverables. Defined trigger metrics. Off-ramp at Day 90 if the pilot misses.</p>
 
             <div class="hero-summary">
@@ -686,7 +708,7 @@
         <div class="container-inner">
             <div class="section-label">02 &middot; Compensation</div>
             <h2>The full 90-day envelope, itemized.</h2>
-            <p class="lead">Four line items. No surprises. The retainer for Brando's strategic time. A part-time contractor rate for Raj during the pilot ramp. Two bounded production packages. The total below is the entire pilot exposure to AWC.</p>
+            <p class="lead">Four line items. No surprises. The retainer for Brandon's strategic time. A part-time contractor rate for Raj during the pilot ramp. Two bounded production packages. The total below is the entire pilot exposure to AWC.</p>
 
             <table class="comp-table">
                 <tr>
@@ -718,12 +740,12 @@
         <div class="container-inner">
             <div class="section-label">03 &middot; Payment Schedule</div>
             <h2>Wire-prepaid. No Net 30. No surprise invoicing.</h2>
-            <p class="lead">The cadence borrows from how family offices pay outside counsel and senior professional services. Brando's retainer is wire-prepaid at signing and on the first of Month 3. Production work is fifty-fifty per project SOW. Raj's contractor pay lands on the first of each month during the pilot. Eight clean wires across the ninety days.</p>
+            <p class="lead">The cadence borrows from how family offices pay outside counsel and senior professional services. Brandon's retainer is wire-prepaid at signing and on the first of Month 3. Production work is fifty-fifty per project SOW. Raj's contractor pay lands on the first of each month during the pilot. Eight clean wires across the ninety days.</p>
 
             <div class="payment-schedule">
                 <div class="payment-row">
                     <div class="payment-when">At Signing</div>
-                    <div class="payment-what">Brando retainer &mdash; Months 1 + 2 prepaid (mobilization)</div>
+                    <div class="payment-what">Brandon retainer &mdash; Months 1 + 2 prepaid (mobilization)</div>
                     <div class="payment-amount">$24,000</div>
                 </div>
                 <div class="payment-row">
@@ -758,7 +780,7 @@
                 </div>
                 <div class="payment-row">
                     <div class="payment-when">Month 3, Day 1</div>
-                    <div class="payment-what">Brando retainer (Month 3) + Raj part-time</div>
+                    <div class="payment-what">Brandon retainer (Month 3) + Raj part-time</div>
                     <div class="payment-amount">$14,800</div>
                 </div>
             </div>
@@ -828,7 +850,7 @@
                 <div class="future-envelope-label">Months 4&ndash;12 &middot; Annual Continuation</div>
                 <table>
                     <tr>
-                        <td>Brando retainer (9 months &times; $12,000)</td>
+                        <td>Brandon retainer (9 months &times; $12,000)</td>
                         <td>$108,000</td>
                     </tr>
                     <tr>
@@ -859,7 +881,7 @@
     </section>
 
     <!-- 06 - WHY THIS WORKS -->
-    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <section class="container" id="for-the-cfo" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
         <div class="container-inner">
             <div class="section-label">06 &middot; Why This Structure Works</div>
             <h2>Bounded, measured, triggerable. Designed for the CFO function.</h2>
@@ -886,6 +908,10 @@
                     <p>Leopardo Efficiency has been operating this model for months. The pilot is replication of a proven system, not invention of a new one.</p>
                 </div>
                 <div class="why-item">
+                    <h3>One executive voice per company.</h3>
+                    <p>The Curtis Leopardo LinkedIn presence proved the model: prospects research leadership before they take a meeting. The pilot builds one groomed thought-leadership presence per portfolio company &mdash; the same play already run for Jim Leopardo, extended across the portfolio.</p>
+                </div>
+                <div class="why-item">
                     <h3>Clean exit at Day 90.</h3>
                     <p>If the pilot misses its metrics, AWC keeps the work product, VDO Aigency keeps the mobilization, and the engagement ends without lawyers or drama.</p>
                 </div>
@@ -898,7 +924,7 @@
         <div class="container-inner">
             <div class="section-label">07 &middot; Next Steps</div>
             <h2>Engagement begins the day the mobilization payment is wired.</h2>
-            <p class="lead">The structure above is the working version of the pilot. Materials are ready in advance of the June 30 Chicago meeting so the family office finance function has time to pre-read. Happy to take a short call with the CFO function ahead of the meeting to walk through the financial structure separately from the strategic narrative &mdash; the conversations usually land cleaner when the math has been reviewed in advance.</p>
+            <p class="lead">This is the working version of the pilot, refined following the Chicago meeting. With the strategic direction aligned, this document captures the financial structure the family office finance function asked to review. Happy to take a short call with Alan to walk through anything in the math before the mobilization wire &mdash; the engagement begins the day it lands.</p>
             <p>The GATOR engagement remains documented separately on its own letter of intent and runs in parallel to this pilot. Neither one contaminates the other.</p>
         </div>
     </section>
