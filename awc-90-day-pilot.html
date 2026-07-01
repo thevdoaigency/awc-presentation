@@ -79,6 +79,30 @@
             color: var(--ink, #12100e);
         }
         @media print { .cfo-btn { display: none; } }
+        .deliverables-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--leopardo-blue);
+            border: 1px solid var(--leopardo-blue);
+            border-radius: 4px;
+            padding: 0.85rem 1.6rem;
+            text-decoration: none;
+            transition: all 150ms;
+            margin-top: 2rem;
+        }
+        .deliverables-btn:hover {
+            background: var(--leopardo-yellow);
+            border-color: var(--leopardo-yellow);
+            color: var(--ink);
+        }
+        @media print { .deliverables-btn { display: none; } }
         .header-meta {
             font-family: 'Libre Franklin', sans-serif;
             font-size: 0.72rem;
@@ -700,6 +724,7 @@
                     </ul>
                 </div>
             </div>
+            <a href="pilot-deliverables.html" class="deliverables-btn">See the Deliverables &rarr;</a>
         </div>
     </section>
 
