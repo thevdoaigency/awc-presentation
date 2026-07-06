@@ -642,6 +642,7 @@
 
         /* Engagement cards */
         .engagement-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+        .engagement-cards.two { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
         .eng-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--leopardo-blue); border-radius: 8px; padding: 1.75rem; text-decoration: none; transition: all 0.2s ease; }
         .eng-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,56,104,0.1); }
         .eng-card.proof { border-top-color: var(--efficiency-teal); }
@@ -925,23 +926,17 @@
                 <div class="after90-foot">The risk is bounded to 90 days. The upside is a full year of a proven function. AWC only commits to the twelve months if the pilot has already earned it.</div>
             </div>
 
-            <div class="engagement-cards">
+            <div class="engagement-cards two">
                 <a href="awc-90-day-pilot.html" class="eng-card">
-                    <div class="eng-card-num">The Pilot</div>
-                    <div class="eng-card-title">90-Day Proposal</div>
-                    <div class="eng-card-desc">Bounded, triggerable, wire-prepaid. Three companies activated, seven audited. $54,400 total.</div>
-                    <div class="eng-card-cta">Read the Pilot <span class="audit-card-arrow">&rarr;</span></div>
-                </a>
-                <a href="awc-engagement-scope.html" class="eng-card">
-                    <div class="eng-card-num">The Model</div>
-                    <div class="eng-card-title">Year One Scope</div>
-                    <div class="eng-card-desc">The full economic envelope, the CBO function, and how production scales with each activated company.</div>
-                    <div class="eng-card-cta">See the Scope <span class="audit-card-arrow">&rarr;</span></div>
+                    <div class="eng-card-num">The Proposal</div>
+                    <div class="eng-card-title">90-Day Pilot &amp; Year One</div>
+                    <div class="eng-card-desc">The full financial commitment in one document. The $54,400 pilot, the trigger metrics, what happens after Day 90, and the $374K&ndash;$464K Year One envelope if it converts.</div>
+                    <div class="eng-card-cta">Read the Proposal <span class="audit-card-arrow">&rarr;</span></div>
                 </a>
                 <a href="pilot-deliverables.html" class="eng-card">
                     <div class="eng-card-num">The Output</div>
                     <div class="eng-card-title">Pilot Deliverables</div>
-                    <div class="eng-card-desc">What Grand Kahn and Laystrom receive in the first 90 days &mdash; five-part production package each.</div>
+                    <div class="eng-card-desc">What Grand Kahn and Laystrom receive in the first 90 days &mdash; the five-part production package each company gets.</div>
                     <div class="eng-card-cta">View Deliverables <span class="audit-card-arrow">&rarr;</span></div>
                 </a>
             </div>
