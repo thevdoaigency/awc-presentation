@@ -626,6 +626,20 @@
         .econ-vdo { font-weight: 400; color: rgba(255,255,255,0.6); font-size: 0.85rem; }
         .econ-foot { margin-top: 1rem; font-size: 0.85rem; color: var(--silver); }
 
+
+        /* What happens after 90 days */
+        .after90 { background: var(--leopardo-blue); border-radius: 10px; padding: 2rem 2.25rem; margin: 0 0 2rem; }
+        .after90-q { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.4rem; color: var(--leopardo-yellow); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+        .after90-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
+        .after90-path { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 1.35rem 1.5rem; }
+        .after90-path.hit { border-left: 3px solid var(--leopardo-yellow); }
+        .after90-path.miss { border-left: 3px solid rgba(255,255,255,0.35); }
+        .after90-path-label { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
+        .after90-path.hit .after90-path-label { color: var(--leopardo-yellow); }
+        .after90-path-text { font-size: 0.98rem; line-height: 1.55; color: var(--white); }
+        .after90-foot { font-size: 0.92rem; color: rgba(255,255,255,0.7); border-top: 1px solid rgba(255,255,255,0.12); padding-top: 1.25rem; }
+        @media (max-width: 640px) { .after90-paths { grid-template-columns: 1fr; } }
+
         /* Engagement cards */
         .engagement-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
         .eng-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--leopardo-blue); border-radius: 8px; padding: 1.75rem; text-decoration: none; transition: all 0.2s ease; }
@@ -894,6 +908,21 @@
                     </tbody>
                 </table>
                 <p class="econ-foot">90-day pilot: $54,400 &mdash; activates three, audits seven. Year One envelope: $374K&ndash;$464K.</p>
+            </div>
+
+            <div class="after90">
+                <div class="after90-q">What happens after 90 days?</div>
+                <div class="after90-paths">
+                    <div class="after90-path hit">
+                        <div class="after90-path-label">If the pilot hits &mdash; 6 of 7 triggers</div>
+                        <div class="after90-path-text">Months 4&ndash;12 continue <strong>automatically, at the same terms.</strong> The engagement becomes the full twelve-month commitment. No renegotiation.</div>
+                    </div>
+                    <div class="after90-path miss">
+                        <div class="after90-path-label">If the pilot misses &mdash; 5 or fewer</div>
+                        <div class="after90-path-text">Clean exit at Day 90. AWC keeps the work product, VDO Aigency keeps the mobilization. <strong>No obligation beyond the 90 days.</strong></div>
+                    </div>
+                </div>
+                <div class="after90-foot">The risk is bounded to 90 days. The upside is a full year of a proven function. AWC only commits to the twelve months if the pilot has already earned it.</div>
             </div>
 
             <div class="engagement-cards">
