@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Presence Audit — Alexander West Capital Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1A3868;
+    --blue-dark: #112548;
+    --yellow: #FFE600;
+    --paper: #FAFAF8;
+    --white: #FFFFFF;
+    --ink: #1A1A1A;
+    --slate: #4A4A4A;
+    --silver: #9A9A9A;
+    --line: #E5E5E0;
+    --alert: #C4442E;
+    --warn: #B8854A;
+    --good: #2C7A7B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--ink); font-family: 'Libre Franklin', -apple-system, sans-serif; line-height: 1.6; font-size: 16px; }
+
+  .site-header { background: var(--blue); border-bottom: 3px solid var(--yellow); padding: 1.5rem 2.5rem; }
+  .header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .header-mark { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--white); }
+  .header-mark span { color: var(--yellow); }
+  .header-meta { font-family: 'Jost', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .hero { background: var(--blue); color: var(--white); padding: 4rem 2.5rem 4.5rem; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--yellow); }
+  .hero-headline { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 2.9rem; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.35rem; max-width: 880px; }
+  .hero-headline em { color: var(--yellow); font-style: normal; }
+  .hero-sub { font-size: 1.08rem; color: rgba(255,255,255,0.78); max-width: 700px; font-weight: 300; }
+
+  .stakes-band { background: var(--paper); border-bottom: 1px solid var(--line); padding: 3.5rem 2.5rem; }
+  .stakes-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; }
+  .stakes-inner h2 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.8rem; letter-spacing: -0.01em; margin-bottom: 0.75rem; max-width: 760px; }
+  .stakes-inner p { color: var(--slate); max-width: 720px; margin-bottom: 1rem; }
+  .stakes-inner p strong { color: var(--ink); }
+
+  .legend { display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--slate); font-family: 'Jost', sans-serif; font-weight: 500; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .legend-dot.alert { background: var(--alert); }
+  .legend-dot.warn { background: var(--warn); }
+  .legend-dot.good { background: var(--good); }
+  .legend-dot.pending { background: var(--silver); }
+
+  .findings { max-width: 1100px; margin: 0 auto; padding: 4rem 2.5rem; }
+  .findings > .section-label { color: var(--blue); }
+  .findings > h2 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .findings > .sub { color: var(--slate); margin-bottom: 2.5rem; max-width: 680px; }
+
+  .finding-card { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 1.25rem; overflow: hidden; background: var(--white); }
+  .finding-head { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--line); }
+  .finding-status-bar { width: 4px; align-self: stretch; border-radius: 2px; flex-shrink: 0; }
+  .finding-status-bar.alert { background: var(--alert); }
+  .finding-status-bar.warn { background: var(--warn); }
+  .finding-status-bar.good { background: var(--good); }
+  .finding-status-bar.pending { background: var(--silver); }
+  .finding-co { flex: 1; }
+  .finding-co-name { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; }
+  .finding-co-cat { font-size: 0.82rem; color: var(--silver); font-family: 'Jost', sans-serif; letter-spacing: 0.02em; }
+  .finding-badge { font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.7rem; border-radius: 3px; white-space: nowrap; }
+  .finding-badge.alert { background: rgba(196,68,46,0.12); color: var(--alert); }
+  .finding-badge.warn { background: rgba(184,133,74,0.14); color: var(--warn); }
+  .finding-badge.good { background: rgba(44,122,123,0.12); color: var(--good); }
+  .finding-badge.pending { background: rgba(154,154,154,0.14); color: var(--silver); }
+
+  .finding-body { padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 720px) { .finding-body { grid-template-columns: 1fr; } }
+  .finding-col h4 { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--silver); margin-bottom: 0.75rem; }
+  .finding-list { list-style: none; }
+  .finding-list li { font-size: 0.9rem; padding: 0.35rem 0 0.35rem 1.3rem; position: relative; color: var(--ink); line-height: 1.45; }
+  .finding-list li::before { content: ''; position: absolute; left: 0; top: 0.7rem; width: 6px; height: 6px; border-radius: 50%; }
+  .finding-list.decay li::before { background: var(--alert); }
+  .finding-list.opportunity li::before { background: var(--good); }
+  .finding-list li .date { font-family: 'Jost', sans-serif; font-weight: 600; color: var(--alert); font-size: 0.82rem; }
+
+  .finding-foot { padding: 1rem 1.5rem; background: var(--paper); border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .finding-source { font-size: 0.78rem; color: var(--silver); font-family: 'Jost', sans-serif; }
+  .finding-link { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.8rem; color: var(--blue); text-decoration: none; letter-spacing: 0.02em; white-space: nowrap; }
+  .finding-link:hover { color: var(--yellow); }
+
+  .counter-band { background: var(--blue-dark); color: var(--white); padding: 4rem 2.5rem; }
+  .counter-inner { max-width: 1100px; margin: 0 auto; }
+  .counter-inner .section-label { color: var(--yellow); }
+  .counter-inner h2 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.9rem; margin-bottom: 0.75rem; max-width: 720px; }
+  .counter-inner > p { color: rgba(255,255,255,0.72); max-width: 680px; font-weight: 300; margin-bottom: 2rem; }
+  .counter-proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 720px) { .counter-proof { grid-template-columns: 1fr; } }
+  .counter-stat { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 1.5rem; }
+  .counter-stat.hl { background: var(--yellow); border-color: var(--yellow); }
+  .counter-stat h3 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--yellow); }
+  .counter-stat.hl h3 { color: var(--blue-dark); }
+  .counter-stat p { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.45; }
+  .counter-stat.hl p { color: var(--blue-dark); }
+
+  .close-band { background: var(--paper); border-top: 1px solid var(--line); padding: 4rem 2.5rem; }
+  .close-inner { max-width: 1100px; margin: 0 auto; }
+  .close-inner h2 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.7rem; margin-bottom: 0.75rem; max-width: 720px; }
+  .close-inner p { color: var(--slate); max-width: 720px; margin-bottom: 1rem; }
+  .close-inner p em { color: var(--blue); font-style: normal; font-weight: 600; }
+  .close-cta { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); background: var(--blue); border-radius: 4px; padding: 0.85rem 1.6rem; text-decoration: none; transition: all 150ms; }
+  .close-cta:hover { background: var(--yellow); color: var(--ink); }
+
+  footer { background: var(--blue-dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.06em; border-top: 1px solid rgba(255,255,255,0.1); }
+  @media (max-width: 640px) { .hero-headline { font-size: 2rem; } }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-mark">Alexander West Capital &middot; <span>Digital Presence Audit</span></div>
+      <div class="header-meta">Portfolio-Wide &middot; The Defense Function</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">The Compounding Function &middot; Defense</div>
+      <h1 class="hero-headline">Your storefront is rotting <em>and everyone can see it but you.</em></h1>
+      <p class="hero-sub">A buyer&rsquo;s first impression of an AWC company is formed before a single conversation &mdash; on a website, a LinkedIn profile, a YouTube channel. Across the portfolio, those first impressions are frozen in 2022, half-built, or a decade stale. This is an honest scan of what the market sees right now. Some of it is not flattering.</p>
+    </div>
+  </section>
+
+  <section class="pullquote-band">
+    <div class="pullquote-inner">
+      <div class="pullquote-mark">&ldquo;</div>
+      <blockquote class="pullquote">
+        Curtis Leopardo wears three-piece suits. Not costume &mdash; respect for an age when men presented themselves with dignity, when how you showed up said something about how seriously you took your work. The world around him forgot that.
+        <span class="pullquote-punch">So did Grand Kahn.</span>
+      </blockquote>
+      <div class="pullquote-attr">From the Chicago portfolio review</div>
+    </div>
+  </section>
+
+  <section class="stakes-band">
+    <div class="stakes-inner">
+      <div class="section-label">Why This Matters</div>
+      <h2>A frozen website doesn&rsquo;t hold the line. It surrenders it.</h2>
+      <p>Silence isn&rsquo;t neutral. Every quarter a 117-year-old contractor looks abandoned since 2022, a younger competitor with a fraction of the history quietly inherits the authority the incumbent spent a century earning. <strong>Brand equity is finite. Neglect hands it to whoever is still willing to show up.</strong></p>
+      <p>This scan separates two kinds of finding. <strong>Active decay</strong> &mdash; assets that were built, then abandoned, now broadcasting that the company has stopped paying attention. And <strong>strategic gaps</strong> &mdash; a presence that&rsquo;s maintained but leaves its best story untold. The first is a wound. The second is unclaimed ground. Both are costing money right now.</p>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot alert"></span>Active Decay</div>
+        <div class="legend-item"><span class="legend-dot warn"></span>Strategic Gap</div>
+        <div class="legend-item"><span class="legend-dot good"></span>Maintained</div>
+        <div class="legend-item"><span class="legend-dot pending"></span>Full Scan Pending</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="findings">
+    <div class="section-label">The Scan</div>
+    <h2>Where each company&rsquo;s public face stands today.</h2>
+    <p class="sub">Every finding below is drawn from the portfolio brand audit series. Deep-dive links go to each company&rsquo;s full strategic audit.</p>
+
+    <!-- GRAND KAHN -->
+    <div class="finding-card">
+      <div class="finding-head">
+        <div class="finding-status-bar alert"></div>
+        <div class="finding-co">
+          <div class="finding-co-name">Grand Kahn Electric</div>
+          <div class="finding-co-cat">Commercial Electrical &middot; Founded 1907</div>
+        </div>
+        <div class="finding-badge alert">Active Decay</div>
+      </div>
+      <div class="finding-body">
+        <div class="finding-col">
+          <h4>What&rsquo;s Rotting</h4>
+          <ul class="finding-list decay">
+            <li>Website reads as completed mid-2022 and never touched again</li>
+            <li>Most recent news post: <span class="date">November 2022</span></li>
+            <li>EV charging page &mdash; named on-site as &ldquo;the future&rdquo; &mdash; untouched since <span class="date">July 2022</span></li>
+            <li>No founder presence, no active social channels</li>
+          </ul>
+        </div>
+        <div class="finding-col">
+          <h4>What&rsquo;s Underneath</h4>
+          <ul class="finding-list opportunity">
+            <li>117 years as Chicago&rsquo;s first registered electrical contractor</li>
+            <li>Ogilvie Transportation Center, Radio Flyer HQ, Hyatt, Loews</li>
+            <li>Publishable project library across healthcare, hospitality, education</li>
+          </ul>
+        </div>
+      </div>
+      <div class="finding-foot">
+        <div class="finding-source">Source: Grand Kahn Electric Brand Audit &middot; A 117-year-old company presenting as if it closed in 2022.</div>
+        <a class="finding-link" href="grand-kahn-audit.html" target="_blank">Full Audit &rarr;</a>
+      </div>
+    </div>
+
+    <!-- ENLYT -->
+    <div class="finding-card">
+      <div class="finding-head">
+        <div class="finding-status-bar alert"></div>
+        <div class="finding-co">
+          <div class="finding-co-name">Enlyt Building Technologies</div>
+          <div class="finding-co-cat">Smart Buildings &middot; Hospitality / MDU</div>
+        </div>
+        <div class="finding-badge alert">Active Decay</div>
+      </div>
+      <div class="finding-body">
+        <div class="finding-col">
+          <h4>What&rsquo;s Rotting</h4>
+          <ul class="finding-list decay">
+            <li>Homepage sections for Outcomes, Solutions, Case Studies sit placeholder-empty</li>
+            <li>First impression of a smart-buildings firm is a website that doesn&rsquo;t work</li>
+            <li>Flagship Sonder case study buried four clicks deep</li>
+            <li>No LinkedIn activity from leadership on topics buyers search</li>
+          </ul>
+        </div>
+        <div class="finding-col">
+          <h4>What&rsquo;s Underneath</h4>
+          <ul class="finding-list opportunity">
+            <li>Installs for Sonder, Melia (ME Miami), Belgravia, Life Fitness</li>
+            <li>26-floor fully-automated hotel deployment</li>
+            <li>Correct capability taxonomy already in place</li>
+          </ul>
+        </div>
+      </div>
+      <div class="finding-foot">
+        <div class="finding-source">Source: Enlyt Brand Audit &middot; &ldquo;A frame around the wins with the picture missing.&rdquo;</div>
+        <a class="finding-link" href="enlyt-audit.html" target="_blank">Full Audit &rarr;</a>
+      </div>
+    </div>
+
+    <!-- DFH CONNECT -->
+    <div class="finding-card">
+      <div class="finding-head">
+        <div class="finding-status-bar alert"></div>
+        <div class="finding-co">
+          <div class="finding-co-name">DFH Connect</div>
+          <div class="finding-co-cat">Vertical SaaS &middot; AWC Technology</div>
+        </div>
+        <div class="finding-badge alert">Active Decay</div>
+      </div>
+      <div class="finding-body">
+        <div class="finding-col">
+          <h4>What&rsquo;s Rotting</h4>
+          <ul class="finding-list decay">
+            <li>Real software sold as a single-page PDF flyer</li>
+            <li>Stock imagery of &ldquo;AI woman&rdquo; that doesn&rsquo;t match the product</li>
+            <li>No real product page, demo video, or customer logos &mdash; just a Sales@ email</li>
+            <li>95%+ productivity gain buried under a generic feature grid</li>
+          </ul>
+        </div>
+        <div class="finding-col">
+          <h4>What&rsquo;s Underneath</h4>
+          <ul class="finding-list opportunity">
+            <li>2&ndash;4 hours of manual entry compressed to under 5 minutes</li>
+            <li>Built by AWC Technology &mdash; operators who run the workflow</li>
+            <li>Clear integration target: Emullion &rarr; QuickBooks</li>
+          </ul>
+        </div>
+      </div>
+      <div class="finding-foot">
+        <div class="finding-source">Source: DFH Connect Brand Audit &middot; &ldquo;Marketing teaching buyers to underpay.&rdquo;</div>
+        <a class="finding-link" href="dfh-connect-audit.html" target="_blank">Full Audit &rarr;</a>
+      </div>
+    </div>
+
+    <!-- LAYSTROM -->
+    <div class="finding-card">
+      <div class="finding-head">
+        <div class="finding-status-bar warn"></div>
+        <div class="finding-co">
+          <div class="finding-co-name">Laystrom Hardware</div>
+          <div class="finding-co-cat">Commercial Doors / Frames / Hardware &middot; Founded 1951</div>
+        </div>
+        <div class="finding-badge warn">Strategic Gap</div>
+      </div>
+      <div class="finding-body">
+        <div class="finding-col">
+          <h4>The Gap</h4>
+          <ul class="finding-list decay">
+            <li>74-year institution presenting as a Squarespace template</li>
+            <li>Zero named customers, projects, or testimonials</li>
+            <li>1951 founding date appears nowhere prominent</li>
+            <li>Specification expertise &mdash; the actual product &mdash; never published</li>
+          </ul>
+        </div>
+        <div class="finding-col">
+          <h4>What&rsquo;s Underneath</h4>
+          <ul class="finding-list opportunity">
+            <li>Longest customer relationships in the entire portfolio</li>
+            <li>Three generations of architect and GC trust</li>
+            <li>National distribution capability beyond Chicago</li>
+          </ul>
+        </div>
+      </div>
+      <div class="finding-foot">
+        <div class="finding-source">Source: Laystrom Brand Audit &middot; &ldquo;Trade-leader brand presenting as a small business.&rdquo;</div>
+        <a class="finding-link" href="laystrom-audit.html" target="_blank">Full Audit &rarr;</a>
+      </div>
+    </div>
+
+    <!-- LEOPARDO CONSTRUCTION -->
+    <div class="finding-card">
+      <div class="finding-head">
+        <div class="finding-status-bar warn"></div>
+        <div class="finding-co">
+          <div class="finding-co-name">Leopardo Construction</div>
+          <div class="finding-co-cat">Commercial Construction &middot; Founded 1977 &middot; Anchor Brand</div>
+        </div>
+        <div class="finding-badge warn">Strategic Gap</div>
+      </div>
+      <div class="finding-body">
+        <div class="finding-col">
+          <h4>The Gap</h4>
+          <ul class="finding-list decay">
+            <li>YouTube channel last updated roughly ten years ago <span class="date">(flagged in Chicago review)</span></li>
+            <li>Portfolio&rsquo;s strongest brand, undermarketed at the portfolio level</li>
+            <li>Generational story shows up in conversation, not in published material</li>
+            <li>Integrated-portfolio logic largely invisible to the market</li>
+          </ul>
+        </div>
+        <div class="finding-col">
+          <h4>What&rsquo;s Underneath</h4>
+          <ul class="finding-list opportunity">
+            <li>Nearly five decades of major commercial work</li>
+            <li>The trust the other six companies inherit from</li>
+            <li>A Chicago family name that is the most efficient marketing budget in the portfolio</li>
+          </ul>
+        </div>
+      </div>
+      <div class="finding-foot">
+        <div class="finding-source">Source: Leopardo Construction Brand Audit + Chicago review notes</div>
+        <a class="finding-link" href="leopardo-construction-audit.html" target="_blank">Full Audit &rarr;</a>
+      </div>
+    </div>
+
+    <!-- GATOR -->
+    <div class="finding-card">
+      <div class="finding-head">
+        <div class="finding-status-bar pending"></div>
+        <div class="finding-co">
+          <div class="finding-co-name">GATOR</div>
+          <div class="finding-co-cat">GovTech / Procurement &middot; Pre-Series A</div>
+        </div>
+        <div class="finding-badge pending">Forward Build</div>
+      </div>
+      <div class="finding-body">
+        <div class="finding-col">
+          <h4>The Situation</h4>
+          <ul class="finding-list decay">
+            <li>No brand surface yet &mdash; being sold faster than it&rsquo;s being branded</li>
+            <li>A buyer searching &ldquo;municipal procurement software&rdquo; doesn&rsquo;t find GATOR</li>
+            <li>No visible founder voice at the volume Series A diligence will require</li>
+          </ul>
+        </div>
+        <div class="finding-col">
+          <h4>What&rsquo;s Underneath</h4>
+          <ul class="finding-list opportunity">
+            <li>Five cities closed before entity formation, 27% average savings</li>
+            <li>&ldquo;A Leopardo Technology&rdquo; endorsement line</li>
+            <li>Differentiated blind reverse-auction mechanic</li>
+          </ul>
+        </div>
+      </div>
+      <div class="finding-foot">
+        <div class="finding-source">Source: GATOR Brand Audit &middot; Not decay &mdash; a brand to set correctly the first time.</div>
+        <a class="finding-link" href="gator-audit.html" target="_blank">Full Audit &rarr;</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- COUNTER-EXAMPLE -->
+  <section class="counter-band">
+    <div class="counter-inner">
+      <div class="section-label">The Counter-Example</div>
+      <h2>This is what &ldquo;maintained&rdquo; looks like.</h2>
+      <p>Leopardo Efficiency is the one company in the portfolio with an actively maintained digital presence &mdash; because VDO Aigency has been running it for months. It&rsquo;s the proof that the fix works, and the template for every company above.</p>
+      <div class="counter-proof">
+        <div class="counter-stat hl">
+          <h3>Curtis Leopardo, repositioned</h3>
+          <p>A LinkedIn profile that once listed a pro-wrestling career now reads as a municipal-energy thought leader. Active written-post cadence.</p>
+        </div>
+        <div class="counter-stat">
+          <h3>516 decision-makers targeted</h3>
+          <p>A live outreach engine reaching municipal leaders across 20 precision cohorts &mdash; with the Monday.com pipeline as central intelligence.</p>
+        </div>
+        <div class="counter-stat">
+          <h3>An active YouTube channel</h3>
+          <p>A launched, branded channel &mdash; not a decade-stale archive. The difference between a company that&rsquo;s speaking and one that stopped.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close-band">
+    <div class="close-inner">
+      <div class="section-label">The Function</div>
+      <h2>This scan is the Chief Brand Officer&rsquo;s first month.</h2>
+      <p>A portfolio-wide digital presence audit isn&rsquo;t a one-off project &mdash; it&rsquo;s what an executive brand function does before anything else. Find where equity is leaking, rank the decay by urgency, and stop the bleed. <em>One team, watching seven storefronts at once.</em></p>
+      <p>Every finding here traces to a full strategic audit already prepared for the Chicago review. The diagnosis is done. The work is execution.</p>
+      <a class="close-cta" href="presentation.html">Back to the Portfolio Review &rarr;</a>
+    </div>
+  </section>
+
+  <footer>The VDO Aigency &middot; Digital Presence Audit &middot; Prepared for Alexander West Capital &middot; July 2026</footer>
+
+</body>
+</html>
