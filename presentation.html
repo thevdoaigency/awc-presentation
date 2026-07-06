@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander West Capital — Portfolio Brand Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --leopardo-blue: #1A3868;
+            --leopardo-blue-dark: #112548;
+            --leopardo-yellow: #FFE600;
+            --kahn-copper: #B8854A;
+            --enlyt-steel: #4A6680;
+            --laystrom-navy: #2C3E60;
+            --dfh-slate: #5A6B7A;
+            --gator-green: #2E6B58;
+            --leopardo-graphite: #3A3A40;
+            --efficiency-teal: #2C7A7B;
+            --white: #FFFFFF;
+            --paper: #FAFAF8;
+            --ink: #1A1A1A;
+            --slate: #4A4A4A;
+            --silver: #9A9A9A;
+            --line: #E5E5E0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--white);
+            color: var(--ink);
+            font-family: 'Libre Franklin', -apple-system, sans-serif;
+            line-height: 1.65;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .site-header {
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 1.25rem 2.5rem;
+            border-bottom: 3px solid var(--leopardo-yellow);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-mark {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--white);
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        .header-mark:hover { opacity: 0.8; }
+        .header-mark span { color: var(--leopardo-yellow); }
+        .header-meta {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+        }
+
+        .hero {
+            padding: 6rem 2.5rem 5rem;
+            background: var(--white);
+        }
+        .hero-inner { max-width: 1100px; margin: 0 auto; }
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 2px;
+            background: var(--leopardo-blue);
+        }
+        .hero-headline {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.25rem, 5vw, 3.6rem);
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            max-width: 22ch;
+        }
+        .hero-headline em {
+            font-style: normal;
+            color: var(--kahn-copper);
+        }
+        .hero-sub {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 1.1rem;
+            color: var(--slate);
+            line-height: 1.65;
+            max-width: 60ch;
+            margin-bottom: 2rem;
+        }
+        .hero-meta {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--line);
+            flex-wrap: wrap;
+        }
+        .hero-meta-item { display: flex; flex-direction: column; gap: 0.35rem; }
+        .hero-meta-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.65rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 500;
+        }
+        .hero-meta-value {
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            color: var(--leopardo-blue);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        section.container { padding: 5rem 2.5rem; }
+        .container-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: var(--kahn-copper);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+        }
+        h2 {
+            font-family: 'Jost', sans-serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+            font-weight: 600;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            max-width: 28ch;
+        }
+        section p.lead {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 65ch;
+            margin-bottom: 2rem;
+        }
+
+        /* FRAMING */
+        .framing {
+            background: var(--white);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+        .framing-headline-block { margin-bottom: 3rem; }
+        .framing-headline {
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+            max-width: 18ch;
+        }
+        .framing-headline em { font-style: normal; color: var(--kahn-copper); }
+        .framing-sub {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.65;
+            max-width: 62ch;
+            margin: 0;
+        }
+        .framing-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .framing-col { display: flex; flex-direction: column; }
+        .framing-col-header {
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid;
+        }
+        .framing-col-offense .framing-col-header { border-bottom-color: var(--kahn-copper); }
+        .framing-col-defense .framing-col-header { border-bottom-color: var(--leopardo-blue); }
+        .framing-col-eyebrow {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .framing-col-offense .framing-col-eyebrow { color: var(--kahn-copper); }
+        .framing-col-defense .framing-col-eyebrow { color: var(--leopardo-blue); }
+        .framing-col-title {
+            font-family: 'Jost', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.025em;
+            line-height: 1;
+            margin-bottom: 0.55rem;
+        }
+        .framing-col-desc {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.55;
+            font-style: italic;
+        }
+        .framing-list { list-style: none; padding: 0; margin: 0; }
+        .framing-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--line);
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.93rem;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+        .framing-list li:last-child { border-bottom: none; }
+        .framing-list li::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            margin-top: 0.55rem;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .framing-col-offense .framing-list li::before { background: var(--kahn-copper); }
+        .framing-col-defense .framing-list li::before { background: var(--leopardo-blue); }
+        .framing-thesis {
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 2.25rem 2.5rem;
+            position: relative;
+        }
+        .framing-thesis::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--leopardo-yellow);
+        }
+        .framing-thesis-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--leopardo-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+        }
+        .framing-thesis-text {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: -0.015em;
+            line-height: 1.35;
+            max-width: 68ch;
+        }
+        .framing-thesis-text strong { font-weight: 700; color: var(--leopardo-yellow); }
+
+        /* AUDIT GRID */
+        .audits {
+            background: var(--paper);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+        .audit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .audit-card {
+            background: var(--white);
+            border: 1px solid var(--line);
+            padding: 2rem 1.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            position: relative;
+            border-top: 4px solid var(--silver);
+            cursor: pointer;
+        }
+        .audit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(26, 56, 104, 0.08);
+            border-color: var(--leopardo-blue);
+        }
+
+        .audit-card.leopardo-construction { border-top-color: var(--leopardo-graphite); }
+        .audit-card.leopardo-efficiency { border-top-color: var(--efficiency-teal); }
+        .audit-card.kahn { border-top-color: var(--kahn-copper); }
+        .audit-card.enlyt { border-top-color: var(--enlyt-steel); }
+        .audit-card.laystrom { border-top-color: var(--laystrom-navy); }
+        .audit-card.dfh { border-top-color: var(--dfh-slate); }
+        .audit-card.gator { border-top-color: var(--gator-green); }
+
+        .audit-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.25rem;
+        }
+        .audit-card-num {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--silver);
+            font-weight: 500;
+            letter-spacing: 0.18em;
+        }
+        .audit-card-status.pilot-active {
+            color: var(--leopardo-yellow) !important;
+            border-color: var(--leopardo-yellow) !important;
+            background: rgba(255, 230, 0, 0.08);
+            font-weight: 600;
+        }
+        .audit-card-status {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border: 1px solid;
+            border-radius: 2px;
+        }
+        .audit-card.leopardo-construction .audit-card-status { color: var(--leopardo-graphite); border-color: var(--leopardo-graphite); }
+        .audit-card.leopardo-efficiency .audit-card-status { color: var(--efficiency-teal); border-color: var(--efficiency-teal); }
+        .audit-card.kahn .audit-card-status { color: var(--kahn-copper); border-color: var(--kahn-copper); }
+        .audit-card.enlyt .audit-card-status { color: var(--enlyt-steel); border-color: var(--enlyt-steel); }
+        .audit-card.laystrom .audit-card-status { color: var(--laystrom-navy); border-color: var(--laystrom-navy); }
+        .audit-card.dfh .audit-card-status { color: var(--dfh-slate); border-color: var(--dfh-slate); }
+        .audit-card.gator .audit-card-status { color: var(--gator-green); border-color: var(--gator-green); }
+
+        .audit-card-name {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--leopardo-blue);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
+        }
+        .audit-card-category {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .audit-card.leopardo-construction .audit-card-category { color: var(--leopardo-graphite); }
+        .audit-card.leopardo-efficiency .audit-card-category { color: var(--efficiency-teal); }
+        .audit-card.kahn .audit-card-category { color: var(--kahn-copper); }
+        .audit-card.enlyt .audit-card-category { color: var(--enlyt-steel); }
+        .audit-card.laystrom .audit-card-category { color: var(--laystrom-navy); }
+        .audit-card.dfh .audit-card-category { color: var(--dfh-slate); }
+        .audit-card.gator .audit-card-category { color: var(--gator-green); }
+
+        .audit-card-desc {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.93rem;
+            color: var(--slate);
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        .audit-card-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .audit-card-meta {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.75rem;
+            color: var(--silver);
+        }
+        .audit-card-cta {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem;
+            color: var(--leopardo-blue);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .audit-card-arrow { transition: transform 0.2s ease; }
+        .audit-card:hover .audit-card-arrow { transform: translateX(3px); }
+
+        /* TOOLS */
+        .tools { background: var(--white); }
+        .tools-placeholder {
+            background: var(--paper);
+            border: 1px dashed var(--line);
+            padding: 3rem 2.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .tools-placeholder-label {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.7rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+        }
+        .tools-placeholder-text {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+            color: var(--leopardo-blue);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            max-width: 50ch;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        footer {
+            background: var(--leopardo-blue-dark);
+            color: rgba(255, 255, 255, 0.55);
+            padding: 3rem 2.5rem 2.5rem;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-mark {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--white);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.4rem;
+        }
+        .footer-tagline {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.55;
+            max-width: 42ch;
+        }
+        .footer-meta {
+            font-family: 'Libre Franklin', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            text-align: right;
+        }
+
+        @media (max-width: 800px) {
+            .header-inner { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+            .hero { padding: 4rem 1.5rem 3rem; }
+            section.container { padding: 3.5rem 1.5rem; }
+            .audit-grid { grid-template-columns: 1fr; }
+            .framing-columns { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+            .framing-headline { font-size: 1.75rem; }
+            .framing-col-title { font-size: 1.65rem; }
+            .framing-thesis { padding: 1.5rem 1.5rem; }
+            .framing-thesis-text { font-size: 1.05rem; }
+            .hero-meta { flex-direction: column; gap: 1.5rem; }
+            .footer-inner { flex-direction: column; align-items: flex-start; text-align: left; }
+            .footer-meta { text-align: left; }
+            .site-header { padding: 1rem 1.5rem; }
+            footer { padding: 2.5rem 1.5rem 2rem; }
+        }
+
+        /* Feature link (digital presence audit) */
+        .feature-link { display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.15); border-left: 3px solid var(--leopardo-yellow); border-radius: 8px; padding: 2rem 2.25rem; text-decoration: none; transition: all 0.2s ease; margin-top: 1rem; flex-wrap: wrap; }
+        .feature-link:hover { background: rgba(255,255,255,0.07); border-left-color: var(--leopardo-yellow); }
+        .feature-link-eyebrow { font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--leopardo-yellow); margin-bottom: 0.6rem; }
+        .feature-link-title { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.4rem; color: var(--white); line-height: 1.15; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+        .feature-link-desc { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 620px; line-height: 1.5; }
+        .feature-link-cta { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--leopardo-yellow); white-space: nowrap; }
+
+        /* Economics mini table */
+        .econ-mini { margin: 2rem 0 2.5rem; }
+        .econ-table { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+        .econ-table th { text-align: left; font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--silver); padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--line); background: var(--paper); }
+        .econ-table td { padding: 0.95rem 1.25rem; font-size: 0.95rem; border-bottom: 1px solid var(--line); color: var(--ink); }
+        .econ-table tr:last-child td { border-bottom: none; }
+        .econ-num { text-align: right; font-family: 'Jost', sans-serif; font-weight: 600; font-variant-numeric: tabular-nums; }
+        .econ-scope { text-align: right; color: var(--slate); font-size: 0.88rem; }
+        .econ-table .econ-highlight { background: var(--leopardo-blue); }
+        .econ-table .econ-highlight td { color: var(--white); font-weight: 600; border-bottom: none; }
+        .econ-table .econ-highlight .econ-num { color: var(--leopardo-yellow); }
+        .econ-table .econ-highlight .econ-scope { color: var(--leopardo-yellow); font-weight: 500; }
+        .econ-vdo { font-weight: 400; color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+        .econ-foot { margin-top: 1rem; font-size: 0.85rem; color: var(--silver); }
+
+        /* Engagement cards */
+        .engagement-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+        .eng-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--leopardo-blue); border-radius: 8px; padding: 1.75rem; text-decoration: none; transition: all 0.2s ease; }
+        .eng-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,56,104,0.1); }
+        .eng-card.proof { border-top-color: var(--efficiency-teal); }
+        .eng-card-num { font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); margin-bottom: 0.6rem; }
+        .eng-card-title { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+        .eng-card-desc { font-size: 0.9rem; color: var(--slate); line-height: 1.5; flex: 1; margin-bottom: 1.25rem; }
+        .eng-card-cta { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--leopardo-blue); }
+        .eng-card.proof .eng-card-cta { color: var(--efficiency-teal); }
+        @media (max-width: 820px) { .engagement-cards { grid-template-columns: 1fr; } .feature-link { flex-direction: column; align-items: flex-start; } }
+        @media (max-width: 600px) { .econ-scope, .econ-table th:last-child { display: none; } }
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="header-mark">Alexander West Capital &middot; <span>Portfolio Brand Audit</span></a>
+            <div class="header-meta">Chicago Follow-Up &middot; July 2026</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-eyebrow">Portfolio Engagement &middot; Post-Chicago</div>
+            <h1 class="hero-headline">Seven portfolio companies. <em>One brand discipline.</em></h1>
+            <p class="hero-sub">Following the Chicago review, this is the consolidated engagement: a Fractional Chief Brand Officer function across all seven Alexander West Capital operating companies. Three activate in the first 90 days. All seven are audited from day one. What follows is the diagnosis, the offer, the proof, and the working tools &mdash; in one place.</p>
+
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Companies</div>
+                    <div class="hero-meta-value">7</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Activating</div>
+                    <div class="hero-meta-value">3 of 7</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Audited in 90 Days</div>
+                    <div class="hero-meta-value">All 7</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Prepared by</div>
+                    <div class="hero-meta-value">Brandon Cole &middot; VDO Aigency</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container framing">
+        <div class="container-inner">
+            <div class="section-label">01 &middot; The Function</div>
+            <div class="framing-headline-block">
+                <h2 class="framing-headline">Two functions. <em>One team.</em></h2>
+                <p class="framing-sub">A centralized brand and content function for the AWC portfolio is not one thing. It is two &mdash; offense and defense &mdash; produced by the same operators, on the same standards, with the same operational discipline.</p>
+            </div>
+
+            <div class="framing-columns">
+                <div class="framing-col framing-col-offense">
+                    <div class="framing-col-header">
+                        <div class="framing-col-eyebrow">The Growth Function</div>
+                        <div class="framing-col-title">Offense</div>
+                        <div class="framing-col-desc">New story. New positioning. New material the portfolio can take to buyers, investors, and the public.</div>
+                    </div>
+                    <ul class="framing-list">
+                        <li>Brand identity systems that align the portfolio without erasing distinct company voices</li>
+                        <li>Case study production from real footage at real customer sites</li>
+                        <li>Executive thought leadership and founder visibility</li>
+                        <li>Campaign architecture across LinkedIn, podcast, conference, and direct outreach</li>
+                        <li>The portfolio narrative AJ takes to LPs and the family takes to the public</li>
+                    </ul>
+                </div>
+
+                <div class="framing-col framing-col-defense">
+                    <div class="framing-col-header">
+                        <div class="framing-col-eyebrow">The Compounding Function</div>
+                        <div class="framing-col-title">Defense</div>
+                        <div class="framing-col-desc">Operational brand discipline. Consistency, retention infrastructure, reputational protection. The work that compounds.</div>
+                    </div>
+                    <ul class="framing-list">
+                        <li>Brand consistency across every portfolio touchpoint, channel, and team member</li>
+                        <li>Asset and footage libraries searchable in plain language across the portfolio</li>
+                        <li>Customer onboarding playbooks that preserve referrals and reduce churn</li>
+                        <li>Operational standards that scale without adding headcount</li>
+                        <li>Risk reduction on legacy brand assets being passively eroded by silence</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="framing-thesis">
+                <div class="framing-thesis-label">Why Centralized</div>
+                <div class="framing-thesis-text">The case for a centralized function is that both happen in the same team, from the same operators, with the same standards. <strong>Splitting offense and defense across an external agency and an internal function loses the leverage in both.</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container audits">
+        <div class="container-inner">
+            <div class="section-label">02 &middot; Portfolio Brand Audits</div>
+            <h2>One audit per company. Same structure. Same discipline.</h2>
+            <p class="lead">Each audit walks through state of the brand today, historical wins, the gap between the two, and a 90-day set of moves to close it. Read individually or end-to-end. Designed to be read on a phone, in a browser, or saved as PDF.</p>
+
+            <div class="audit-grid">
+
+                <a href="leopardo-construction-audit.html" class="audit-card leopardo-construction">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Audit 01</div>
+                        <div class="audit-card-status">Available</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Commercial Construction</div>
+                        <div class="audit-card-name">Leopardo Construction</div>
+                    </div>
+                    <p class="audit-card-desc">The portfolio's anchor. Decades of major commercial work across Chicago and beyond. The brand the rest of the portfolio inherits trust from.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">Founded 1977 &middot; Hoffman Estates, IL</div>
+                        <div class="audit-card-cta">Read Audit <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="leopardo-efficiency-audit.html" class="audit-card leopardo-efficiency">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Audit 02</div>
+                        <div class="audit-card-status pilot-active">● Active Pilot</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Energy Performance Contracting</div>
+                        <div class="audit-card-name">Leopardo Efficiency</div>
+                    </div>
+                    <p class="audit-card-desc">The proving ground. Where the centralized brand function has already been built, tested, and is operating today. The model the other six companies will replicate.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">Founded 2008 &middot; Municipal &amp; Institutional</div>
+                        <div class="audit-card-cta">Read Audit <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="grand-kahn-audit.html" class="audit-card kahn">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Audit 03</div>
+                        <div class="audit-card-status pilot-active">● Active Pilot</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Commercial Electrical</div>
+                        <div class="audit-card-name">Grand Kahn Electric</div>
+                    </div>
+                    <p class="audit-card-desc">Chicago's first registered electrical contractor, founded 1907. A 117-year project portfolio competing on price because the story isn't being told.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">Founded 1907 &middot; Schaumburg, IL</div>
+                        <div class="audit-card-cta">Read Audit <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="enlyt-audit.html" class="audit-card enlyt">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Audit 04</div>
+                        <div class="audit-card-status">Available</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Smart Building Technology</div>
+                        <div class="audit-card-name">Enlyt Building Technologies</div>
+                    </div>
+                    <p class="audit-card-desc">Hospitality-grade smart building integration. Sonder, Melia, Belgravia, Life Fitness &mdash; major wins buried under a half-built website.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">Smart Buildings &middot; Hospitality &middot; MDU</div>
+                        <div class="audit-card-cta">Read Audit <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="laystrom-audit.html" class="audit-card laystrom">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Audit 05</div>
+                        <div class="audit-card-status pilot-active">● Active Pilot</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Door, Frame &amp; Hardware</div>
+                        <div class="audit-card-name">Laystrom Hardware</div>
+                    </div>
+                    <p class="audit-card-desc">74 years supplying commercial doors and hardware. The longest-running customer relationships in the portfolio, with the least story told around them.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">Founded 1951 &middot; Chicago, IL</div>
+                        <div class="audit-card-cta">Read Audit <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="dfh-connect-audit.html" class="audit-card dfh">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Audit 06</div>
+                        <div class="audit-card-status">Available</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Workflow Software</div>
+                        <div class="audit-card-name">DFH Connect</div>
+                    </div>
+                    <p class="audit-card-desc">AWC Technology's first software product. Bridges Emullion to QuickBooks, compressing two to four hours of manual entry into under five minutes per project.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">AWC Technology, LLC</div>
+                        <div class="audit-card-cta">Read Audit <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="gator-audit.html" class="audit-card gator">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Audit 07</div>
+                        <div class="audit-card-status">Available</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Government Procurement</div>
+                        <div class="audit-card-name">GATOR</div>
+                    </div>
+                    <p class="audit-card-desc">Municipal procurement reverse-auction platform. Five cities closed before entity formation. The newest entity in the portfolio with the most concentrated momentum.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">An AWC Technology Product</div>
+                        <div class="audit-card-cta">Read Audit <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 · DIGITAL PRESENCE AUDIT -->
+    <section class="container" style="background: var(--leopardo-blue-dark);">
+        <div class="container-inner">
+            <div class="section-label" style="color: var(--leopardo-yellow);">03 &middot; The Digital Presence Audit</div>
+            <h2 style="color: var(--white);">The seven audits, synthesized into one urgent scan.</h2>
+            <p class="lead" style="color: rgba(255,255,255,0.72);">The strategic audits diagnose each company's story. The digital presence audit does something more immediate &mdash; it scans what the market actually sees right now. Frozen websites, dead news pages, decade-stale channels. This runs across all seven companies in the first 90 days, and it is the defense function made literal.</p>
+            <a href="digital-presence-audit.html" class="feature-link">
+                <div class="feature-link-body">
+                    <div class="feature-link-eyebrow">Portfolio-Wide &middot; All 7 Companies</div>
+                    <div class="feature-link-title">Your storefront is rotting and everyone can see it but you.</div>
+                    <div class="feature-link-desc">Grand Kahn frozen since 2022. Enlyt's half-built homepage. Leopardo Construction's decade-old YouTube. A ranked scan of where brand equity is leaking &mdash; and what the silence is costing.</div>
+                </div>
+                <div class="feature-link-cta">Open the Audit <span class="audit-card-arrow">&rarr;</span></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 04 · THE ENGAGEMENT -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <div class="section-label">04 &middot; The Engagement</div>
+            <h2>A Fractional Chief Brand Officer for the portfolio.</h2>
+            <p class="lead">Priced like a retainer, scoped like a C-suite hire. One executive brand function across all seven operating companies &mdash; three activated at launch, four sequenced behind them, the whole portfolio audited in 90 days.</p>
+
+            <div class="econ-mini">
+                <table class="econ-table">
+                    <thead><tr><th>Option</th><th class="econ-num">Annual Cost</th><th class="econ-scope">Companies</th></tr></thead>
+                    <tbody>
+                        <tr><td>Internal CMO</td><td class="econ-num">$250K &ndash; $350K</td><td class="econ-scope">One</td></tr>
+                        <tr><td>Marketing Director</td><td class="econ-num">$170K &ndash; $220K</td><td class="econ-scope">One</td></tr>
+                        <tr><td>Internal video team</td><td class="econ-num">$180K+</td><td class="econ-scope">One</td></tr>
+                        <tr class="econ-highlight"><td>Fractional CBO <span class="econ-vdo">(VDO Aigency)</span></td><td class="econ-num">~$400K</td><td class="econ-scope">All seven</td></tr>
+                    </tbody>
+                </table>
+                <p class="econ-foot">90-day pilot: $54,400 &mdash; activates three, audits seven. Year One envelope: $374K&ndash;$464K.</p>
+            </div>
+
+            <div class="engagement-cards">
+                <a href="awc-90-day-pilot.html" class="eng-card">
+                    <div class="eng-card-num">The Pilot</div>
+                    <div class="eng-card-title">90-Day Proposal</div>
+                    <div class="eng-card-desc">Bounded, triggerable, wire-prepaid. Three companies activated, seven audited. $54,400 total.</div>
+                    <div class="eng-card-cta">Read the Pilot <span class="audit-card-arrow">&rarr;</span></div>
+                </a>
+                <a href="awc-engagement-scope.html" class="eng-card">
+                    <div class="eng-card-num">The Model</div>
+                    <div class="eng-card-title">Year One Scope</div>
+                    <div class="eng-card-desc">The full economic envelope, the CBO function, and how production scales with each activated company.</div>
+                    <div class="eng-card-cta">See the Scope <span class="audit-card-arrow">&rarr;</span></div>
+                </a>
+                <a href="pilot-deliverables.html" class="eng-card">
+                    <div class="eng-card-num">The Output</div>
+                    <div class="eng-card-title">Pilot Deliverables</div>
+                    <div class="eng-card-desc">What Grand Kahn and Laystrom receive in the first 90 days &mdash; five-part production package each.</div>
+                    <div class="eng-card-cta">View Deliverables <span class="audit-card-arrow">&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 · PROOF IT WORKS -->
+    <section class="container">
+        <div class="container-inner">
+            <div class="section-label">05 &middot; Proof It Works</div>
+            <h2>Leopardo Efficiency is the model, already running.</h2>
+            <p class="lead">The engagement isn't theoretical. For months, the full brand function has been operating on one AWC company &mdash; paid for an editor's scope, delivering a marketing department's. This is the live evidence the other six will replicate.</p>
+
+            <div class="engagement-cards">
+                <a href="leopardo-case-study.html" class="eng-card proof">
+                    <div class="eng-card-num">The Results</div>
+                    <div class="eng-card-title">Leopardo Efficiency Case Study</div>
+                    <div class="eng-card-desc">Paid for six deliverables a month, built a growth engine. 516 municipal decision-makers targeted, 40 warm connections, Curtis repositioned as a thought leader. Live, in-flight campaign data.</div>
+                    <div class="eng-card-cta">See the Proof <span class="audit-card-arrow">&rarr;</span></div>
+                </a>
+                <a href="leopardo_asset_map.html" class="eng-card proof">
+                    <div class="eng-card-num">The Cadence</div>
+                    <div class="eng-card-title">60-Day Asset Map</div>
+                    <div class="eng-card-desc">The full 40-post campaign across five channels &mdash; production status, channel strategy, and the Monday board schema running it.</div>
+                    <div class="eng-card-cta">View the Map <span class="audit-card-arrow">&rarr;</span></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container tools">
+        <div class="container-inner">
+            <div class="section-label">06 &middot; Operating Tools</div>
+            <h2>The web-app suite that supports the discipline.</h2>
+            <p class="lead">Brand audits are the diagnostic. The tools are how the work gets done. A suite of internal applications &mdash; content production, asset management, distribution, analytics &mdash; built to extend the brand discipline across the portfolio without adding headcount.</p>
+
+            <div class="audit-grid" style="margin-top: 2.5rem;">
+
+                <a href="awc-graphic-builder.html" class="audit-card leopardo-construction" style="text-decoration:none;">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Tool 01</div>
+                        <div class="audit-card-status">Live</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Content Production</div>
+                        <div class="audit-card-name">Graphic Builder</div>
+                    </div>
+                    <p class="audit-card-desc">Brand-accurate social graphics for all seven portfolio companies. Four templates &mdash; media coverage, hero announcement, quote card, feature slide. Select company, fill fields, export PNG.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">All 7 Companies &middot; 4 Templates &middot; PNG Export</div>
+                        <div class="audit-card-cta">Open Tool <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="https://vdo-aigency-api-production.up.railway.app/semantic-bridge" class="audit-card leopardo-efficiency" style="text-decoration:none;" target="_blank">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Tool 02</div>
+                        <div class="audit-card-status">Live</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Post-Production</div>
+                        <div class="audit-card-name">Semantic Bridge</div>
+                    </div>
+                    <p class="audit-card-desc">Upload interview pairs. Query across all of them in plain language. Get a Premiere-ready XML edit back &mdash; assembled from multiple sources, importable in one click.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">Multi-Source &middot; OpenAI &middot; FCP7 XML Export</div>
+                        <div class="audit-card-cta">Open Tool <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="https://vdo-aigency-api-production.up.railway.app/voiceover" class="audit-card gator" style="text-decoration:none;" target="_blank">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Tool 03</div>
+                        <div class="audit-card-status">Live</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Content Production</div>
+                        <div class="audit-card-name">Voiceover Studio</div>
+                    </div>
+                    <p class="audit-card-desc">Broadcast-ready voiceover from a script in under 15 seconds. Four voices including cloned AWC principals. Tune stability, style, and speed. Plays back in the browser and downloads as MP3.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">4 Voices &middot; ElevenLabs &middot; MP3 Export</div>
+                        <div class="audit-card-cta">Open Tool <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+                <a href="https://vdo-aigency-api-production.up.railway.app/shot-builder" class="audit-card kahn" style="text-decoration:none;" target="_blank">
+                    <div class="audit-card-header">
+                        <div class="audit-card-num">Tool 04</div>
+                        <div class="audit-card-status">Live</div>
+                    </div>
+                    <div>
+                        <div class="audit-card-category">Content Production</div>
+                        <div class="audit-card-name">Shot Builder</div>
+                    </div>
+                    <p class="audit-card-desc">Generated b-roll on demand. Portfolio-tuned prompt templates &mdash; wastewater facilities, switchgear rooms, Chicago aerials &mdash; rendered to broadcast-ready clips. Plays back in the browser and downloads as MP4.</p>
+                    <div class="audit-card-footer">
+                        <div class="audit-card-meta">10 Templates &middot; Runway Gen-4.5 &middot; MP4 Export</div>
+                        <div class="audit-card-cta">Open Tool <span class="audit-card-arrow">&rarr;</span></div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-mark">Alexander West Capital &middot; Portfolio Brand Audit</div>
+                <div class="footer-tagline">The consolidated AWC portfolio engagement. Prepared following the Chicago review.</div>
+            </div>
+            <div class="footer-meta">
+                Prepared by Brandon Cole<br/>
+                VDO Aigency &middot; July 2026
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
