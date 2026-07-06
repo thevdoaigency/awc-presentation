@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Leopardo Efficiency × VDO Aigency</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1A3868;
+    --blue-dark: #112548;
+    --yellow: #FFE600;
+    --teal: #1F9B8E;
+    --paper: #FAFAF8;
+    --white: #FFFFFF;
+    --ink: #1A1A1A;
+    --muted: #6A6A6A;
+    --line: #E5E5E0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white); color: var(--ink);
+    font-family: 'Libre Franklin', -apple-system, sans-serif;
+    line-height: 1.6; font-size: 16px;
+  }
+
+  .site-header {
+    background: var(--blue); border-bottom: 3px solid var(--yellow);
+    padding: 1.5rem 2.5rem;
+  }
+  .header-inner {
+    max-width: 1100px; margin: 0 auto; display: flex;
+    justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .header-mark {
+    font-family: 'Jost', sans-serif; font-weight: 700;
+    font-size: 1.15rem; color: var(--white);
+  }
+  .header-mark span { color: var(--yellow); }
+  .header-meta {
+    font-family: 'Jost', sans-serif; font-size: 0.8rem;
+    color: rgba(255,255,255,0.6); letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .live-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: #4caf7d; margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* Hero */
+  .hero { background: var(--blue); color: var(--white); padding: 4rem 2.5rem 4.5rem; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow);
+    margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--yellow); }
+  .hero-headline {
+    font-family: 'Jost', sans-serif; font-weight: 700; font-size: 2.7rem;
+    line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.35rem; max-width: 880px;
+  }
+  .hero-headline em { color: var(--yellow); font-style: normal; }
+  .hero-sub { font-size: 1.08rem; color: rgba(255,255,255,0.78); max-width: 700px; font-weight: 300; }
+
+  /* Scope vs Delivered */
+  .scope-band { background: var(--paper); border-bottom: 1px solid var(--line); padding: 4rem 2.5rem; }
+  .scope-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem;
+  }
+  .scope-inner h2 {
+    font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.9rem;
+    letter-spacing: -0.01em; margin-bottom: 2.5rem; max-width: 720px;
+  }
+  .scope-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center; }
+  @media (max-width: 720px) { .scope-compare { grid-template-columns: 1fr; } }
+  .scope-col { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 2rem; }
+  .scope-col.paid { border-top: 3px solid var(--muted); }
+  .scope-col.delivered { border-top: 3px solid var(--yellow); box-shadow: 0 4px 24px rgba(26,56,104,0.08); }
+  .scope-col-label {
+    font-family: 'Jost', sans-serif; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
+  }
+  .scope-col.delivered .scope-col-label { color: var(--blue); }
+  .scope-col-headline { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.15; }
+  .scope-col ul { list-style: none; }
+  .scope-col li { font-size: 0.9rem; padding: 0.4rem 0 0.4rem 1.3rem; position: relative; color: var(--ink); }
+  .scope-col li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+  .scope-col.delivered li::before { background: var(--yellow); }
+  .scope-arrow { font-family: 'Jost', sans-serif; font-size: 2rem; color: var(--yellow); font-weight: 700; text-align: center; }
+  .inline-link { color: var(--blue); text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 2px; font-weight: 500; }
+  .inline-link:hover { color: var(--yellow); background: var(--blue); }
+  @media (max-width: 720px) { .scope-arrow { transform: rotate(90deg); } }
+
+  /* Stats dashboard */
+  .stats-band { background: var(--blue-dark); color: var(--white); padding: 4rem 2.5rem; }
+  .stats-inner { max-width: 1100px; margin: 0 auto; }
+  .stats-inner .section-label { color: var(--yellow); }
+  .stats-inner > h2 {
+    font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.9rem;
+    margin-bottom: 0.5rem; max-width: 720px;
+  }
+  .stats-inner > .stats-sub { color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 2.5rem; font-weight: 300; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 1.25rem; }
+  @media (max-width: 860px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .stat-grid { grid-template-columns: 1fr; } }
+  .stat-tile {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 1.75rem 1.5rem;
+  }
+  .stat-tile.hero-tile { background: var(--yellow); border-color: var(--yellow); }
+  .stat-num {
+    font-family: 'Jost', sans-serif; font-weight: 700; font-size: 3rem;
+    color: var(--yellow); line-height: 1; margin-bottom: 0.4rem;
+  }
+  .stat-tile.hero-tile .stat-num { color: var(--blue-dark); }
+  .stat-label { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.35; }
+  .stat-tile.hero-tile .stat-label { color: var(--blue-dark); font-weight: 500; }
+  .stat-sublabel {
+    font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.6rem;
+  }
+  .stat-tile.hero-tile .stat-sublabel { color: rgba(17,37,72,0.6); }
+
+  .benchmark-note {
+    margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: rgba(255,230,0,0.08);
+    border: 1px solid rgba(255,230,0,0.25); border-radius: 6px;
+    font-size: 0.9rem; color: rgba(255,255,255,0.85);
+  }
+  .benchmark-note strong { color: var(--yellow); }
+
+  /* Pipeline breakdown */
+  .pipeline-band { background: var(--white); padding: 4rem 2.5rem; }
+  .pipeline-inner { max-width: 1100px; margin: 0 auto; }
+  .pipeline-inner h2 {
+    font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.6rem; margin-bottom: 0.5rem;
+  }
+  .pipeline-inner .stats-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; }
+  .bar-row { margin-bottom: 1rem; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.35rem; }
+  .bar-label .bl-name { font-weight: 500; }
+  .bar-label .bl-val { font-family: 'Jost', sans-serif; font-weight: 600; color: var(--muted); }
+  .bar-track { height: 10px; background: var(--paper); border-radius: 5px; overflow: hidden; border: 1px solid var(--line); }
+  .bar-fill { height: 100%; border-radius: 5px; }
+
+  /* Reach */
+  .reach-band { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 4rem 2.5rem; }
+  .reach-inner { max-width: 1100px; margin: 0 auto; }
+  .reach-inner h2 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .reach-inner .stats-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; max-width: 640px; }
+  .reach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  @media (max-width: 720px) { .reach-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .reach-grid { grid-template-columns: 1fr; } }
+  .reach-stat { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 1.25rem 1.4rem; }
+  .reach-num { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.8rem; color: var(--blue); line-height: 1; }
+  .reach-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+
+  footer {
+    background: var(--blue-dark); color: rgba(255,255,255,0.5); text-align: center;
+    padding: 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.06em; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  @media (max-width: 640px) { .hero-headline { font-size: 2rem; } }
+
+  .close-band { background: var(--paper); border-top: 1px solid var(--line); padding: 4rem 2.5rem; }
+  .close-inner { max-width: 1100px; margin: 0 auto; }
+  .close-inner .section-label { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; }
+  .close-inner h2 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1.7rem; margin-bottom: 0.75rem; max-width: 720px; }
+  .close-inner p { color: var(--muted); max-width: 720px; margin-bottom: 1rem; }
+  .close-cta { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); background: var(--blue); border-radius: 4px; padding: 0.85rem 1.6rem; text-decoration: none; transition: all 150ms; }
+  .close-cta:hover { background: var(--yellow); color: var(--ink); }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-mark">VDO <span>Aigency</span> &middot; Case Study</div>
+      <div class="header-meta"><span class="live-dot"></span>Leopardo Efficiency &middot; In Flight</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">What one company looks like &middot; AWC has seven</div>
+      <h1 class="hero-headline">Paid for six deliverables a month. <em>Built a growth engine.</em></h1>
+      <p class="hero-sub">Leopardo Efficiency engaged VDO Aigency for one hero video and five cutdowns a month. What was delivered instead &mdash; unprompted, in parallel, still running &mdash; was a multi-channel content and outreach system that put the company on the map with municipal decision-makers and turned its president into an industry voice. This is a live look at that system, mid-flight.</p>
+    </div>
+  </section>
+
+  <!-- SCOPE VS DELIVERED -->
+  <section class="scope-band">
+    <div class="scope-inner">
+      <div class="section-label">Scope vs. Delivered</div>
+      <h2>The engagement was six deliverables a month. The output was a system.</h2>
+      <div class="scope-compare">
+        <div class="scope-col paid">
+          <div class="scope-col-label">What Was Contracted</div>
+          <div class="scope-col-headline">$3K / month</div>
+          <ul>
+            <li>One hero video edit per month</li>
+            <li>Five short-form cutdowns per month</li>
+          </ul>
+        </div>
+        <div class="scope-arrow">&rarr;</div>
+        <div class="scope-col delivered">
+          <div class="scope-col-label">What Was Delivered</div>
+          <div class="scope-col-headline">A growth engine</div>
+          <ul>
+            <li>40 deliverables mapped across 3 months</li>
+            <li>516 municipal decision-makers targeted</li>
+            <li>Curtis Leopardo repositioned as a LinkedIn thought leader</li>
+            <li>Written post cadence + full profile refresh</li>
+            <li>A launched <a href="https://www.youtube.com/@LeopardoEfficiency" target="_blank" class="inline-link">YouTube channel</a></li>
+            <li>Monday.com pipeline as central prospect intelligence</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE STATS -->
+  <section class="stats-band">
+    <div class="stats-inner">
+      <div class="section-label">The Outreach Engine &middot; Live Data</div>
+      <h2>Warm relationships with municipal leaders that did not exist before.</h2>
+      <p class="stats-sub">Pulled live from the campaign pipeline. Numbers move as the campaign runs.</p>
+
+      <div class="stat-grid">
+        <div class="stat-tile hero-tile">
+          <div class="stat-num">40</div>
+          <div class="stat-label">Warm connections established with municipal decision-makers</div>
+          <div class="stat-sublabel">Accepted &middot; Live</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-num">516</div>
+          <div class="stat-label">Decision-makers identified and segmented</div>
+          <div class="stat-sublabel">Total targeted</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-num">20</div>
+          <div class="stat-label">Precision cohorts by state and role</div>
+          <div class="stat-sublabel">Segmentation</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-num">15.6%</div>
+          <div class="stat-label">Acceptance rate among decided requests</div>
+          <div class="stat-sublabel">40 of 256</div>
+        </div>
+      </div>
+
+      <div class="benchmark-note">
+        <strong>Context:</strong> Cold LinkedIn outreach to senior public-sector officials typically converts in the 5&ndash;10% range. This campaign is running at <strong>15.6%</strong> &mdash; and it&rsquo;s still in flight, with 216 requests pending a response.
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE BREAKDOWN -->
+  <section class="pipeline-band">
+    <div class="pipeline-inner">
+      <div class="section-label" style="color: var(--blue);">Pipeline Status</div>
+      <h2>Where the 282 actioned contacts stand today.</h2>
+      <p class="stats-sub">The campaign is mid-flight. Most requests are still awaiting a response &mdash; the accepted count grows as they land.</p>
+
+      <div class="bar-row">
+        <div class="bar-label"><span class="bl-name">Connection Sent &mdash; awaiting response</span><span class="bl-val">216</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:76.6%; background:#B8C4D8;"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="bl-name">Connection Accepted &mdash; warm</span><span class="bl-val">40</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:14.2%; background:#FFE600;"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="bl-name">Message Sent &mdash; in conversation</span><span class="bl-val">5</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:1.8%; background:#1F9B8E;"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span class="bl-name">Strategic hold / off-persona</span><span class="bl-val">21</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:7.4%; background:#D8D4CC;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REACH -->
+  <section class="reach-band">
+    <div class="reach-inner">
+      <div class="section-label">Targeting Precision</div>
+      <h2>516 contacts, segmented 20 ways.</h2>
+      <p class="stats-sub">Not a spray campaign. Every contact was segmented by state and role &mdash; mayors, city managers, finance directors, public works directors &mdash; across Ohio, Indiana, and Florida.</p>
+      <div class="reach-grid">
+        <div class="reach-stat"><div class="reach-num">3</div><div class="reach-label">States targeted &mdash; OH, IN, FL</div></div>
+        <div class="reach-stat"><div class="reach-num">20</div><div class="reach-label">Role &times; geography cohorts</div></div>
+        <div class="reach-stat"><div class="reach-num">516</div><div class="reach-label">Named decision-makers</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close-band">
+    <div class="close-inner">
+      <div class="section-label">The Model</div>
+      <h2>This is one company. The engagement covers seven.</h2>
+      <p>What was built for Leopardo Efficiency &mdash; the outreach engine, the executive repositioning, the content cadence &mdash; is the model the rest of the portfolio replicates. Three companies activate in the first 90 days. All seven are audited from day one.</p>
+      <a class="close-cta" href="presentation.html">Back to the Portfolio Review &rarr;</a>
+    </div>
+  </section>
+
+  <footer>The VDO Aigency &middot; Leopardo Efficiency Case Study &middot; Live campaign data &middot; July 2026</footer>
+
+</body>
+</html>
