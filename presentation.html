@@ -515,6 +515,55 @@
             footer { padding: 2.5rem 1.5rem 2rem; }
         }
 
+
+        /* Sticky section nav */
+        .section-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--leopardo-blue-dark);
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+        .section-nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.25rem;
+            padding: 0 1rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+        .nav-link {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            padding: 0.9rem 1rem;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s ease;
+        }
+        .nav-link:hover {
+            color: var(--white);
+            border-bottom-color: rgba(255,255,255,0.3);
+        }
+        .nav-link-primary {
+            color: var(--leopardo-yellow);
+            font-weight: 600;
+        }
+        .nav-link-primary:hover {
+            color: var(--leopardo-yellow);
+            border-bottom-color: var(--leopardo-yellow);
+        }
+        section[id] { scroll-margin-top: 60px; }
+        @media (max-width: 720px) {
+            .nav-link { font-size: 0.72rem; padding: 0.75rem 0.7rem; }
+        }
+
         /* Feature link (digital presence audit) */
         .feature-link { display: flex; justify-content: space-between; align-items: center; gap: 2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.15); border-left: 3px solid var(--leopardo-yellow); border-radius: 8px; padding: 2rem 2.25rem; text-decoration: none; transition: all 0.2s ease; margin-top: 1rem; flex-wrap: wrap; }
         .feature-link:hover { background: rgba(255,255,255,0.07); border-left-color: var(--leopardo-yellow); }
@@ -562,6 +611,17 @@
         </div>
     </header>
 
+    <nav class="section-nav">
+        <div class="section-nav-inner">
+            <a href="#function" class="nav-link">01 &middot; The Function</a>
+            <a href="#audits" class="nav-link">02 &middot; Brand Audits</a>
+            <a href="#presence" class="nav-link">03 &middot; Presence Audit</a>
+            <a href="#engagement" class="nav-link nav-link-primary">04 &middot; Engagement &amp; Cost</a>
+            <a href="#proof" class="nav-link">05 &middot; Proof</a>
+            <a href="#tools" class="nav-link">06 &middot; Tools</a>
+        </div>
+    </nav>
+
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-eyebrow">Portfolio Engagement &middot; Post-Chicago</div>
@@ -589,7 +649,7 @@
         </div>
     </section>
 
-    <section class="container framing">
+    <section class="container framing" id="function">
         <div class="container-inner">
             <div class="section-label">01 &middot; The Function</div>
             <div class="framing-headline-block">
@@ -636,7 +696,7 @@
         </div>
     </section>
 
-    <section class="container audits">
+    <section class="container audits" id="audits">
         <div class="container-inner">
             <div class="section-label">02 &middot; Portfolio Brand Audits</div>
             <h2>One audit per company. Same structure. Same discipline.</h2>
@@ -761,7 +821,7 @@
     </section>
 
     <!-- 03 · DIGITAL PRESENCE AUDIT -->
-    <section class="container" style="background: var(--leopardo-blue-dark);">
+    <section class="container" id="presence" style="background: var(--leopardo-blue-dark);">
         <div class="container-inner">
             <div class="section-label" style="color: var(--leopardo-yellow);">03 &middot; The Digital Presence Audit</div>
             <h2 style="color: var(--white);">The seven audits, synthesized into one urgent scan.</h2>
@@ -778,7 +838,7 @@
     </section>
 
     <!-- 04 · THE ENGAGEMENT -->
-    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <section class="container" id="engagement" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
         <div class="container-inner">
             <div class="section-label">04 &middot; The Engagement</div>
             <h2>A Fractional Chief Brand Officer for the portfolio.</h2>
@@ -821,7 +881,7 @@
     </section>
 
     <!-- 05 · PROOF IT WORKS -->
-    <section class="container">
+    <section class="container" id="proof">
         <div class="container-inner">
             <div class="section-label">05 &middot; Proof It Works</div>
             <h2>Leopardo Efficiency is the model, already running.</h2>
@@ -844,7 +904,7 @@
         </div>
     </section>
 
-    <section class="container tools">
+    <section class="container tools" id="tools">
         <div class="container-inner">
             <div class="section-label">06 &middot; Operating Tools</div>
             <h2>The web-app suite that supports the discipline.</h2>
