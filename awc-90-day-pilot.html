@@ -492,6 +492,32 @@
             .after90-paths { grid-template-columns: 1fr; }
         }
 
+
+        .envelope {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        .envelope-label {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--silver);
+            padding: 1rem 1.5rem;
+            background: var(--paper);
+            border-bottom: 1px solid var(--line);
+        }
+        .envelope-table { width: 100%; border-collapse: collapse; }
+        .envelope-table td { padding: 1rem 1.5rem; font-size: 0.98rem; border-bottom: 1px solid var(--line); }
+        .envelope-table td:last-child { text-align: right; font-family: 'Jost', sans-serif; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .envelope-table tr:last-child td { border-bottom: none; }
+        .envelope-table .envelope-total td { background: var(--leopardo-blue); color: var(--white); font-weight: 700; font-size: 1.05rem; }
+        .envelope-table .envelope-total td:last-child { color: var(--leopardo-yellow); }
+
         .trigger-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -869,6 +895,45 @@
                 <div class="callout-headline">Wire transfer, prepaid monthly. No deliverable-gated invoicing. No floating receivables.</div>
                 <p class="callout-body">Family offices retain outside counsel, accountants, and senior operating advisors on prepaid wire transfers as standard practice. The mobilization payment borrows construction-subcontractor language and operates on the same logic. Cash flow stays clean on both sides; neither party is ever owed work, and neither is ever in float. Production work is fifty-fifty on each SOW with seven-day wire terms &mdash; same architecture Rob already uses with construction subs.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- 03B - YEAR ONE PICTURE -->
+    <section class="container" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+        <div class="container-inner">
+            <div class="section-label">The Year One Picture</div>
+            <h2>If the pilot converts, here is the full annual commitment.</h2>
+            <p class="lead">The 90-day pilot is the on-ramp. If it hits its triggers and continues, this is the total AWC commitment modeled for Year One. Production volume scales with the number of active operating companies; the retainer holds steady through Phase 2.</p>
+
+            <div class="envelope">
+                <div class="envelope-label">Year One &middot; Total Commitment Modeled</div>
+                <table class="envelope-table">
+                    <tr>
+                        <td>Strategic Retainer (12 months &times; $12,000)</td>
+                        <td>$144,000</td>
+                    </tr>
+                    <tr>
+                        <td>Mobilization Payment (signing fee)</td>
+                        <td>Inside retainer total</td>
+                    </tr>
+                    <tr>
+                        <td>Production Work (3 active companies, Phase 1)</td>
+                        <td>$150,000 &ndash; $240,000</td>
+                    </tr>
+                    <tr>
+                        <td>Raj &mdash; Internal AWC Headcount ($67K base + benefits)</td>
+                        <td>~$80,000</td>
+                    </tr>
+                    <tr class="envelope-total">
+                        <td>Total AWC Commitment, Year One</td>
+                        <td>$374K &ndash; $464K</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p style="margin-top: 2rem;">The total annual envelope sits inside the cost range of a single internal Chief Marketing Officer hire, while delivering brand and content operations across all seven operating companies rather than one. The retainer reads as a senior consulting engagement; production is approved per project with full Rob visibility; internal headcount is a known AWC line. No surprise expenses. No scope creep. No interest float.</p>
+
+            <p style="margin-top: 1rem; font-size: 0.92rem; color: var(--slate);">The range moves with coordination, not budget. The largest production variable is shoot days &mdash; interviewing several executives in one place, on one day, collapses crew and travel cost across companies and lands the low end. That lever belongs to AWC.</p>
         </div>
     </section>
 
