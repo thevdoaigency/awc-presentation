@@ -438,6 +438,60 @@
         }
 
         /* TRIGGER METRICS */
+
+        .after90 {
+            background: var(--leopardo-blue);
+            border-radius: 10px;
+            padding: 2rem 2.25rem;
+            margin: 2.5rem 0 2rem;
+        }
+        .after90-q {
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--leopardo-yellow);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+        .after90-paths {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .after90-path {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.35rem 1.5rem;
+        }
+        .after90-path.hit { border-left: 3px solid var(--leopardo-yellow); }
+        .after90-path.miss { border-left: 3px solid rgba(255,255,255,0.35); }
+        .after90-path-label {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.75rem;
+        }
+        .after90-path.hit .after90-path-label { color: var(--leopardo-yellow); }
+        .after90-path-text {
+            font-size: 0.98rem;
+            line-height: 1.55;
+            color: var(--white);
+        }
+        .after90-foot {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.7);
+            border-top: 1px solid rgba(255,255,255,0.12);
+            padding-top: 1.25rem;
+        }
+        @media (max-width: 640px) {
+            .after90-paths { grid-template-columns: 1fr; }
+        }
+
         .trigger-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -825,6 +879,21 @@
             <h2>Seven measurable checks at Day 90. Six of seven trigger the rest of the year.</h2>
             <p class="lead">The trigger metrics are designed to be binary, auditable, and bounded. No interpretive scoring. No subjective evaluations. Either the work shipped or it didn't. Six of seven landing triggers automatic continuation of months 4 through 12 at the same terms.</p>
 
+            <div class="after90">
+                <div class="after90-q">What happens after 90 days?</div>
+                <div class="after90-paths">
+                    <div class="after90-path hit">
+                        <div class="after90-path-label">If the pilot hits &mdash; 6 of 7 triggers</div>
+                        <div class="after90-path-text">Months 4&ndash;12 continue <strong>automatically, at the same terms.</strong> No renegotiation. The engagement becomes the full twelve-month commitment.</div>
+                    </div>
+                    <div class="after90-path miss">
+                        <div class="after90-path-label">If the pilot misses &mdash; 5 or fewer</div>
+                        <div class="after90-path-text">Clean exit at Day 90. AWC keeps the work product, VDO Aigency keeps the mobilization. <strong>No obligation beyond the 90 days.</strong></div>
+                    </div>
+                </div>
+                <div class="after90-foot">The risk is bounded to 90 days. The upside is a full year of a proven function. AWC only commits to the twelve months if the pilot has already earned it.</div>
+            </div>
+
             <div class="trigger-grid">
                 <div class="trigger-item">
                     <div class="trigger-num">01</div>
@@ -940,6 +1009,62 @@
                     <h3>Clean exit at Day 90.</h3>
                     <p>If the pilot misses its metrics, AWC keeps the work product, VDO Aigency keeps the mobilization, and the engagement ends without lawyers or drama.</p>
                 </div>
+            </div>
+
+            <!-- FRACTIONAL CBO -->
+            <div class="cbo-block">
+                <div class="cbo-intro">
+                    <div class="cbo-eyebrow">The Role, Named</div>
+                    <h3>This is a Fractional Chief Brand Officer function.</h3>
+                    <p>Priced like a retainer, scoped like a C-suite hire. The engagement isn&rsquo;t freelance production &mdash; it&rsquo;s an executive brand function operating across the portfolio, with a single team accountable for how every operating company shows up.</p>
+                </div>
+                <div class="cbo-responsibilities">
+                    <div class="cbo-resp">Executive communications</div>
+                    <div class="cbo-resp">Editorial strategy</div>
+                    <div class="cbo-resp">Production oversight</div>
+                    <div class="cbo-resp">Story architecture</div>
+                    <div class="cbo-resp">Cross-company messaging</div>
+                    <div class="cbo-resp">Creative direction</div>
+                    <div class="cbo-resp">CEO coaching</div>
+                    <div class="cbo-resp">Vendor management</div>
+                    <div class="cbo-resp">Portfolio consistency</div>
+                    <div class="cbo-resp">Monthly reporting</div>
+                </div>
+            </div>
+
+            <!-- ECONOMICS TABLE -->
+            <div class="econ-block">
+                <div class="cbo-eyebrow">The Economics</div>
+                <h3>One team, priced below a single internal hire &mdash; supporting the whole portfolio.</h3>
+                <p class="econ-lede">The point isn&rsquo;t that VDO Aigency is cheaper. It&rsquo;s that every internal option below is the cost of supporting <em>one</em> company. This role supports several.</p>
+                <table class="econ-table">
+                    <thead>
+                        <tr><th>Option</th><th class="econ-num">Annual Cost</th><th class="econ-scope">Companies Supported</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Internal CMO</td>
+                            <td class="econ-num">$250K &ndash; $350K</td>
+                            <td class="econ-scope">One</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing Director</td>
+                            <td class="econ-num">$170K &ndash; $220K</td>
+                            <td class="econ-scope">One</td>
+                        </tr>
+                        <tr>
+                            <td>Internal video team</td>
+                            <td class="econ-num">$180K+</td>
+                            <td class="econ-scope">One</td>
+                        </tr>
+                        <tr class="econ-highlight">
+                            <td>Fractional CBO <span class="econ-vdo">(VDO Aigency)</span></td>
+                            <td class="econ-num">~$400K</td>
+                            <td class="econ-scope">Multiple operating companies</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="econ-foot">Modeled against the Year One commitment of $374K&ndash;$464K across the active portfolio. One executive brand function, spread across companies, at less than the fully-loaded cost of a single internal CMO plus a video team.</p>
             </div>
         </div>
     </section>
