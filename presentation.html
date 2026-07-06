@@ -516,6 +516,45 @@
         }
 
 
+
+        /* Tools access banner */
+        .tools-access {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            background: rgba(255, 230, 0, 0.1);
+            border: 1px solid var(--leopardo-yellow);
+            border-radius: 8px;
+            padding: 1.1rem 1.5rem;
+            margin-top: 2rem;
+        }
+        .tools-access-label {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--leopardo-blue);
+            white-space: nowrap;
+        }
+        .tools-access-text {
+            font-size: 0.95rem;
+            color: var(--ink);
+        }
+        .tools-access-pw {
+            font-family: 'DM Mono', 'Jost', monospace;
+            font-weight: 700;
+            background: var(--leopardo-blue);
+            color: var(--white);
+            padding: 0.2rem 0.7rem;
+            border-radius: 4px;
+            letter-spacing: 0.03em;
+            user-select: all;
+        }
+        @media (max-width: 560px) {
+            .tools-access { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+        }
+
         /* Sticky section nav */
         .section-nav {
             position: sticky;
@@ -909,6 +948,11 @@
             <div class="section-label">06 &middot; Operating Tools</div>
             <h2>The web-app suite that supports the discipline.</h2>
             <p class="lead">Brand audits are the diagnostic. The tools are how the work gets done. A suite of internal applications &mdash; content production, asset management, distribution, analytics &mdash; built to extend the brand discipline across the portfolio without adding headcount.</p>
+
+            <div class="tools-access">
+                <div class="tools-access-label">Access</div>
+                <div class="tools-access-text">These are live, working tools. When prompted for a password, use <span class="tools-access-pw">vdoaigency</span></div>
+            </div>
 
             <div class="audit-grid" style="margin-top: 2.5rem;">
 
