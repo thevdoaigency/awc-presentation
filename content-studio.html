@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Portfolio Content Studio — Alexander West Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1A3868;
+    --blue-dark: #112548;
+    --yellow: #FFE600;
+    --paper: #FAFAF8;
+    --white: #FFFFFF;
+    --ink: #1A1A1A;
+    --slate: #4A4A4A;
+    --silver: #9A9A9A;
+    --line: #E5E5E0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--ink); font-family: 'Libre Franklin', -apple-system, sans-serif; line-height: 1.6; font-size: 16px; }
+
+  .site-header { background: var(--blue); border-bottom: 3px solid var(--yellow); padding: 1.5rem 2.5rem; }
+  .header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .header-mark { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--white); text-decoration: none; }
+  .header-mark span { color: var(--yellow); }
+  .header-meta { font-family: 'Jost', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .hero { background: var(--blue); color: var(--white); padding: 4.5rem 2.5rem 5rem; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .hero-eyebrow { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--yellow); }
+  .hero-headline { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 3rem; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.5rem; max-width: 900px; }
+  .hero-headline em { color: var(--yellow); font-style: normal; }
+  .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.78); max-width: 720px; font-weight: 300; }
+
+  .section { padding: 4.5rem 2.5rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; }
+  .section h2 { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 2rem; letter-spacing: -0.01em; margin-bottom: 1rem; max-width: 780px; line-height: 1.15; }
+  .section .lead { color: var(--slate); font-size: 1.05rem; max-width: 720px; margin-bottom: 1rem; }
+  .section.paper { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  /* Schneider precedent */
+  .precedent { background: var(--blue-dark); color: var(--white); }
+  .precedent .section-label { color: var(--yellow); }
+  .precedent h2 { color: var(--white); }
+  .precedent .lead { color: rgba(255,255,255,0.72); }
+  .show-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  @media (max-width: 780px) { .show-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .show-grid { grid-template-columns: 1fr; } }
+  .show { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 1.25rem 1.4rem; }
+  .show-name { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 1rem; color: var(--yellow); margin-bottom: 0.35rem; }
+  .show-aud { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
+  .precedent-foot { margin-top: 2.5rem; font-size: 1.05rem; color: var(--white); max-width: 760px; padding-top: 1.75rem; border-top: 1px solid rgba(255,255,255,0.15); }
+  .precedent-foot strong { color: var(--yellow); }
+
+  /* The gap — 7 companies, 0 media */
+  .gap-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.6rem; margin-top: 2.5rem; }
+  @media (max-width: 860px) { .gap-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 520px) { .gap-grid { grid-template-columns: repeat(2, 1fr); } }
+  .gap-co { background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--blue); border-radius: 6px; padding: 1rem 0.85rem; text-align: center; }
+  .gap-co-name { font-family: 'Jost', sans-serif; font-weight: 600; font-size: 0.82rem; color: var(--ink); line-height: 1.2; margin-bottom: 0.5rem; min-height: 2.4em; display: flex; align-items: center; justify-content: center; }
+  .gap-co-status { font-size: 0.68rem; color: #C4442E; font-family: 'Jost', sans-serif; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* How it works — the engine */
+  .engine-flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.6rem; margin-top: 2.5rem; }
+  .engine-node { flex: 1; min-width: 130px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 1.1rem 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+  .engine-node.origin { background: var(--blue); border-color: var(--blue); }
+  .engine-node.origin .en-step { color: var(--yellow); }
+  .engine-node.origin .en-name { color: var(--white); }
+  .en-step { font-family: 'Jost', sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); }
+  .en-name { font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 600; line-height: 1.2; color: var(--ink); }
+  .engine-arrow { display: flex; align-items: center; color: var(--silver); font-size: 1.1rem; flex-shrink: 0; }
+  @media (max-width: 760px) { .engine-flow { flex-direction: column; } .engine-arrow { transform: rotate(90deg); justify-content: center; padding: 0.2rem 0; } }
+
+  /* Economics of one asset */
+  .math-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  @media (max-width: 780px) { .math-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px) { .math-grid { grid-template-columns: 1fr; } }
+  .math-stat { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem; }
+  .math-num { font-family: 'Jost', sans-serif; font-weight: 700; font-size: 2.4rem; color: var(--blue); line-height: 1; margin-bottom: 0.4rem; }
+  .math-label { font-size: 0.88rem; color: var(--slate); line-height: 1.4; }
+
+  /* Why now list */
+  .why-list { margin-top: 2rem; display: grid; gap: 1rem; }
+  .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-bullet { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); margin-top: 0.6rem; }
+  .why-text { font-size: 1rem; color: var(--ink); }
+  .why-text strong { font-weight: 600; }
+
+  /* Close */
+  .close { background: var(--blue); color: var(--white); }
+  .close .section-label { color: var(--yellow); }
+  .close h2 { color: var(--white); }
+  .close p { color: rgba(255,255,255,0.78); max-width: 720px; margin-bottom: 1rem; }
+  .close p em { color: var(--yellow); font-style: normal; font-weight: 600; }
+
+  footer { background: var(--blue-dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.06em; }
+  @media (max-width: 640px) { .hero-headline { font-size: 2rem; } .section h2 { font-size: 1.6rem; } }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="presentation.html" class="header-mark">Alexander West Capital &middot; <span>The Content Studio</span></a>
+      <div class="header-meta">Portfolio Infrastructure &middot; Phase 2 Concept</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">The Authority Play</div>
+      <h1 class="hero-headline">Seven companies with decades of expertise. <em>None of them are publishing it.</em></h1>
+      <p class="hero-sub">A shared content studio inside the AWC building turns every operating company into a publisher &mdash; long-form video, executive interviews, and industry shows produced on a repeatable cadence. The model is already proven by the biggest name in the portfolio&rsquo;s own trade.</p>
+    </div>
+  </section>
+
+  <!-- SCHNEIDER PRECEDENT -->
+  <section class="section precedent">
+    <div class="section-inner">
+      <div class="section-label">The Precedent</div>
+      <h2>Schneider Electric didn&rsquo;t run a podcast. They built a content network.</h2>
+      <p class="lead">Schneider Electric &mdash; a global electrical and energy company, the exact trade AWC operates in &mdash; became the authoritative voice in its industry not through advertising, but by publishing. Multiple ongoing shows, each aimed at a specific audience, all under one brand. They turned expertise into owned media, and owned media into market authority.</p>
+
+      <div class="show-grid">
+        <div class="show"><div class="show-name">Empowered by Schneider</div><div class="show-aud">76+ episodes for electricians &mdash; product deep-dives, installation, field expertise</div></div>
+        <div class="show"><div class="show-name">AI at Scale</div><div class="show-aud">AI practitioners &mdash; real implementation stories, now in video</div></div>
+        <div class="show"><div class="show-name">Sustainability Business</div><div class="show-aud">Energy professionals &mdash; ESG, decarbonization, the energy transition</div></div>
+        <div class="show"><div class="show-name">Future of Mobility</div><div class="show-aud">EV &amp; infrastructure &mdash; charging, home energy management</div></div>
+        <div class="show"><div class="show-name">IT Channel Perspectives</div><div class="show-aud">Solution providers &mdash; channel growth, digital transformation</div></div>
+        <div class="show"><div class="show-name">Own Your Career</div><div class="show-aud">Students &amp; early-career &mdash; the next-generation talent pipeline</div></div>
+      </div>
+
+      <p class="precedent-foot">Six shows. Six audiences. One company, speaking with authority across every corner of its market. <strong>AWC has seven operating companies and the same opportunity &mdash; sitting completely unused.</strong></p>
+    </div>
+  </section>
+
+  <!-- THE GAP -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">The Gap</div>
+      <h2>Every AWC company has the expertise. Not one has the megaphone.</h2>
+      <p class="lead">Each of these companies is a genuine authority in its field &mdash; decades of projects, hard-won knowledge, executives who know more than anyone in the room. And each one publishes almost nothing. The knowledge walks out the door every day instead of compounding into brand equity.</p>
+
+      <div class="gap-grid">
+        <div class="gap-co"><div class="gap-co-name">Leopardo Construction</div><div class="gap-co-status">Silent</div></div>
+        <div class="gap-co"><div class="gap-co-name">Leopardo Efficiency</div><div class="gap-co-status">Building</div></div>
+        <div class="gap-co"><div class="gap-co-name">Grand Kahn Electric</div><div class="gap-co-status">Silent</div></div>
+        <div class="gap-co"><div class="gap-co-name">Enlyt Building Tech</div><div class="gap-co-status">Silent</div></div>
+        <div class="gap-co"><div class="gap-co-name">Laystrom Hardware</div><div class="gap-co-status">Silent</div></div>
+        <div class="gap-co"><div class="gap-co-name">DFH Connect</div><div class="gap-co-status">Silent</div></div>
+        <div class="gap-co"><div class="gap-co-name">GATOR</div><div class="gap-co-status">Silent</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section paper">
+    <div class="section-inner">
+      <div class="section-label">The Engine</div>
+      <h2>One studio. One shoot. A month of content per company.</h2>
+      <p class="lead">The studio makes long-form production routine instead of exceptional. An executive comes in once, sits for a recorded conversation, and walks out having generated a month of assets across every channel &mdash; the same content-engine logic already proven at Leopardo Efficiency, now with a permanent home.</p>
+
+      <div class="engine-flow">
+        <div class="engine-node origin"><div class="en-step">In the Room</div><div class="en-name">Executive Interview / Show</div></div>
+        <div class="engine-arrow">&rarr;</div>
+        <div class="engine-node"><div class="en-step">Anchor</div><div class="en-name">Long-Form Episode</div></div>
+        <div class="engine-arrow">&rarr;</div>
+        <div class="engine-node"><div class="en-step">Amplify</div><div class="en-name">Short-Form Cutdowns</div></div>
+        <div class="engine-arrow">&rarr;</div>
+        <div class="engine-node"><div class="en-step">Authority</div><div class="en-name">LinkedIn &amp; YouTube</div></div>
+        <div class="engine-arrow">&rarr;</div>
+        <div class="engine-node"><div class="en-step">Compound</div><div class="en-name">Owned Media Library</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECONOMICS -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">Why a Room Changes the Math</div>
+      <h2>The studio turns a cost center into an asset.</h2>
+      <p class="lead">Every off-site shoot means travel, setup, teardown, and a crew mobilizing for a single company. A permanent studio collapses all of that. Executives come to the content instead of the content chasing them &mdash; and the marginal cost of the next episode drops toward zero.</p>
+
+      <div class="math-grid">
+        <div class="math-stat"><div class="math-num">7</div><div class="math-label">Operating companies sharing one fixed asset</div></div>
+        <div class="math-stat"><div class="math-num">1</div><div class="math-label">Crew, one room, no per-shoot mobilization</div></div>
+        <div class="math-stat"><div class="math-num">&infin;</div><div class="math-label">Episodes, once the room exists &mdash; marginal cost drops each time</div></div>
+        <div class="math-stat"><div class="math-num">Owned</div><div class="math-label">A capital asset in the AWC building, not a recurring rental</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY NOW -->
+  <section class="section paper">
+    <div class="section-inner">
+      <div class="section-label">Why Now</div>
+      <h2>The pieces are already in place.</h2>
+      <div class="why-list">
+        <div class="why-item"><div class="why-bullet"></div><div class="why-text"><strong>AWC just acquired a warehouse.</strong> The single biggest barrier to a studio &mdash; the space &mdash; is already solved. AWC builds for a living; a studio buildout is a Tuesday.</div></div>
+        <div class="why-item"><div class="why-bullet"></div><div class="why-text"><strong>The content engine is already proven.</strong> Leopardo Efficiency showed one company can be turned into a publisher. The studio scales that from one to seven.</div></div>
+        <div class="why-item"><div class="why-bullet"></div><div class="why-text"><strong>The production function already exists.</strong> The Fractional CBO engagement already produces this content off-site. A studio simply gives it a permanent, efficient home.</div></div>
+        <div class="why-item"><div class="why-bullet"></div><div class="why-text"><strong>The precedent is de-risked.</strong> This isn&rsquo;t an experiment. Schneider &mdash; in AWC&rsquo;s own trade &mdash; already proved owned media builds market authority. The path is walked.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="section close">
+    <div class="section-inner">
+      <div class="section-label">The Idea</div>
+      <h2>Build the room. Turn seven companies into publishers.</h2>
+      <p>A shared content studio is the physical infrastructure behind the brand function &mdash; the place where a portfolio of quiet, credentialed companies finally starts speaking at the volume their expertise has always deserved.</p>
+      <p><em>Schneider proved it works in this exact industry. AWC has the companies, the expertise, and now the space.</em></p>
+    </div>
+  </section>
+
+  <footer>The VDO Aigency &middot; Portfolio Content Studio Concept &middot; Prepared for Alexander West Capital &middot; July 2026</footer>
+
+</body>
+</html>
