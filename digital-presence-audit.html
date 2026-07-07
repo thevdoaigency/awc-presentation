@@ -113,6 +113,67 @@
 
   footer { background: var(--blue-dark); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-family: 'Jost', sans-serif; font-size: 0.75rem; letter-spacing: 0.06em; border-top: 1px solid rgba(255,255,255,0.1); }
   @media (max-width: 640px) { .hero-headline { font-size: 2rem; } }
+
+  /* Pull-quote band */
+  .pullquote-band {
+    background: var(--blue-dark);
+    padding: 5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .pullquote-band::before {
+    content: '\201C';
+    position: absolute;
+    top: -2.5rem;
+    left: 2rem;
+    font-family: Georgia, serif;
+    font-size: 16rem;
+    line-height: 1;
+    color: var(--yellow);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .pullquote-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .pullquote {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 1.75rem;
+  }
+  .pullquote-lead {
+    color: var(--white);
+    font-weight: 600;
+  }
+  .pullquote-punch {
+    display: block;
+    margin-top: 1.5rem;
+    color: var(--yellow);
+    font-weight: 700;
+    font-size: 2.1rem;
+    letter-spacing: -0.02em;
+  }
+  .pullquote-attr {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  @media (max-width: 640px) {
+    .pullquote-band { padding: 3.5rem 1.5rem; }
+    .pullquote { font-size: 1.3rem; }
+    .pullquote-punch { font-size: 1.6rem; }
+    .pullquote-band::before { font-size: 10rem; top: -1.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -134,12 +195,11 @@
 
   <section class="pullquote-band">
     <div class="pullquote-inner">
-      <div class="pullquote-mark">&ldquo;</div>
       <blockquote class="pullquote">
-        Curtis Leopardo wears three-piece suits. Not costume &mdash; respect for an age when men presented themselves with dignity, when how you showed up said something about how seriously you took your work. The world around him forgot that.
+        <span class="pullquote-lead">Curtis Leopardo wears three-piece suits.</span> Not costume &mdash; respect for an age when men presented themselves with dignity, when how you showed up said something about how seriously you took the work. The world around him forgot that.
         <span class="pullquote-punch">So did Grand Kahn.</span>
       </blockquote>
-      <div class="pullquote-attr">From the Chicago portfolio review</div>
+      <div class="pullquote-attr">&mdash; From the Chicago portfolio review</div>
     </div>
   </section>
 
