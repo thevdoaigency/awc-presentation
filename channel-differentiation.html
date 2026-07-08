@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Same Portfolio. Different Channel. — Alexander West Capital</title>
+<title>Portfolio Brand Function — Alexander West Capital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -61,6 +61,13 @@
     text-decoration:none; display:flex; align-items:center; gap:6px;
   }
   .header-back:hover{color:var(--leopardo-yellow);}
+  .header-nav{display:flex; gap:26px; flex-wrap:wrap;}
+  .header-nav a{
+    font-family:'Libre Franklin',sans-serif; font-size:0.72rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.75);
+    text-decoration:none;
+  }
+  .header-nav a:hover{color:var(--leopardo-yellow);}
 
   /* HERO */
   .hero{
@@ -161,6 +168,46 @@
     border:1px solid var(--line); padding:.4rem .8rem;
   }
   .company-block.alt .cb-tags span{background:var(--paper);}
+  .cb-link{
+    display:inline-flex; align-items:center; gap:6px; margin-top:1.25rem;
+    font-family:'Libre Franklin',sans-serif; font-size:0.8rem; font-weight:700;
+    color:var(--accent); text-decoration:none; border-bottom:2px solid var(--accent);
+    padding-bottom:2px;
+  }
+  .cb-link:hover{opacity:.7;}
+
+  /* MARKET STRATEGY SERIES */
+  .strategy-section{padding:5rem 0; border-bottom:1px solid var(--line); background:var(--paper);}
+  .strategy-section h2{
+    font-weight:700; color:var(--leopardo-blue); font-size:clamp(1.5rem,3vw,2rem);
+    max-width:680px; margin-bottom:1rem; letter-spacing:-0.01em;
+  }
+  .strategy-section .sub{max-width:640px; color:var(--slate); font-size:1rem; margin-bottom:2.5rem;}
+  .strategy-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:2px; background:var(--line); border:1px solid var(--line);
+  }
+  @media (max-width:900px){.strategy-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.strategy-grid{grid-template-columns:1fr;}}
+  .strategy-card{
+    background:var(--white); padding:1.75rem 1.5rem; display:flex; flex-direction:column;
+    justify-content:space-between; min-height:190px; text-decoration:none; color:inherit;
+    transition:background .15s;
+  }
+  .strategy-card:hover{background:var(--paper);}
+  .strategy-card .num{
+    font-family:'Jost',sans-serif; font-weight:700; font-size:1.6rem; color:var(--accent);
+    -webkit-text-stroke:0; margin-bottom:.75rem;
+  }
+  .strategy-card .name{font-family:'Jost',sans-serif; font-weight:600; font-size:1.05rem; color:var(--ink); margin-bottom:.5rem;}
+  .strategy-card .teaser{font-size:0.82rem; color:var(--slate); margin-bottom:1rem; flex:1;}
+  .strategy-card .cta{
+    font-family:'Libre Franklin',sans-serif; font-size:0.7rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.1em; color:var(--accent);
+  }
+  .strategy-note{
+    margin-top:2rem; font-size:0.88rem; color:var(--slate); max-width:640px;
+  }
+  .strategy-note strong{color:var(--leopardo-blue);}
 
   /* MOCKUP FRAME base */
   .mockup{
@@ -278,17 +325,21 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="header-mark">Alexander West Capital <em>Portfolio Brand Function</em></div>
-    <a class="header-back" href="presentation.html">← Back to Hub</a>
+    <nav class="header-nav">
+      <a href="#channels">Channels</a>
+      <a href="#strategy">Market Strategy</a>
+    </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <div class="hero-label">Follow-Up · Chicago Review</div>
-    <h1>Same portfolio. <span>Seven different feeds.</span></h1>
+    <div class="hero-label">Portfolio Brand Function · Alexander West Capital</div>
+    <h1>Same portfolio. <span>Seven different feeds. Four strategies, and counting.</span></h1>
     <p class="sub">
-      You asked how the channels actually change, company to company. Here it is —
-      not a memo, the feed itself.
+      One team, seven companies, no copy-paste. This page holds two things: how the channel treatment
+      changes company to company, and the market strategy behind four of those companies so far —
+      researched, positioned, and mapped straight to what gets produced.
     </p>
   </div>
 </section>
@@ -300,7 +351,7 @@
   </div>
 </div>
 
-<section class="scan">
+<section class="scan" id="channels">
   <div class="wrap">
     <h2>Seven companies, at a glance.</h2>
     <div class="scan-grid">
@@ -374,6 +425,7 @@
       <h3>The Feed: Field Proof, Every Week</h3>
       <p class="cb-statement">117 years of proof. Zero years on Instagram — until now.</p>
       <div class="cb-tags"><span>Jobsite photo grid</span><span>Safety &amp; craft</span><span>Field leadership</span></div>
+      <a class="cb-link" href="grand-kahn-market-strategy.html" style="--accent:var(--kahn-copper)">Read the Market Strategy →</a>
     </div>
   </div>
 </div>
@@ -415,6 +467,7 @@
       <h3>The Feed: The Spec Sheet, Made Fast</h3>
       <p class="cb-statement">Nobody buys a hinge because it went viral. They buy because the spec sheet is right.</p>
       <div class="cb-tags"><span>Product explainers</span><span>Line cards</span><span>Vendor spotlights</span></div>
+      <a class="cb-link" href="laystrom-market-strategy.html" style="--accent:var(--leopardo-graphite)">Read the Market Strategy →</a>
     </div>
   </div>
 </div>
@@ -427,6 +480,7 @@
       <h3>The Feed: Show the System Thinking</h3>
       <p class="cb-statement">Show the building thinking. Skip the brochure.</p>
       <div class="cb-tags"><span>Use-case explainers</span><span>System diagrams</span><span>Hospitality &amp; MDU</span></div>
+      <a class="cb-link" href="enlyt-market-strategy.html" style="--accent:var(--enlyt-cyan)">Read the Market Strategy →</a>
     </div>
     <div class="cb-visual">
       <div class="mockup mock-browser" style="--accent:var(--enlyt-cyan)">
@@ -461,6 +515,7 @@
       <h3>The Feed: The Workflow, Not the Pitch</h3>
       <p class="cb-statement">If they can't see the workflow in 15 seconds, they close the tab.</p>
       <div class="cb-tags"><span>Before/after demos</span><span>Founder POV</span><span>Onboarding content</span></div>
+      <a class="cb-link" href="dfh-connect-market-strategy.html" style="--accent:var(--dfh-indigo)">Read the Market Strategy →</a>
     </div>
   </div>
 </div>
@@ -484,14 +539,64 @@
   </div>
 </div>
 
+<section class="strategy-section" id="strategy">
+  <div class="wrap">
+    <h2>The Market Strategy Series.</h2>
+    <p class="sub">
+      Four companies down. Each one starts from the same place — the live site, the real competitive
+      landscape, researched market data — and ends in the same place: video, outreach, and the AI stack
+      that actually produces it. Plus the role-model companies each one could grow into once it leaves
+      the nest.
+    </p>
+    <div class="strategy-grid">
+      <a class="strategy-card" href="grand-kahn-market-strategy.html" style="--accent:var(--kahn-copper)">
+        <div>
+          <div class="num">01</div>
+          <div class="name">Grand Kahn Electric</div>
+          <div class="teaser">117 years of proof, undercut by a legacy story the site can't agree on. Role models: Rosendin, M.C. Dean, IES Holdings, Faith Technologies.</div>
+        </div>
+        <div class="cta">Read the Strategy →</div>
+      </a>
+      <a class="strategy-card" href="laystrom-market-strategy.html" style="--accent:var(--leopardo-graphite)">
+        <div>
+          <div class="num">02</div>
+          <div class="name">Laystrom Hardware</div>
+          <div class="teaser">A PE-backed national roll-up bought its way into Chicago in 2019 — and is also the best aspirational model. Role models: Cook &amp; Boardman, Banner Solutions, Allegion.</div>
+        </div>
+        <div class="cta">Read the Strategy →</div>
+      </a>
+      <a class="strategy-card" href="enlyt-market-strategy.html" style="--accent:var(--enlyt-cyan)">
+        <div>
+          <div class="num">03</div>
+          <div class="name">Enlyt Building Technologies</div>
+          <div class="teaser">The fastest-growing market in the portfolio, selling a product that's invisible the day the job ends. Role model: Albireo Energy.</div>
+        </div>
+        <div class="cta">Read the Strategy →</div>
+      </a>
+      <a class="strategy-card" href="dfh-connect-market-strategy.html" style="--accent:var(--dfh-indigo)">
+        <div>
+          <div class="num">04</div>
+          <div class="name">DFH Connect</div>
+          <div class="teaser">The best ROI story in the portfolio (2–4 hours to 5 minutes), with the thinnest proof. Role model: Agave.</div>
+        </div>
+        <div class="cta">Read the Strategy →</div>
+      </a>
+    </div>
+    <p class="strategy-note">
+      <strong>Next up:</strong> Leopardo Construction, Leopardo Efficiency, and GATOR — same treatment,
+      in progress.
+    </p>
+  </div>
+</section>
+
 <div class="closer">
   <div class="closer-inner">
     <div class="stat-row">
       <div class="stat"><div class="num">7</div><div class="label">companies</div></div>
-      <div class="stat"><div class="num">7</div><div class="label">different feeds</div></div>
+      <div class="stat"><div class="num">4</div><div class="label">market strategies published</div></div>
       <div class="stat"><div class="num">1</div><div class="label">team running all of it</div></div>
     </div>
-    <div class="line">One function. Seven channels. <em>Zero copy-paste.</em></div>
+    <div class="line">One function. Seven channels, seven strategies. <em>Zero copy-paste.</em></div>
   </div>
 </div>
 
