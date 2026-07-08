@@ -126,20 +126,21 @@
   }
   .gate-btn{
     display:inline-flex; align-items:center; gap:10px;
-    font-family:'Jost',sans-serif; font-weight:600; font-size:1.05rem;
-    background:var(--leopardo-blue); color:var(--white); text-decoration:none;
-    padding:1rem 2.2rem; border:2px solid var(--leopardo-blue);
+    font-family:'Jost',sans-serif; font-weight:700; font-size:1.05rem;
+    background:var(--leopardo-yellow); color:var(--leopardo-blue-dark); text-decoration:none;
+    padding:1rem 2.2rem; border:2px solid var(--leopardo-yellow);
     transition:all .3s ease;
   }
   .gate-btn .lock{transition:transform .3s ease;}
   .gate:not(.unlocked) .gate-btn{
-    background:var(--white); color:var(--leopardo-blue); opacity:.55;
+    background:var(--white); color:var(--leopardo-blue); border-color:var(--line); opacity:.55;
   }
   .gate.unlocked .gate-btn{
-    background:var(--leopardo-blue); color:var(--white); opacity:1;
-    box-shadow:0 12px 28px rgba(26,56,104,0.25);
+    background:var(--leopardo-yellow); color:var(--leopardo-blue-dark); border-color:var(--leopardo-yellow);
+    opacity:1;
+    box-shadow:0 12px 28px rgba(255,230,0,0.35);
   }
-  .gate.unlocked .gate-btn:hover{background:var(--leopardo-blue-dark); border-color:var(--leopardo-blue-dark);}
+  .gate.unlocked .gate-btn:hover{background:#FFEE33; border-color:#FFEE33;}
   .gate-note{
     margin-top:1.1rem; font-size:0.78rem; color:var(--silver);
     text-transform:uppercase; letter-spacing:0.08em; font-weight:600;
@@ -164,8 +165,8 @@
     <div class="hero-label">Before the Proposal · Chicago Shoot, June 30, 2026</div>
     <h1>Watch this first. <span>Then open the proposal.</span></h1>
     <p class="sub">
-      Curtis and I wanted to make sure this lands before anything else does. This is the actual material from
-      last week's shoot — five people, four companies, zero editing with our automated post-production pipeline. The proposal that follows is built on
+      Curtis wanted to make sure this lands before anything else does. This is the actual material from
+      last week's shoot — five people, four companies, zero edits. The proposal that follows is built on
       the strength of this. See it, then keep going.
     </p>
     <div class="meta">
